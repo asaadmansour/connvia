@@ -1,0 +1,67 @@
+.partnersSection {
+  width: 100%;
+  padding: 2rem 0;
+  background-color: #e0e0e0; /* Matches the company section */
+}
+
+.partnersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--purple-dark);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.slidersWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.swiper {
+  width: 80%;
+  margin: auto;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide img {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .partnersContainer {
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+
+  .swiper {
+    width: 90%;
+  }
+
+  .slide img {
+    max-width: 250px;
+    height: 250px;
+  }
+}

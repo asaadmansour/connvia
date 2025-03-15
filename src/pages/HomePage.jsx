@@ -7,21 +7,23 @@ import Section from "../components/Section";
 import styles from "./HomePage.module.css";
 import CompanySection from "../components/Company";
 import PropTypes from "prop-types";
+import Partners from "../components/Partners";
 
 function Homepage({ defaultSection }) {
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.videoContainer}>
-        <Video />
-      </div>
-
       <Section id="header-section" type="header">
+        <div className={styles.videoContainer}>
+          <Video />
+        </div>
         <HeaderNav />
         <Hero />
       </Section>
 
       <CompanySection defaultSection={defaultSection} />
-
+      <Section id="partners-section" type="partners">
+        <Partners />
+      </Section>
       <Section id="nav-section" type="nav">
         <PageNav />
       </Section>

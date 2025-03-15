@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import Video from "../components/Video";
+import Video from "../components/Video";
 import styles from "./Login.module.css";
 import AuthFooter from "../components/AuthFooter";
 import AuthHeader from "../components/AuthHeader";
@@ -124,7 +124,7 @@ function Login() {
       <div className={styles.content}>
         <div className={styles.formSection}>
           <AuthHeader />
-
+          <Video overlay={0.9} />
           <div className={styles.formContent}>
             <h1 className={styles.title}>{t("signIn")}</h1>
 

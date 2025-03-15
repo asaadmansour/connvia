@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Video from "./Video";
+// import Video from "./Video";
 import { Reorder } from "framer-motion";
 import styles from "./InfoSection.module.css";
 
@@ -17,7 +17,6 @@ function InfoSection() {
 
   return (
     <div className={styles.infoSection}>
-      <Video overlay={0.9} />
       <div className={styles.infoContent}>
         <h2 className={styles.infoTitle}>One app for all occasions</h2>
         <p className={styles.infoDescription}>
