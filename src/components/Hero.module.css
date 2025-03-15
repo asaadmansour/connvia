@@ -1,0 +1,125 @@
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  max-width: 600px;
+  z-index: 1;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, var(--white), rgba(255, 255, 255, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.storeButtons {
+  display: flex;
+  gap: 1rem;
+  background-color: transparent;
+  margin-top: 2rem;
+}
+
+.storeButton {
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  background: rgba(44, 44, 44, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(84, 84, 84, 0.4);
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+.storeButton:hover {
+  background-color: rgba(65, 65, 65, 0.9);
+  transform: translateY(-2px);
+}
+
+.storeButton i {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.2rem;
+}
+
+.storeButton span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.storeButton small {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  font-weight: normal;
+}
+
+.storeButton span:not(small) {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.appStoreButton, .storeButton {
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.appStoreButton:hover, .storeButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.appStoreButton img, .storeButton i {
+  width: 24px;
+  height: 24px;
+}
+
+.visual {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  height: 80%;
+  z-index: 0;
+}

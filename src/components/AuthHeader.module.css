@@ -1,0 +1,12 @@
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .logoContainer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--purple-mid);
+  }

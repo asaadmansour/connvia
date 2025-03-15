@@ -1,0 +1,63 @@
+.headerNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.authButtons {
+  display: flex;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.authButton {
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.97rem;
+  text-decoration: none;
+  perspective: 1000px;
+}
+
+.login {
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.login:hover {
+  color: var(--white);
+}
+
+.signup {
+  background: var(--white);
+  color: var(--purple-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.authButton span {
+  display: inline-block;
+  transform-origin: 50% 50%;
+  transform: translateY(0) rotateX(0);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.authButton:hover span {
+  animation: flipAnimation 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes flipAnimation {
+  0% {
+    transform: translateY(0) rotateX(0);
+  }
+  50% {
+    transform: translateY(-100%) rotateX(-90deg);
+  }
+  51% {
+    transform: translateY(100%) rotateX(90deg);
+  }
+  100% {
+    transform: translateY(0) rotateX(0);
+  }
+}

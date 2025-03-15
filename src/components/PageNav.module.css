@@ -1,0 +1,12 @@
+.nav {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(59, 31, 57, 0.26);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}

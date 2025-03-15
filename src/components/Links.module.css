@@ -1,0 +1,109 @@
+.list {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 100; /* Higher z-index to stay above overlay */
+}
+
+.link {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.link.active {
+  color: var(--purple-dark);
+  background: var(--white);
+}
+
+.homeIcon {
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.link:hover .homeIcon {
+  opacity: 1;
+}
+
+.link.active .homeIcon {
+  opacity: 1;
+}
+
+/* Dropdown styling */
+.dropdownContainer {
+  position: relative;
+}
+
+.arrowIcon {
+  transition: transform 0.3s ease;
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+
+
+.dropdownWrapper {
+  position: absolute;
+  top: auto;
+  bottom: 100%;
+  left: 0;
+  z-index: 100; /* Same z-index as navbar to ensure it's above overlay */
+}
+
+.dropdownMenu {
+  background: var(--white);
+  border-radius: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  min-width: 150px;
+  list-style: none;
+  left: auto;
+  margin: 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: slideUp 0.2s ease forwards;
+}
+
+.dropdownItem {
+  color: var(--purple-dark);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+  display: block;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

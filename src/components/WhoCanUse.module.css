@@ -1,0 +1,150 @@
+.whoCanUseContainer {
+  padding: 2rem 0rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+
+.whoCanUseContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color, #333);
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.cardSection {
+  height: 200px;
+  width: 100%;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 1rem;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Hide Front Face on Flip */
+.card.flipped .cardFace {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.card:not(.flipped) .cardFace {
+  opacity: 1;
+  transition: opacity 0s ease-in-out 0.2s;
+}
+/* Card Faces */
+.cardFace,
+.cardFaceBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Front Card Face */
+.cardFace {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Back Card Face */
+.cardFaceBack {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  transform: rotateY(180deg);
+}
+
+/* Icon */
+.cardIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color, #333);
+}
+
+/* Front Title */
+.cardFace h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--purple-dark);
+}
+
+/* Back Description */
+.cardFaceBack p {
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-color, #555);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cardSection {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .whoCanUseContainer {
+    padding: 3rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .cardsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .cardSection {
+    height: 220px;
+  }
+
+  .cardFace h3 {
+    font-size: 1.3rem;
+  }
+
+  .cardFaceBack p {
+    font-size: 0.95rem;
+  }
+
+  .cardIcon {
+    font-size: 2.2rem;
+  }
+}

@@ -1,0 +1,70 @@
+.languageSwitcher {
+  position: relative;
+}
+
+.switcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background-color: #f9e9f9;
+  border: none;
+  border-radius: 30px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 100px;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.switcher:hover {
+  background-color: #f0e0f0;
+}
+
+.arrow {
+  font-size: 10px;
+  color: #666;
+  margin-left: 4px;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-width: 140px;
+  z-index: 10;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 14px;
+}
+
+.option:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.option.active {
+  background-color: #f0f0f0;
+  cursor: default;
+}
+
+/* Make sure the flag images are properly sized */
+.option .flagIcon {
+  width: 22px;
+  height: 16px;
+}
