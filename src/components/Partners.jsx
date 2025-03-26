@@ -8,15 +8,18 @@ import { motion } from "framer-motion";
 import { containerVariants } from "../utils/animations";
 
 function Partners() {
-  const partners = [
+  const partnersRow1 = [
     { img: "./images.png", alt: "Partner 1" },
     { img: "./1.png", alt: "Partner 2" },
-    {
-      img: "2.png",
-      alt: "Partner 3",
-    },
+    { img: "2.png", alt: "Partner 3" },
     { img: "./4.png", alt: "Partner 4" },
-    { img: "https://source.unsplash.com/150x150/?finance", alt: "Partner 5" },
+  ];
+
+  const partnersRow2 = [
+    { img: "5.webp", alt: "Partner 5" },
+    { img: "6.webp", alt: "Partner 6" },
+    { img: "9.png", alt: "Partner 7" },
+    { img: "34.png", alt: "Partner 8" },
   ];
 
   return (
@@ -27,49 +30,63 @@ function Partners() {
         initial="hidden"
         animate="visible"
       >
-        {/* Section Title - Styled to Match */}
-        <motion.h2
+        {/* Section Title */}
+        <motion.h1
           className={styles.title}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Our Partners
-        </motion.h2>
+        </motion.h1>
 
         <div className={styles.slidersWrapper}>
           {/* First row - Sliding Left */}
           <Swiper
             slidesPerView={4}
             spaceBetween={20}
-            loop={true}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            loop={true} // Ensures infinite loop
+            loopfillgroupwithblank="true" // Prevents gaps - converted to string
+            autoplay={{ delay: 1, disableOnInteraction: false }}
+            speed={3000} // Continuous speed
+            allowTouchMove={false} // Prevents user interruption
+            cssMode={false} // Ensures smooth animation
             modules={[Autoplay]}
             className={styles.swiper}
           >
-            {partners.map((partner, index) => (
+            {[...partnersRow1, ...partnersRow1].map((partner, index) => (
               <SwiperSlide key={index} className={styles.slide}>
-                <img src={partner.img} alt={partner.alt} />
+                <div className={styles.imageWrapper}>
+                  <div className={styles.imageOverlay}></div>
+                  <img src={partner.img} alt={partner.alt} />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Second row - Sliding Right */}
+          {/* Second row - Sliding Right (Opposite Direction) */}
           <Swiper
             slidesPerView={4}
             spaceBetween={20}
             loop={true}
+            loopfillgroupwithblank="true" // Converted to string
             autoplay={{
-              delay: 2000,
+              delay: 1,
               disableOnInteraction: false,
               reverseDirection: true,
             }}
+            speed={3000}
+            allowTouchMove={false}
+            cssMode={false}
             modules={[Autoplay]}
             className={styles.swiper}
           >
-            {partners.map((partner, index) => (
+            {[...partnersRow2, ...partnersRow2].map((partner, index) => (
               <SwiperSlide key={index} className={styles.slide}>
-                <img src={partner.img} alt={partner.alt} />
+                <div className={styles.imageWrapper}>
+                  <div className={styles.imageOverlay}></div>
+                  <img src={partner.img} alt={partner.alt} />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

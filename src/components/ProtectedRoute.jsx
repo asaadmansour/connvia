@@ -1,24 +1,24 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { verifyToken } from "../utils/authService";
+import { isAuthenticated, getToken } from "../utils/authService";
 import Spinner from "./Spinner";
 
 function ProtectedRoute() {
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [authStatus, setAuthStatus] = useState(null);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const isValid = await verifyToken();
-      setIsAuthenticated(isValid);
+    const checkAuth = () => {
+      const authenticated = isAuthenticated();
+      setAuthStatus(authenticated);
     };
     checkAuth();
   }, []);
 
-  if (isAuthenticated === null) {
+  if (authStatus === null) {
     return <Spinner />;
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+  return authStatus ? <Outlet /> : <Navigate to="/login" />;
 }
 
 export default ProtectedRoute;

@@ -12,11 +12,11 @@
 }
 
 .sectionTitle {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--primary-color, #333);
+  margin-bottom: 1rem;
+  color: var(--purple-dark);
 }
 
 .cardsContainer {

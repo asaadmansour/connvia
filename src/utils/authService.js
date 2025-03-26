@@ -1,105 +1,249 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3007";
+// Authentication service for handling user authentication
+const API_BASE_URL = 'http://localhost:3008/api/auth';
 
+/**
+ * Register a new user
+ * @param {Object} userData - User data for registration
+ * @returns {Promise<Object>} - Response with success status and data or error
+ */
+export const registerUser = async (userData) => {
+  try {
+    // Map frontend user type to backend user type
+    const userTypeMapping = {
+      'eventCreator': 'organizer',
+      'vendor': 'vendor',
+      'attendee': 'regular',
+      'venueOwner': 'venue',
+      'admin': 'admin'
+    };
+
+    // Prepare the request body
+    const requestBody = {
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+      phone: userData.phone,
+      city: userData.city,
+      gender: userData.gender,
+      date_of_birth: userData.date_of_birth,
+      user_type: userTypeMapping[userData.user_type] || userData.user_type,
+      recaptchaToken: userData.recaptchaToken,
+      role_data: userData.roleData
+    };
+
+    const response = await fetch(`${API_BASE_URL}/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        error: data.message || 'Registration failed'
+      };
+    }
+
+    return {
+      success: true,
+      data
+    };
+  } catch (error) {
+    console.error('Registration error:', error);
+    return {
+      success: false,
+      error: error.message || 'An unexpected error occurred during registration'
+    };
+  }
+};
+
+/**
+ * Login user
+ * @param {string} email - User email
+ * @param {string} password - User password
+ * @param {string} recaptchaToken - reCAPTCHA token
+ * @returns {Promise<Object>} - Response with success status and data or error
+ */
 export const loginUser = async (email, password, recaptchaToken) => {
   try {
-    clearAuthData(); // Always clear old data before login
-
-    const response = await fetch(`${API_URL}/api/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include", // Important for session-based auth
-      body: JSON.stringify({ email, password, recaptchaToken }),
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-      if (data.requireRecaptcha) {
-        return {
-          error: data.error || "Login failed",
-          requireRecaptcha: true,
-        };
-      }
-      throw new Error(data.error || "Login failed");
-    }
-
-    if (data.token) {
-      setAuthData(data.token); // Save token properly
-    }
-
-    return data;
-  } catch (error) {
-    clearAuthData();
-    throw new Error(error.message || "An error occurred during login");
-  }
-};
-
-export const verifyToken = async () => {
-  try {
-    const token = localStorage.getItem("authToken");
-    const expiresAt = localStorage.getItem("tokenExpiresAt");
-
-    if (!token || !expiresAt) {
-      clearAuthData();
-      return false;
-    }
-
-    if (Date.now() > parseInt(expiresAt)) {
-      clearAuthData();
-      return false;
-    }
-
-    const response = await fetch(`${API_URL}/api/verify-token`, {
-      method: "GET",
+    const response = await fetch(`${API_BASE_URL}/login`, {
+      method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
-      credentials: "include",
+      body: JSON.stringify({
+        email,
+        password,
+        recaptchaToken
+      })
     });
 
-    if (response.status === 401) {
-      clearAuthData();
-      return false;
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        error: data.message || 'Login failed'
+      };
     }
+
+    // Store token in localStorage
+    if (data.token) {
+      localStorage.setItem('authToken', data.token);
+    }
+
+    return {
+      success: true,
+      data
+    };
+  } catch (error) {
+    console.error('Login error:', error);
+    return {
+      success: false,
+      error: error.message || 'An unexpected error occurred during login'
+    };
+  }
+};
+
+/**
+ * Logout user
+ * @returns {void}
+ */
+export const logoutUser = () => {
+  // Remove token from localStorage
+  localStorage.removeItem('authToken');
+};
+
+/**
+ * Check if user is authenticated
+ * @returns {boolean} - True if user is authenticated
+ */
+export const isAuthenticated = () => {
+  return !!localStorage.getItem('authToken');
+};
+
+/**
+ * Get current user's token
+ * @returns {string|null} - User's token or null if not authenticated
+ */
+export const getToken = () => {
+  return localStorage.getItem('authToken');
+};
+
+/**
+ * Verify email with token
+ * @param {string} token - Verification token
+ * @returns {Promise<Object>} - Response with success status and data or error
+ */
+export const verifyEmail = async (token) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/verify-email/${token}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
 
     const data = await response.json();
-    return response.ok && data.isValid;
-  } catch (error) {
-    console.error("Token verification failed:", error);
-    clearAuthData();
-    return false;
-  }
-};
 
-export const logout = async () => {
-  const token = localStorage.getItem("authToken");
-  clearAuthData(); // Always clear tokens first
-
-  if (token) {
-    try {
-      await fetch(`${API_URL}/api/logout`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-      });
-    } catch (error) {
-      console.error("Logout error:", error);
+    if (!response.ok) {
+      return {
+        success: false,
+        error: data.message || 'Email verification failed'
+      };
     }
+
+    return {
+      success: true,
+      data
+    };
+  } catch (error) {
+    console.error('Email verification error:', error);
+    return {
+      success: false,
+      error: error.message || 'An unexpected error occurred during email verification'
+    };
   }
-
-  window.location.href = "/login"; // Force logout
 };
 
-// ✅ FIX: Ensure expiration is stored properly
-const setAuthData = (token) => {
-  clearAuthData();
-  localStorage.setItem("authToken", token);
-  const expiresAt = Date.now() + 24 * 60 * 60 * 1000;
-  localStorage.setItem("tokenExpiresAt", expiresAt.toString());
+/**
+ * Request password reset
+ * @param {string} email - User's email
+ * @returns {Promise<Object>} - Response with success status and data or error
+ */
+export const requestPasswordReset = async (email) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/forgot-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        error: data.message || 'Password reset request failed'
+      };
+    }
+
+    return {
+      success: true,
+      data
+    };
+  } catch (error) {
+    console.error('Password reset request error:', error);
+    return {
+      success: false,
+      error: error.message || 'An unexpected error occurred during password reset request'
+    };
+  }
 };
 
-const clearAuthData = () => {
-  localStorage.removeItem("authToken");
-  localStorage.removeItem("tokenExpiresAt");
+/**
+ * Reset password with token
+ * @param {string} token - Reset token
+ * @param {string} newPassword - New password
+ * @returns {Promise<Object>} - Response with success status and data or error
+ */
+export const resetPassword = async (token, newPassword) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/reset-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token,
+        newPassword
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        error: data.message || 'Password reset failed'
+      };
+    }
+
+    return {
+      success: true,
+      data
+    };
+  } catch (error) {
+    console.error('Password reset error:', error);
+    return {
+      success: false,
+      error: error.message || 'An unexpected error occurred during password reset'
+    };
+  }
 };

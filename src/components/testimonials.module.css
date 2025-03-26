@@ -1,0 +1,73 @@
+.testimonialsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  /* background-color: var(--purple-dark); */
+  border-radius: 8px;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 650px;
+  height: 450px;
+  border-radius: 15px;
+  padding: 20px;
+  background: #e0e0e0;
+
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+.star {
+  font-size: 32px;
+}
+.testimonial {
+  text-align: center;
+  max-width: 80%;
+}
+
+.text {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.author {
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #777;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--purple-mid);
+  transition: color 0.2s ease-in-out;
+}
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #e0e0e0;
+}
+.navButton:hover {
+  color: var(--purple-dark);
+}
+.image {
+  margin-bottom: 20px;
+  width: 200px; /* Adjust size */
+  height: 200px;
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover;
+  background-color: var(--purple-mid); /* White background */
+  padding: 5px; /* Small padding for spacing */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+}

@@ -1,7 +1,7 @@
 .partnersSection {
   width: 100%;
   padding: 2rem 0;
-  background-color: #e0e0e0; /* Matches the company section */
+  background-color: #e0e0e0;
 }
 
 .partnersContainer {
@@ -15,21 +15,26 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 3.5rem;
   font-weight: bold;
   color: var(--purple-dark);
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
 .slidersWrapper {
+  background-color: var(--purple-dark);
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  border-radius: 50px;
+  padding: 2rem 0;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.25), 0 4px 10px var(--purple-light),
+    inset 0 3px 8px rgba(255, 255, 255, 0.08);
 }
 
 .swiper {
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 
@@ -37,19 +42,46 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
+/* Background shape (circle) */
+.imageWrapper {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #e0e0e0; /* Change this to any color */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Overlay effect */
+.imageOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #e0e0e0; /* Change opacity if needed */
+  border-radius: 50%;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+/* The actual image */
 .slide img {
   width: 100%;
-  max-width: 400px;
-  height: 400px;
+  height: 100%;
+  max-width: 360px;
+  max-height: 360px;
   object-fit: contain;
   border-radius: 50%;
-  background-color: #e0e0e0;
-  padding: 20px;
+  position: relative;
+  z-index: 2;
 }
 
-/* Responsive */
+/* Responsive sizes */
 @media (max-width: 768px) {
   .partnersContainer {
     gap: 2rem;
@@ -60,8 +92,13 @@
     width: 90%;
   }
 
-  .slide img {
-    max-width: 250px;
+  .imageWrapper {
+    width: 250px;
     height: 250px;
+  }
+
+  .slide img {
+    max-width: 230px;
+    max-height: 230px;
   }
 }

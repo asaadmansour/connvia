@@ -21,28 +21,23 @@ const navItems = [
     showLabel: false,
   },
   {
+    path: "/company",
+    label: "Company",
+    dropdown: [
+      { path: "/company/about", label: "About Us" },
+      { path: "/company/WhoCanUse", label: "Who Can Use" },
+    ],
+  },
+  {
+    path: "/Pricing",
+    label: "Pricing",
+  },
+  {
     path: "/personal",
     label: "Personal",
     dropdown: [
       { path: "/personal/profile", label: "Profile" },
       { path: "/personal/settings", label: "Settings" },
-    ],
-  },
-  {
-    path: "/business",
-    label: "Business",
-    dropdown: [
-      { path: "/business/accounts", label: "Accounts" },
-      { path: "/business/services", label: "Services" },
-    ],
-  },
-  {
-    path: "/company",
-    label: "Company",
-    dropdown: [
-      { path: "/company/about", label: "About Us" },
-      { path: "/company/careers", label: "Careers" },
-      { path: "/company/contact", label: "Contact" },
     ],
   },
 ];

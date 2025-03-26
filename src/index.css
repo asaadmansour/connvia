@@ -9,7 +9,7 @@
   --white: #fff;
   --background-gradient: linear-gradient(
     135deg,
-    var(--purple-dark) 0%,
+    var(--purple-dark) %,
     #ffffff 110%
   );
 }
@@ -34,7 +34,7 @@ a {
 
 body {
   font-family: "Inter", sans-serif;
-  color: var(--text-primary);
+  background-color: #e0e0e0;
 }
 
 .store-buttons {

@@ -6,8 +6,11 @@ import AuthFooter from "../components/AuthFooter";
 import Section from "../components/Section";
 import styles from "./HomePage.module.css";
 import CompanySection from "../components/Company";
+import TrendingEvents from "../components/TrendingEvents";
 import PropTypes from "prop-types";
 import Partners from "../components/Partners";
+import Testimonials from "../components/testimonials";
+import Contact from "../components/ContactUs";
 
 function Homepage({ defaultSection }) {
   return (
@@ -16,10 +19,12 @@ function Homepage({ defaultSection }) {
         <div className={styles.videoContainer}>
           <Video />
         </div>
-        <HeaderNav />
+        <HeaderNav bgColor="transparent" />
         <Hero />
       </Section>
-
+      <Section>
+        <TrendingEvents />
+      </Section>
       <CompanySection defaultSection={defaultSection} />
       <Section id="partners-section" type="partners">
         <Partners />
@@ -27,7 +32,12 @@ function Homepage({ defaultSection }) {
       <Section id="nav-section" type="nav">
         <PageNav />
       </Section>
-
+      <Section id="testimonialsSection" type="review">
+        <Testimonials />
+      </Section>
+      <Section id="contactUs" type="contact">
+        <Contact />
+      </Section>
       <Section id="footer-section" type="footer">
         <AuthFooter />
       </Section>

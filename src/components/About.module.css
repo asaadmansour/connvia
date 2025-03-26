@@ -12,10 +12,11 @@
 }
 
 .sectionTitle {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
   text-align: center;
-  color: var(--primary-color, #333);
+  color: var(--purple-dark);
 }
 
 .aboutSection {
@@ -24,12 +25,8 @@
   border-radius: 1rem;
   padding: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.aboutSection:hover {
-  transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .aboutSection h3 {

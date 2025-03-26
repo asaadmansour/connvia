@@ -16,7 +16,17 @@ function About({ isStandalone = false }) {
         About Connvia
       </motion.h2>
 
-      <motion.div className={styles.aboutSection} variants={textVariants}>
+      <motion.div
+        className={styles.aboutSection}
+        whileHover={{
+          y: -10,
+          rotateY: -5,
+          rotateX: 5,
+          z: 20,
+          boxShadow: "10px 10px 20px rgba(0, 0, 0, 0.2)",
+          transition: { duration: 0.3, ease: "easeInOut" },
+        }}
+      >
         <h3>What is Connvia?</h3>
         <p>
           Connvia is a comprehensive event management platform that connects
@@ -25,7 +35,17 @@ function About({ isStandalone = false }) {
         </p>
       </motion.div>
 
-      <motion.div className={styles.aboutSection} variants={textVariants}>
+      <motion.div
+        className={styles.aboutSection}
+        whileHover={{
+          y: -10,
+          rotateY: -5,
+          rotateX: 5,
+          z: 20,
+          boxShadow: "10px 10px 20px rgba(0, 0, 0, 0.2)",
+          transition: { duration: 0.3, ease: "easeInOut" },
+        }}
+      >
         <h3>Our Mission</h3>
         <p>
           Our mission is to revolutionize the event industry by offering an
@@ -34,7 +54,17 @@ function About({ isStandalone = false }) {
         </p>
       </motion.div>
 
-      <motion.div className={styles.aboutSection} variants={textVariants}>
+      <motion.div
+        className={styles.aboutSection}
+        whileHover={{
+          y: -10,
+          rotateY: -5,
+          rotateX: 5,
+          z: 20,
+          boxShadow: "10px 10px 20px rgba(0, 0, 0, 0.2)",
+          transition: { duration: 0.1, ease: "easeOut" },
+        }}
+      >
         <h3>Our Vision</h3>
         <p>
           We envision a world where event planning is effortless, collaboration

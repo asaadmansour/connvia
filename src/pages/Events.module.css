@@ -1,0 +1,487 @@
+/* styles.module.css */
+
+/* Hero section */
+.heroSection {
+  padding: 2.5rem 1rem;
+}
+.heroTitle {
+  font-size: 2.25rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.heroDescription {
+  color: white;
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 2rem auto;
+}
+
+.searchContainer {
+  max-width: 48rem;
+  margin: 0 auto;
+  position: relative;
+  border: 4px solid var(--purple-dark);
+  border-radius: 0.5rem;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.searchIconContainer {
+  padding-left: 1rem;
+}
+
+.searchIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #9ca3af;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem;
+  outline: none;
+  border: none;
+}
+
+/* Filter section */
+.filterSection {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem;
+  background-color: #FFFFFF ;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+}
+
+.filterContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  display: flex;
+  align-items: center;
+  color: #4b5563;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+.filterIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.25rem;
+}
+
+.filterButtonsContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+.filterButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.filterButtonActive {
+  background-color: var(--purple-dark);
+  color: white;
+}
+
+.filterButtonInactive {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.filterButtonInactive:hover {
+  background-color: #e5e7eb;
+}
+
+.advancedFilterButton {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.advancedFilterButton:hover {
+  background-color: #e5e7eb;
+}
+
+.chevronIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Advanced filters sidebar */
+.filtersContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: calc(100vh - 60px); /* Adjust height to leave space for future footer */
+  background-color: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.filtersContainerVisible {
+  transform: translateX(0);
+}
+
+/* Main content layout */
+.mainContent {
+  display: flex;
+  background-color: #ffffff;
+  min-height: calc(100vh - 300px); /* Add minimum height to ensure white background fills the space */
+}
+
+/* Filter sidebar */
+.filterSidebar {
+  width: 280px;
+  background-color: white;
+  padding: 1.5rem;
+  border-right: 1px solid #e5e7eb;
+  height: 100vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 60px;
+}
+
+.filterSidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.filterSidebarHeader h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.resetButton {
+  background: none;
+  border: none;
+  color: var(--purple-dark);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.resetButton:hover {
+  text-decoration: underline;
+}
+
+.filterGroup {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.filterGroupTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+/* Sort select */
+.sortSelect {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  font-size: 0.875rem;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+/* Price range inputs */
+.priceInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.priceInput {
+  width: 5rem;
+  padding: 0.375rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.875rem;
+}
+
+.rangeSliderContainer {
+  position: relative;
+  height: 0.5rem;
+  margin: 1.5rem 0.5rem 0.5rem;
+}
+
+.rangeSlider {
+  position: absolute;
+  width: 100%;
+  height: 0.25rem;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+}
+
+.rangeSlider::-webkit-slider-thumb {
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 50%;
+  background: var(--purple-dark);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-appearance: none;
+}
+
+.rangeSlider::-moz-range-thumb {
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 50%;
+  background: var(--purple-dark);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Rating buttons */
+.ratingButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ratingButton {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ratingButtonActive {
+  background-color: var(--purple-dark);
+  color: white;
+  border-color: var(--purple-dark);
+}
+
+.starIcon {
+  color: #fbbf24;
+}
+
+/* Checkbox styles */
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  accent-color: var(--purple-dark);
+}
+
+.checkboxText {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+/* Video overlay */
+.videoContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4));
+  z-index: 1;
+}
+
+/* Content type selector */
+.contentTypeSelector {
+  display: flex;
+  margin-right: 1.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.contentTypeButton {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contentTypeButton:first-child {
+  border-right: 1px solid #e5e7eb;
+}
+
+.contentTypeButtonActive {
+  background-color: var(--purple-dark);
+  color: white;
+}
+
+/* Events grid section */
+.eventsSection {
+  background-color: #ffffff;
+  flex-grow: 1;
+  padding: 2rem 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 70px;
+}
+
+.eventsSectionWithSidebar {
+  margin-left: 0;
+}
+
+.eventsContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.resultsHeader {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultsCount {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .eventsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .eventsGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.noEventsMessage {
+  text-align: center;
+  padding: 3rem 0;
+  color: #6b7280;
+  background-color: #ffffff; /* Explicitly set background color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filterSidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 50;
+    padding: 2rem;
+  }
+  
+  .filterSidebarHeader {
+    margin-bottom: 2rem;
+  }
+  
+  .advancedFilterButton {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .filterContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filterButtonsContainer {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+}

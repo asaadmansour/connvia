@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import styles from "./Video.module.css";
 
-function Video({ overlay = 0.71 }) {
+function Video({ overlay = 0.75 }) {
   return (
     <div className={styles.videoWrapper}>
       <video
@@ -21,5 +22,13 @@ function Video({ overlay = 0.71 }) {
     </div>
   );
 }
+
+Video.propTypes = {
+  overlay: PropTypes.number
+};
+
+Video.defaultProps = {
+  overlay: 0.75
+};
 
 export default Video;

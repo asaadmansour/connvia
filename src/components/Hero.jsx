@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import styles from "./Hero.module.css";
-import { containerVariants, textVariants, buttonVariants } from "../utils/animations";
+import {
+  containerVariants,
+  textVariants,
+  buttonVariants,
+} from "../utils/animations";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
@@ -21,29 +26,49 @@ function Hero() {
         </motion.p>
 
         {/* Store buttons with animation */}
-        <motion.div className={styles.storeButtons} variants={containerVariants}>
-          <motion.a
-            href="#"
-            className={styles.storeButton}
-            variants={buttonVariants}
+        <motion.div className={styles.storeContainer}>
+          {/* Store Buttons */}
+          <motion.div
+            className={styles.storeButtons}
+            variants={containerVariants}
           >
-            <i className="fab fa-apple fa-lg"></i>
-            <span>
-              <small>Download on the</small>
-              App Store
-            </span>
-          </motion.a>
-          <motion.a
-            href="#"
-            className={styles.storeButton}
-            variants={buttonVariants}
-          >
-            <i className="fab fa-google-play fa-lg"></i>
-            <span>
-              <small>GET IT ON</small>
-              Google Play
-            </span>
-          </motion.a>
+            <motion.button
+              className={styles.storeButton}
+              variants={buttonVariants}
+            >
+              <i className="fab fa-apple fa-lg"></i>
+              <span>
+                <small>Download on the</small>
+                App Store
+              </span>
+            </motion.button>
+            <motion.button
+              className={styles.storeButton}
+              variants={buttonVariants}
+            >
+              <i className="fab fa-google-play fa-lg"></i>
+              <span>
+                <small>GET IT ON</small>
+                Google Play
+              </span>
+            </motion.button>
+          </motion.div>
+
+          {/* Explore Events Button */}
+          <motion.div className={styles.extraContent}>
+            <Link to="/events">
+              <motion.div
+                className={styles.storeButton}
+                variants={buttonVariants}
+              >
+                <span>
+                  <small>EXPLORE</small>
+                  Events
+                </span>
+                <i className="fas fa-calendar-alt"></i>
+              </motion.div>
+            </Link>
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.div>

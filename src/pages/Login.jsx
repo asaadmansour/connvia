@@ -57,6 +57,13 @@ function Login() {
     toast.dismiss();
     if (isLoggingIn) return;
 
+    if (!formState.email || !formState.password) {
+      toast.error("Please enter both email and password", {
+        position: "top-center",
+      });
+      return;
+    }
+
     if (!recaptchaToken) {
       toast.error("Please complete the reCAPTCHA verification first", {
         position: "top-center",
@@ -81,6 +88,13 @@ function Login() {
         return;
       }
 
+      if (response.emailNotVerified) {
+        toast.error("Please verify your email before logging in", {
+          position: "top-center",
+        });
+        return;
+      }
+
       if (response.requireRecaptcha) {
         setRequireRecaptcha(true);
         toast.error(
@@ -91,6 +105,17 @@ function Login() {
           }
         );
 
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+          setRecaptchaToken(null);
+        }
+        return;
+      }
+
+      if (response.failed) {
+        toast.error(response.error || "Login failed. Please try again.", {
+          position: "top-center",
+        });
         if (recaptchaRef.current) {
           recaptchaRef.current.reset();
           setRecaptchaToken(null);

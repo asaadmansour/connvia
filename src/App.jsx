@@ -5,9 +5,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Spinner from "./components/Spinner";
 import Dashboard from "./pages/Dashboard";
-import { verifyToken } from "./utils/authService";
+import { isAuthenticated } from "./utils/authService";
 import "./utils/i18n";
 import Signup from "./pages/Signup";
+import Events from "./pages/Events";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -16,9 +17,9 @@ function App() {
   });
 
   useEffect(() => {
-    const initializeAuth = async () => {
+    const initializeAuth = () => {
       try {
-        const isValid = await verifyToken();
+        const isValid = isAuthenticated();
         setAuthState({
           isAuthenticated: isValid,
           isLoading: false,
@@ -44,6 +45,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/events" element={<Events />} />
 
         {/* Protecting Dashboard */}
         <Route path="/dashboard" element={<ProtectedRoute />}>
