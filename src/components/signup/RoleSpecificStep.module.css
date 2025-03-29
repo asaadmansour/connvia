@@ -1,0 +1,158 @@
+.stepForm {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stepTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+.stepDescription {
+  font-size: 16px;
+  color: #e0e0e0;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+.formGroup input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.hasError input,
+.hasError select {
+  border-color: #ff6b6b;
+}
+
+.errorMessage {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.checkboxGroup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxItem input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+.checkboxItem label {
+  margin-bottom: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.attendeeMessage {
+  text-align: center;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.attendeeIcon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.attendeeMessage h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.attendeeMessage p {
+  color: #e0e0e0;
+  line-height: 1.5;
+}
+
+.noUserType {
+  text-align: center;
+  padding: 20px;
+  color: #ff6b6b;
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.backButton, .nextButton {
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backButton {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+  color: #e0e0e0;
+}
+
+.backButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nextButton {
+  background-color: #1976d2;
+  border: none;
+  color: white;
+}
+
+.nextButton:hover {
+  background-color: #1565c0;
+}
+
+@media (max-width: 768px) {
+  .checkboxGroup {
+    grid-template-columns: 1fr;
+  }
+}

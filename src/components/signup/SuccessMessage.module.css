@@ -1,0 +1,144 @@
+
+.successContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.successIcon {
+  margin: 0 auto 20px;
+  width: 80px;
+  height: 80px;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.successTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.successMessage {
+  font-size: 16px;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.emailHighlight {
+  display: block;
+  font-weight: 600;
+  color: #4CAF50;
+  margin-top: 5px;
+}
+
+.verificationNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.noteIcon {
+  margin-right: 10px;
+}
+
+.verificationNote p {
+  color: #FFD54F;
+  font-size: 14px;
+  margin: 0;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.loginButton, .resendButton {
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.loginButton {
+  background-color: #1976d2;
+  border: none;
+  color: white;
+}
+
+.loginButton:hover {
+  background-color: #1565c0;
+}
+
+.resendButton {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+  color: #e0e0e0;
+}
+
+.resendButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.helpText {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #bdbdbd;
+}
+
+.supportLink {
+  color: #64B5F6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.supportLink:hover {
+  color: #2196F3;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .successContainer {
+    padding: 20px;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .successTitle {
+    font-size: 24px;
+  }
+}

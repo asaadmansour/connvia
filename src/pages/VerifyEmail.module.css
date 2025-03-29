@@ -1,0 +1,128 @@
+/* src/pages/VerifyEmail.module.css */
+.verifyEmailContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.verifyEmailCard {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.verifyEmailCard h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.verifyingStatus,
+.successStatus,
+.errorStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.successIcon,
+.errorIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.successIcon {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.errorIcon {
+  background-color: #f44336;
+  color: white;
+}
+
+.loginButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.loginButton:hover {
+  background-color: #45a049;
+}
+
+.linkText {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.linkText:hover {
+  text-decoration: underline;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.actionButton {
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.actionButton:first-child {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.actionButton:first-child:hover {
+  background-color: #45a049;
+}
+
+.actionButton:last-child {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.actionButton:last-child:hover {
+  background-color: #e9ecef;
+}

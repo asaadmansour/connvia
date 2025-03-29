@@ -1,0 +1,134 @@
+/* src/components/signup/BasicInfoStep.module.css */
+.stepForm {
+  width: 100%;
+}
+
+.stepTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.stepDescription {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+  transition: all 0.2s ease;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2);
+}
+
+.formGroup select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.hasError input,
+.hasError select {
+  border-color: var(--error);
+  background-color: rgba(var(--error-rgb), 0.05);
+}
+
+.errorMessage {
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Password strength indicator */
+.passwordStrength {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.strengthBar {
+  flex: 1;
+  height: 4px;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  margin-right: 0.5rem;
+  overflow: hidden;
+}
+
+.strengthIndicator {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.weak {
+  background-color: var(--error);
+  color: var(--error);
+}
+
+.medium {
+  background-color: var(--warning);
+  color: var(--warning);
+}
+
+.strong {
+  background-color: var(--success);
+  color: var(--success);
+}
+
+/* Button styles */
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.nextButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nextButton:hover {
+  background-color: var(--primary-dark);
+}
+
+.nextButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

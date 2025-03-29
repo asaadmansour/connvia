@@ -1,0 +1,156 @@
+
+.stepForm {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stepTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+.stepDescription {
+  font-size: 16px;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.termsBox {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.termsBox h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.termsBox h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.termsBox p {
+  margin-bottom: 5px;
+}
+
+.termsBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+.termsBox::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.termsBox::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.termsBox::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.checkboxLabel {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.recaptcha {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.errorMessage {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.hasError .checkbox {
+  outline: 2px solid #ff6b6b;
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.backButton, .submitButton {
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backButton {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+  color: #e0e0e0;
+}
+
+.backButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.submitButton {
+  background-color: #1976d2;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  min-height: 45px;
+}
+
+.submitButton:hover {
+  background-color: #1565c0;
+}
+
+.submitButton:disabled {
+  background-color: #64b5f6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .termsBox {
+    max-height: 200px;
+  }
+}

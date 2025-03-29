@@ -40,6 +40,7 @@ function Login() {
   });
   const [recaptchaToken, setRecaptchaToken] = useState(null);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
 
   // Clear any existing auth data when the Login component mounts
   useEffect(() => {
@@ -73,6 +74,11 @@ function Login() {
 
     try {
       setIsLoggingIn(true);
+      
+      // Show loading toast
+      const loadingToastId = toast.loading("Logging in...", {
+        position: "top-center",
+      });
 
       const response = await loginUser(
         formState.email,
@@ -80,40 +86,38 @@ function Login() {
         recaptchaToken
       );
 
-      setIsLoggingIn(false);
-
-      if (response.token) {
-        toast.success("🎉 Login successful!", { position: "top-center" });
-        navigate("/dashboard");
+      // Dismiss loading toast
+      toast.dismiss(loadingToastId);
+      
+      if (response.success && response.data.token) {
+        toast.success("Login successful, Redirecting", { 
+          position: "top-center",
+          autoClose: 2000
+        });
+        
+        // Set redirecting state to true
+        setRedirecting(true);
+        
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
+        
         return;
       }
 
-      if (response.emailNotVerified) {
+      setIsLoggingIn(false);
+
+      // Handle specific error cases
+      if (response.error && response.error.includes("not verified")) {
         toast.error("Please verify your email before logging in", {
           position: "top-center",
         });
         return;
       }
 
-      if (response.requireRecaptcha) {
-        setRequireRecaptcha(true);
-        toast.error(
-          response.error ||
-            "Multiple failed attempts. Please complete the reCAPTCHA.",
-          {
-            position: "top-center",
-          }
-        );
-
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-          setRecaptchaToken(null);
-        }
-        return;
-      }
-
-      if (response.failed) {
-        toast.error(response.error || "Login failed. Please try again.", {
+      if (response.error && response.error.includes("Invalid credentials")) {
+        toast.error("Invalid email or password. Please try again.", {
           position: "top-center",
         });
         if (recaptchaRef.current) {
@@ -122,11 +126,37 @@ function Login() {
         }
         return;
       }
-    } catch (error) {
-      setIsLoggingIn(false);
-      toast.error(error.message || "An error occurred during login", {
+
+      if (response.error && response.error.includes("recaptcha")) {
+        setRequireRecaptcha(true);
+        toast.error("Multiple failed attempts. Please complete the reCAPTCHA.", {
+          position: "top-center",
+        });
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+          setRecaptchaToken(null);
+        }
+        return;
+      }
+
+      // Generic error handling
+      toast.error(response.error || "Login failed. Please try again.", {
         position: "top-center",
       });
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+        setRecaptchaToken(null);
+      }
+      
+    } catch (error) {
+      setIsLoggingIn(false);
+      toast.error(error.message || "Network error. Please check your connection.", {
+        position: "top-center",
+      });
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+        setRecaptchaToken(null);
+      }
     }
   };
 
@@ -238,9 +268,9 @@ function Login() {
               <button
                 type="submit"
                 className={styles.loginButton}
-                disabled={isLoggingIn || (requireRecaptcha && !recaptchaToken)}
+                disabled={isLoggingIn || redirecting || (requireRecaptcha && !recaptchaToken)}
               >
-                {isLoggingIn ? <Spinner /> : t("logIn")}
+                {isLoggingIn || redirecting ? <Spinner /> : t("logIn")}
               </button>
             </form>
             <div className={styles.buttonContainer}>

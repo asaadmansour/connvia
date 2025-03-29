@@ -1,0 +1,19 @@
+/* src/components/signup/StepIndicator.module.css */
+.stepIndicator {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.stepDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  margin: 0 8px;
+  transition: background-color 0.3s ease;
+}
+
+.stepDotActive {
+  background-color: #1976d2;
+}

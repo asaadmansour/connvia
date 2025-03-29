@@ -8,35 +8,15 @@ const API_BASE_URL = 'http://localhost:3008/api/auth';
  */
 export const registerUser = async (userData) => {
   try {
-    // Map frontend user type to backend user type
-    const userTypeMapping = {
-      'eventCreator': 'organizer',
-      'vendor': 'vendor',
-      'attendee': 'regular',
-      'venueOwner': 'venue',
-      'admin': 'admin'
-    };
-
-    // Prepare the request body
-    const requestBody = {
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-      phone: userData.phone,
-      city: userData.city,
-      gender: userData.gender,
-      date_of_birth: userData.date_of_birth,
-      user_type: userTypeMapping[userData.user_type] || userData.user_type,
-      recaptchaToken: userData.recaptchaToken,
-      role_data: userData.roleData
-    };
-
+    // The userData object is already properly formatted in the Signup component
+    // We'll just send it directly to the API
+    
     const response = await fetch(`${API_BASE_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(userData)
     });
 
     const data = await response.json();
@@ -44,7 +24,7 @@ export const registerUser = async (userData) => {
     if (!response.ok) {
       return {
         success: false,
-        error: data.message || 'Registration failed'
+        error: data.error || 'Registration failed'
       };
     }
 
@@ -94,6 +74,12 @@ export const loginUser = async (email, password, recaptchaToken) => {
     // Store token in localStorage
     if (data.token) {
       localStorage.setItem('authToken', data.token);
+      
+      // Calculate token expiry (if needed)
+      if (data.expiresIn) {
+        const expiresAt = new Date().getTime() + data.expiresIn * 1000;
+        localStorage.setItem('tokenExpiresAt', expiresAt.toString());
+      }
     }
 
     return {
@@ -153,7 +139,7 @@ export const verifyEmail = async (token) => {
     if (!response.ok) {
       return {
         success: false,
-        error: data.message || 'Email verification failed'
+        error: data.error || data.message || 'Email verification failed'
       };
     }
 

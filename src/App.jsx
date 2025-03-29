@@ -9,6 +9,7 @@ import { isAuthenticated } from "./utils/authService";
 import "./utils/i18n";
 import Signup from "./pages/Signup";
 import Events from "./pages/Events";
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -45,8 +46,9 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
         <Route path="/events" element={<Events />} />
-
+    
         {/* Protecting Dashboard */}
         <Route path="/dashboard" element={<ProtectedRoute />}>
           <Route index element={<Dashboard />} />
