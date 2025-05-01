@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './RoleSpecificStep.module.css';
+import styles from '../../pages/Signup.module.css';
 
 const RoleSpecificStep = ({ formState, handleRoleDataChange, handleNextStep, handlePrevStep }) => {
   // Render different form fields based on user type
@@ -8,54 +8,80 @@ const RoleSpecificStep = ({ formState, handleRoleDataChange, handleNextStep, han
       case 'vendor':
         return (
           <>
-            <div className={`${styles.formGroup} ${formState.touched['roleData.vendor_name'] && formState.errors['roleData.vendor_name'] ? styles.hasError : ""}`}>
-              <label htmlFor="vendor_name">Vendor Name *</label>
-              <input
-                type="text"
-                id="vendor_name"
-                name="vendor_name"
-                value={formState.roleData.vendor_name || ''}
-                onChange={handleRoleDataChange}
-                placeholder="Enter your business name"
-                required
-              />
-              {formState.touched['roleData.vendor_name'] && formState.errors['roleData.vendor_name'] && (
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.vendor_name'] && formState.errors?.['roleData.vendor_name'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>🏢</span>
+                <input
+                  type="text"
+                  id="vendor_name"
+                  name="vendor_name"
+                  className={styles.floatingInput}
+                  value={formState.roleData?.vendor_name || ''}
+                  onChange={handleRoleDataChange}
+                  placeholder=""
+                  required
+                />
+                <label
+                  htmlFor="vendor_name"
+                  className={`${styles.floatingLabel} ${formState.roleData?.vendor_name ? styles.hasContent : ""}`}
+                >
+                  Vendor Name
+                </label>
+              </div>
+              {formState.touched?.['roleData.vendor_name'] && formState.errors?.['roleData.vendor_name'] && (
                 <div className={styles.errorMessage}>{formState.errors['roleData.vendor_name']}</div>
               )}
             </div>
             
-            <div className={`${styles.formGroup} ${formState.touched['roleData.vendor_type'] && formState.errors['roleData.vendor_type'] ? styles.hasError : ""}`}>
-              <label htmlFor="vendor_type">Vendor Type *</label>
-              <select
-                id="vendor_type"
-                name="vendor_type"
-                value={formState.roleData.vendor_type || ''}
-                onChange={handleRoleDataChange}
-                required
-              >
-                <option value="">Select vendor type</option>
-                <option value="food">Food & Beverage</option>
-                <option value="retail">Retail & Merchandise</option>
-                <option value="services">Services</option>
-                <option value="technology">Technology</option>
-                <option value="other">Other</option>
-              </select>
-              {formState.touched['roleData.vendor_type'] && formState.errors['roleData.vendor_type'] && (
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.vendor_type'] && formState.errors?.['roleData.vendor_type'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>📋</span>
+                <select
+                  id="vendor_type"
+                  name="vendor_type"
+                  className={`${styles.floatingInput} ${styles.gender}`}
+                  value={formState.roleData?.vendor_type || ''}
+                  onChange={handleRoleDataChange}
+                  required
+                >
+                  <option value="" disabled>Select vendor type</option>
+                  <option value="food">Food {'&'} Beverage</option>
+                  <option value="retail">Retail {'&'} Merchandise</option>
+                  <option value="services">Services</option>
+                  <option value="technology">Technology</option>
+                  <option value="other">Other</option>
+                </select>
+                {!formState.roleData?.vendor_type && (
+                  <div className={styles.datePlaceholder}>
+                    Select Vendor Type
+                  </div>
+                )}
+              </div>
+              {formState.touched?.['roleData.vendor_type'] && formState.errors?.['roleData.vendor_type'] && (
                 <div className={styles.errorMessage}>{formState.errors['roleData.vendor_type']}</div>
               )}
             </div>
             
-            <div className={`${styles.formGroup} ${formState.touched['roleData.website'] && formState.errors['roleData.website'] ? styles.hasError : ""}`}>
-              <label htmlFor="website">Website (Optional)</label>
-              <input
-                type="url"
-                id="website"
-                name="website"
-                value={formState.roleData.website || ''}
-                onChange={handleRoleDataChange}
-                placeholder="https://yourwebsite.com"
-              />
-              {formState.touched['roleData.website'] && formState.errors['roleData.website'] && (
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.website'] && formState.errors?.['roleData.website'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>🌐</span>
+                <input
+                  type="url"
+                  id="website"
+                  name="website"
+                  className={styles.floatingInput}
+                  value={formState.roleData?.website || ''}
+                  onChange={handleRoleDataChange}
+                  placeholder=""
+                />
+                <label
+                  htmlFor="website"
+                  className={`${styles.floatingLabel} ${formState.roleData?.website ? styles.hasContent : ""}`}
+                >
+                  Website (Optional)
+                </label>
+              </div>
+              {formState.touched?.['roleData.website'] && formState.errors?.['roleData.website'] && (
                 <div className={styles.errorMessage}>{formState.errors['roleData.website']}</div>
               )}
             </div>
@@ -65,54 +91,71 @@ const RoleSpecificStep = ({ formState, handleRoleDataChange, handleNextStep, han
       case 'organizer':
         return (
           <>
-            <div className={`${styles.formGroup} ${formState.touched['roleData.company_name'] && formState.errors['roleData.company_name'] ? styles.hasError : ""}`}>
-              <label htmlFor="company_name">Company/Organization Name *</label>
-              <input
-                type="text"
-                id="company_name"
-                name="company_name"
-                value={formState.roleData.company_name || ''}
-                onChange={handleRoleDataChange}
-                placeholder="Enter your organization name"
-                required
-              />
-              {formState.touched['roleData.company_name'] && formState.errors['roleData.company_name'] && (
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.company_name'] && formState.errors?.['roleData.company_name'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>🏢</span>
+                <input
+                  type="text"
+                  id="company_name"
+                  name="company_name"
+                  className={styles.floatingInput}
+                  value={formState.roleData?.company_name || ''}
+                  onChange={handleRoleDataChange}
+                  placeholder=""
+                  required
+                />
+                <label
+                  htmlFor="company_name"
+                  className={`${styles.floatingLabel} ${formState.roleData?.company_name ? styles.hasContent : ""}`}
+                >
+                  Company/Organization Name
+                </label>
+              </div>
+              {formState.touched?.['roleData.company_name'] && formState.errors?.['roleData.company_name'] && (
                 <div className={styles.errorMessage}>{formState.errors['roleData.company_name']}</div>
               )}
             </div>
             
-            <div className={`${styles.formGroup} ${formState.touched['roleData.organization_type'] && formState.errors['roleData.organization_type'] ? styles.hasError : ""}`}>
-              <label htmlFor="organization_type">Organization Type *</label>
-              <select
-                id="organization_type"
-                name="organization_type"
-                value={formState.roleData.organization_type || ''}
-                onChange={handleRoleDataChange}
-                required
-              >
-                <option value="">Select organization type</option>
-                <option value="corporate">Corporate</option>
-                <option value="non_profit">Non-Profit</option>
-                <option value="government">Government</option>
-                <option value="educational">Educational</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="other">Other</option>
-              </select>
-              {formState.touched['roleData.organization_type'] && formState.errors['roleData.organization_type'] && (
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.organization_type'] && formState.errors?.['roleData.organization_type'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>📋</span>
+                <select
+                  id="organization_type"
+                  name="organization_type"
+                  className={`${styles.floatingInput} ${styles.gender}`}
+                  value={formState.roleData?.organization_type || ''}
+                  onChange={handleRoleDataChange}
+                  required
+                >
+                  <option value="" disabled>Select organization type</option>
+                  <option value="corporate">Corporate</option>
+                  <option value="non_profit">Non-Profit</option>
+                  <option value="government">Government</option>
+                  <option value="educational">Educational</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="other">Other</option>
+                </select>
+                {!formState.roleData?.organization_type && (
+                  <div className={styles.datePlaceholder}>
+                    Select Organization Type
+                  </div>
+                )}
+              </div>
+              {formState.touched?.['roleData.organization_type'] && formState.errors?.['roleData.organization_type'] && (
                 <div className={styles.errorMessage}>{formState.errors['roleData.organization_type']}</div>
               )}
             </div>
             
-            <div className={styles.formGroup}>
-              <label>Event Types You Organize</label>
-              <div className={styles.checkboxGroup}>
+            <div className={styles.inputGroup}>
+              <label className={styles.checkboxGroupLabel}>Event Types You Organize</label>
+              <div className={styles.checkboxContainer}>
                 {['conferences', 'workshops', 'concerts', 'festivals', 'sports', 'corporate', 'social'].map(type => (
                   <div key={type} className={styles.checkboxItem}>
                     <input
                       type="checkbox"
                       id={`event_type_${type}`}
                       name={`event_types_${type}`}
-                      checked={formState.roleData[`event_types_${type}`] || false}
+                      checked={formState.roleData?.[`event_types_${type}`] || false}
                       onChange={(e) => handleRoleDataChange({
                         target: {
                           name: `event_types_${type}`,
@@ -132,78 +175,199 @@ const RoleSpecificStep = ({ formState, handleRoleDataChange, handleNextStep, han
       case 'venue':
         return (
           <>
-            <div className={`${styles.formGroup} ${formState.touched['roleData.venue_name'] && formState.errors['roleData.venue_name'] ? styles.hasError : ""}`}>
-              <label htmlFor="venue_name">Venue Name *</label>
-              <input
-                type="text"
-                id="venue_name"
-                name="venue_name"
-                value={formState.roleData.venue_name || ''}
-                onChange={handleRoleDataChange}
-                placeholder="Enter your venue name"
-                required
-              />
-              {formState.touched['roleData.venue_name'] && formState.errors['roleData.venue_name'] && (
+            <p className={styles.roleSpecificDescription}>
+              Please provide information about your venue management company
+            </p>
+            
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.venue_name'] && formState.errors?.['roleData.venue_name'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>🏢</span>
+                <input
+                  type="text"
+                  id="venue_name"
+                  name="venue_name"
+                  className={styles.floatingInput}
+                  value={formState.roleData?.venue_name || ''}
+                  onChange={handleRoleDataChange}
+                  placeholder=""
+                  required
+                />
+                <label
+                  htmlFor="venue_name"
+                  className={`${styles.floatingLabel} ${formState.roleData?.venue_name ? styles.hasContent : ""}`}
+                >
+                  Name
+                </label>
+              </div>
+              {formState.touched?.['roleData.venue_name'] && formState.errors?.['roleData.venue_name'] && (
                 <div className={styles.errorMessage}>{formState.errors['roleData.venue_name']}</div>
               )}
             </div>
             
-            <div className={`${styles.formGroup} ${formState.touched['roleData.address'] && formState.errors['roleData.address'] ? styles.hasError : ""}`}>
-              <label htmlFor="address">Venue Address *</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formState.roleData.address || ''}
-                onChange={handleRoleDataChange}
-                placeholder="Enter venue address"
-                required
-              />
-              {formState.touched['roleData.address'] && formState.errors['roleData.address'] && (
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.address'] && formState.errors?.['roleData.address'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>📍</span>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  className={styles.floatingInput}
+                  value={formState.roleData?.address || ''}
+                  onChange={handleRoleDataChange}
+                  placeholder=""
+                  required
+                />
+                <label
+                  htmlFor="address"
+                  className={`${styles.floatingLabel} ${formState.roleData?.address ? styles.hasContent : ""}`}
+                >
+                  Address
+                </label>
+              </div>
+              {formState.touched?.['roleData.address'] && formState.errors?.['roleData.address'] && (
                 <div className={styles.errorMessage}>{formState.errors['roleData.address']}</div>
               )}
             </div>
             
-            <div className={`${styles.formGroup} ${formState.touched['roleData.capacity'] && formState.errors['roleData.capacity'] ? styles.hasError : ""}`}>
-              <label htmlFor="capacity">Venue Capacity *</label>
-              <input
-                type="number"
-                id="capacity"
-                name="capacity"
-                value={formState.roleData.capacity || ''}
-                onChange={handleRoleDataChange}
-                placeholder="Maximum number of people"
-                required
-              />
-              {formState.touched['roleData.capacity'] && formState.errors['roleData.capacity'] && (
-                <div className={styles.errorMessage}>{formState.errors['roleData.capacity']}</div>
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.tax_number'] && formState.errors?.['roleData.tax_number'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>🧾</span>
+                <input
+                  type="text"
+                  id="tax_number"
+                  name="tax_number"
+                  className={styles.floatingInput}
+                  value={formState.roleData?.tax_number || ''}
+                  onChange={handleRoleDataChange}
+                  placeholder=""
+                  required
+                  pattern="^[A-Za-z0-9]{5,15}$"
+                  title="Tax number must be 5-15 alphanumeric characters"
+                />
+                <label
+                  htmlFor="tax_number"
+                  className={`${styles.floatingLabel} ${formState.roleData?.tax_number ? styles.hasContent : ""}`}
+                >
+                  Tax Number
+                </label>
+              </div>
+              {formState.touched?.['roleData.tax_number'] && formState.errors?.['roleData.tax_number'] && (
+                <div className={styles.errorMessage}>{formState.errors['roleData.tax_number']}</div>
               )}
             </div>
             
-            <div className={styles.formGroup}>
-              <label>Venue Amenities</label>
-              <div className={styles.checkboxGroup}>
-                {['parking', 'wifi', 'catering', 'av_equipment', 'accessibility', 'outdoor_space'].map(amenity => (
-                  <div key={amenity} className={styles.checkboxItem}>
-                    <input
-                      type="checkbox"
-                      id={`amenity_${amenity}`}
-                      name={`amenity_${amenity}`}
-                      checked={formState.roleData[`amenity_${amenity}`] || false}
-                      onChange={(e) => handleRoleDataChange({
-                        target: {
-                          name: `amenity_${amenity}`,
-                          type: 'checkbox',
-                          checked: e.target.checked
-                        }
-                      })}
-                    />
-                    <label htmlFor={`amenity_${amenity}`}>
-                      {amenity.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                    </label>
+            <div className={styles.inputGroup}>
+              <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.working_hours'] && formState.errors?.['roleData.working_hours'] ? styles.error : ""}`}>
+                <span className={styles.inputIcon}>🕒</span>
+                <select
+                  id="working_hours"
+                  name="working_hours"
+                  className={`${styles.floatingInput} ${styles.gender}`}
+                  value={formState.roleData?.working_hours || ''}
+                  onChange={handleRoleDataChange}
+                  required
+                >
+                  <option value="" disabled>Select working hours</option>
+                  <option value="9AM-5PM">9:00 AM - 5:00 PM</option>
+                  <option value="8AM-4PM">8:00 AM - 4:00 PM</option>
+                  <option value="10AM-6PM">10:00 AM - 6:00 PM</option>
+                  <option value="24/7">24/7 (Always Open)</option>
+                  <option value="custom">Custom Hours</option>
+                </select>
+                {!formState.roleData?.working_hours && (
+                  <div className={styles.datePlaceholder}>
+                    Select Working Hours
                   </div>
-                ))}
+                )}
               </div>
+              {formState.touched?.['roleData.working_hours'] && formState.errors?.['roleData.working_hours'] && (
+                <div className={styles.errorMessage}>{formState.errors['roleData.working_hours']}</div>
+              )}
+            </div>
+            
+            {formState.roleData?.working_hours === 'custom' && (
+              <div className={styles.inputGroup}>
+                <div className={`${styles.floatingInputWrapper} ${formState.touched?.['roleData.custom_hours'] && formState.errors?.['roleData.custom_hours'] ? styles.error : ""}`}>
+                  <span className={styles.inputIcon}>📝</span>
+                  <input
+                    type="text"
+                    id="custom_hours"
+                    name="custom_hours"
+                    className={styles.floatingInput}
+                    value={formState.roleData?.custom_hours || ''}
+                    onChange={handleRoleDataChange}
+                    placeholder=""
+                    required={formState.roleData?.working_hours === 'custom'}
+                  />
+                  <label
+                    htmlFor="custom_hours"
+                    className={`${styles.floatingLabel} ${formState.roleData?.custom_hours ? styles.hasContent : ""}`}
+                  >
+                    Custom Working Hours
+                  </label>
+                </div>
+                <div className={styles.fieldHint}>Example: Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</div>
+                {formState.touched?.['roleData.custom_hours'] && formState.errors?.['roleData.custom_hours'] && (
+                  <div className={styles.errorMessage}>{formState.errors['roleData.custom_hours']}</div>
+                )}
+              </div>
+            )}
+            
+            <div className={styles.inputGroup}>
+              <label className={styles.uploadLabel}>Company Logo</label>
+              <div className={styles.uploadContainer}>
+                <input
+                  type="file"
+                  id="logo"
+                  name="logo"
+                  accept="image/*"
+                  className={styles.fileInput}
+                  onChange={(e) => {
+                    // Simulate handling file upload
+                    const file = e.target.files[0];
+                    if (file) {
+                      // Validate file size (max 2MB)
+                      if (file.size > 2 * 1024 * 1024) {
+                        handleRoleDataChange({
+                          target: {
+                            name: 'logo_error',
+                            value: 'File size exceeds 2MB limit'
+                          }
+                        });
+                        return;
+                      }
+                      
+                      // Clear previous error if any
+                      if (formState.roleData?.logo_error) {
+                        handleRoleDataChange({
+                          target: {
+                            name: 'logo_error',
+                            value: ''
+                          }
+                        });
+                      }
+                      
+                      handleRoleDataChange({
+                        target: {
+                          name: 'logo',
+                          value: file.name
+                        }
+                      });
+                    }
+                  }}
+                />
+                <label htmlFor="logo" className={styles.uploadButton}>
+                  <span className={styles.uploadIcon}>📷</span>
+                  {formState.roleData?.logo ? formState.roleData.logo : "Choose Logo Image"}
+                </label>
+              </div>
+              {formState.roleData?.logo_error && (
+                <div className={styles.errorMessage}>{formState.roleData.logo_error}</div>
+              )}
+              {formState.touched?.['roleData.logo'] && formState.errors?.['roleData.logo'] && (
+                <div className={styles.errorMessage}>{formState.errors['roleData.logo']}</div>
+              )}
+              <div className={styles.fieldHint}>Maximum file size: 2MB. Recommended format: JPG, PNG</div>
             </div>
           </>
         );
@@ -212,8 +376,8 @@ const RoleSpecificStep = ({ formState, handleRoleDataChange, handleNextStep, han
         return (
           <div className={styles.attendeeMessage}>
             <div className={styles.attendeeIcon}>👍</div>
-            <h3>You're all set!</h3>
-            <p>As an attendee, we just need your basic information which you've already provided. Click "Next" to continue.</p>
+            <h3>You&apos;re all set!</h3>
+            <p>As an attendee, we just need your basic information which you&apos;ve already provided. Click &quot;Next&quot; to continue.</p>
           </div>
         );
         
@@ -227,34 +391,39 @@ const RoleSpecificStep = ({ formState, handleRoleDataChange, handleNextStep, han
   };
 
   return (
-    <div className={styles.stepForm}>
-      <h2 className={styles.stepTitle}>
-        {formState.user_type === "vendor" && "Vendor Information"}
-        {formState.user_type === "organizer" && "Organizer Information"}
-        {formState.user_type === "venue" && "Venue Information"}
-        {formState.user_type === "attendee" && "Additional Information"}
-      </h2>
-      <p className={styles.stepDescription}>
-        Please provide additional details for your account
-      </p>
-      
-      <form onSubmit={(e) => { e.preventDefault(); handleNextStep(); }}>
-        {renderRoleSpecificFields()}
+    <>
+      <div className={styles.formScrollContainer}>
+        <h2 className={styles.stepTitle}>
+          {formState.user_type === "vendor" && "Vendor Information"}
+          {formState.user_type === "organizer" && "Organizer Information"}
+          {formState.user_type === "venue" && "Venue Management Company Information"}
+          {formState.user_type === "attendee" && "Additional Information"}
+        </h2>
+        {/* Removed the generic paragraph */}
         
-        <div className={styles.navigationButtons}>
-          <button
-            type="button"
-            className={styles.backButton}
-            onClick={handlePrevStep}
-          >
-            Back
-          </button>
-          <button type="submit" className={styles.nextButton}>
-            Next Step
-          </button>
-        </div>
-      </form>
-    </div>
+        <form onSubmit={(e) => { e.preventDefault(); }}>
+          {renderRoleSpecificFields()}
+        </form>
+      </div>
+      
+      {/* Navigation buttons - outside of scrollable area */}
+      <div className={styles.navigationContainer}>
+        <button
+          type="button"
+          className={styles.backButton}
+          onClick={handlePrevStep}
+        >
+          Back
+        </button>
+        <button 
+          type="button" 
+          className={styles.nextButton}
+          onClick={handleNextStep}
+        >
+          Next
+        </button>
+      </div>
+    </>
   );
 };
 
@@ -265,7 +434,6 @@ RoleSpecificStep.propTypes = {
     touched: PropTypes.object,
     errors: PropTypes.object
   }).isRequired,
-  handleChange: PropTypes.func.isRequired,
   handleRoleDataChange: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
   handlePrevStep: PropTypes.func.isRequired

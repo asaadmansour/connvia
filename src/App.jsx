@@ -2,14 +2,20 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Homepage from "./pages/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import RoleProtectedRoute from "./components/RoleProtectedRoute";
 import Login from "./pages/Login";
 import Spinner from "./components/Spinner";
 import Dashboard from "./pages/Dashboard";
+import AttendeeDashboard from "./pages/dashboards/AttendeeDashboard";
+import OrganizerDashboard from "./pages/dashboards/OrganizerDashboard";
+import VendorDashboard from "./pages/dashboards/VendorDashboard";
+import VenueDashboard from "./pages/dashboards/VenueDashboard";
 import { isAuthenticated } from "./utils/authService";
 import "./utils/i18n";
 import Signup from "./pages/Signup";
 import Events from "./pages/Events";
 import VerifyEmail from "./pages/VerifyEmail";
+import AccountDetails from "./components/AccountDetails";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -48,10 +54,25 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify-email/:token" element={<VerifyEmail />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/account" element={<AccountDetails />} />
     
         {/* Protecting Dashboard */}
         <Route path="/dashboard" element={<ProtectedRoute />}>
           <Route index element={<Dashboard />} />
+        </Route>
+
+        {/* Role-specific dashboards */}
+        <Route path="/dashboards/attendee" element={<RoleProtectedRoute allowedRole="regular" />}>
+          <Route index element={<AttendeeDashboard />} />
+        </Route>
+        <Route path="/dashboards/organizer" element={<RoleProtectedRoute allowedRole="organizer" />}>
+          <Route index element={<OrganizerDashboard />} />
+        </Route>
+        <Route path="/dashboards/vendor" element={<RoleProtectedRoute allowedRole="vendor" />}>
+          <Route index element={<VendorDashboard />} />
+        </Route>
+        <Route path="/dashboards/venue" element={<RoleProtectedRoute allowedRole="venue" />}>
+          <Route index element={<VenueDashboard />} />
         </Route>
 
         {/* Catch all other routes */}

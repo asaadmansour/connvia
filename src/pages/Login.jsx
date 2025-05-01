@@ -11,7 +11,7 @@ import AuthFooter from "../components/AuthFooter";
 import AuthHeader from "../components/AuthHeader";
 import InfoSection from "../components/InfoSection";
 
-import { loginUser } from "../utils/authService";
+import { loginUser, getUserRole } from "../utils/authService";
 import Spinner from "../components/Spinner";
 
 // Reducer function for form state management
@@ -90,6 +90,11 @@ function Login() {
       toast.dismiss(loadingToastId);
       
       if (response.success && response.data.token) {
+        // Debug logs
+        console.log('Login response:', response.data);
+        console.log('User data:', response.data.user);
+        console.log('User role from userType:', response.data.user?.userType);
+        
         toast.success("Login successful, Redirecting", { 
           position: "top-center",
           autoClose: 2000
@@ -98,9 +103,33 @@ function Login() {
         // Set redirecting state to true
         setRedirecting(true);
         
-        // Redirect after 2 seconds
+        // Store the user role directly here as a backup
+        if (response.data.user && response.data.user.userType) {
+          localStorage.setItem('userRole', response.data.user.userType);
+        }
+        
+        // Wait a bit to allow the authService to process and store the role
         setTimeout(() => {
-          navigate("/dashboard");
+          // Get user role from localStorage (set by authService)
+          const userRole = getUserRole() || 'regular';
+          console.log('Redirecting to dashboard for role from localStorage:', userRole);
+          
+          // Redirect based on user role
+          switch(userRole) {
+            case 'organizer':
+              navigate("/dashboards/organizer");
+              break;
+            case 'vendor':
+              navigate("/dashboards/vendor");
+              break;
+            case 'venue':
+              navigate("/dashboards/venue");
+              break;
+            case 'regular':
+            default:
+              navigate("/dashboards/attendee");
+              break;
+          }
         }, 2000);
         
         return;

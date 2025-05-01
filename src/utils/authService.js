@@ -75,6 +75,33 @@ export const loginUser = async (email, password, recaptchaToken) => {
     if (data.token) {
       localStorage.setItem('authToken', data.token);
       
+      // Decode and log the JWT token to see what information it contains
+      try {
+        const tokenParts = data.token.split('.');
+        if (tokenParts.length === 3) {
+          const payload = JSON.parse(atob(tokenParts[1]));
+          console.log('Decoded JWT payload:', payload);
+          
+          // If the token contains user type information, store it
+          if (payload.userType) {
+            localStorage.setItem('userRole', payload.userType);
+          } else if (payload.user_type) {
+            localStorage.setItem('userRole', payload.user_type);
+          } else if (payload.role) {
+            localStorage.setItem('userRole', payload.role);
+          }
+        }
+      } catch (error) {
+        console.error('Error decoding JWT token:', error);
+      }
+      
+      // Store user role if available in the response
+      if (data.user && data.user.userType) {
+        localStorage.setItem('userRole', data.user.userType);
+      } else if (data.user && data.user.user_type) {
+        localStorage.setItem('userRole', data.user.user_type);
+      }
+      
       // Calculate token expiry (if needed)
       if (data.expiresIn) {
         const expiresAt = new Date().getTime() + data.expiresIn * 1000;
@@ -118,6 +145,14 @@ export const isAuthenticated = () => {
  */
 export const getToken = () => {
   return localStorage.getItem('authToken');
+};
+
+/**
+ * Get current user's role
+ * @returns {string|null} - User's role or null if not available
+ */
+export const getUserRole = () => {
+  return localStorage.getItem('userRole');
 };
 
 /**

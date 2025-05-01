@@ -178,7 +178,9 @@
   /* Center input text vertically when typing */
   line-height: 2.5rem; /* Adjust as needed for vertical centering */
 }
-
+.floatingInput:focus {
+  border: 1px solid var(--purple-mid);
+}
 .floatingLabel {
   position: absolute;
   left: 3.5rem; /* Align with input text */
@@ -455,4 +457,338 @@ select.floatingInput option {
   font-size: 0.75rem;
   margin-top: 0.25rem;
   margin-left: 0.5rem;
+}
+
+/* User Type Step Styles */
+.userTypeContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.userTypeBox {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f8f8;
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.userTypeBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: rgba(122, 40, 138, 0.3);
+}
+
+.userTypeBox.selected {
+  border-color: #7A288A;
+  background-color: rgba(122, 40, 138, 0.05);
+}
+
+.userTypeIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.userTypeTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.userTypeDescription {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Role Specific Step Styles */
+.roleSpecificTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary, #333);
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+
+.roleSpecificDescription {
+  color: var(--text-secondary, #666);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.uploadLabel {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary, #333);
+}
+
+.uploadContainer {
+  margin-bottom: 1rem;
+}
+
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.uploadButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f8f8f8;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+}
+
+.uploadButton:hover {
+  border-color: #7A288A;
+  color: #7A288A;
+}
+
+.uploadIcon {
+  font-size: 1.25rem;
+}
+
+.fieldHint {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #666);
+  margin-top: 0.25rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Checkbox styles for RoleSpecificStep */
+.checkboxGroupLabel {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.checkboxContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 5px;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.checkboxItem input[type="checkbox"] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  accent-color: #7A288A;
+  cursor: pointer;
+}
+
+.checkboxItem label {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* Attendee message styles */
+.attendeeMessage {
+  text-align: center;
+  padding: 30px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  margin: 20px 0;
+  border: 1px solid rgba(122, 40, 138, 0.1);
+}
+
+.attendeeIcon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.attendeeMessage h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.attendeeMessage p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.noUserType {
+  text-align: center;
+  padding: 20px;
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+/* Terms Step Styles */
+.termsBox {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f8f8f8;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.termsBox h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 600;
+}
+
+.termsBox h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: 600;
+}
+
+.termsBox p {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.termsBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+.termsBox::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.termsBox::-webkit-scrollbar-thumb {
+  background: rgba(122, 40, 138, 0.3);
+  border-radius: 4px;
+}
+
+.termsBox::-webkit-scrollbar-thumb:hover {
+  background: rgba(122, 40, 138, 0.5);
+}
+
+.termsCheckboxWrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.termsCheckbox {
+  margin-right: 10px;
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: #7A288A;
+  cursor: pointer;
+}
+
+.termsCheckboxLabel {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.recaptchaContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* Terms and reCAPTCHA horizontal layout */
+.termsAndRecaptchaContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.termsAcceptanceText {
+  flex: 1;
+  min-width: 250px;
+}
+
+.termsAcceptanceText p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.recaptchaWrapper {
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .termsAndRecaptchaContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .termsAcceptanceText {
+    margin-bottom: 15px;
+  }
+  
+  .recaptchaWrapper {
+    align-self: center;
+  }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .userTypeContainer {
+    grid-template-columns: 1fr;
+  }
+  .checkboxContainer {
+    grid-template-columns: 1fr;
+  }
+  .termsBox {
+    max-height: 200px;
+  }
 }

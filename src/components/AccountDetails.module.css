@@ -1,0 +1,38 @@
+.accountDetailsContainer {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  padding: 2rem 2.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6200ea;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.infoItem {
+  font-size: 1.1rem;
+  color: #333;
+  background: #f8f6ff;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.infoItem span {
+  color: #6200ea;
+  font-weight: 600;
+  min-width: 80px;
+}

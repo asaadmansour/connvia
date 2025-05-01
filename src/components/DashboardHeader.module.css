@@ -1,0 +1,296 @@
+.header {
+  background-color: var(--purple-dark); /* Initially transparent */
+  box-shadow: none; 
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.header.scrolled {
+  background-color: rgba(69, 23, 84, 0.2); /* Light purple with transparency */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 70px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.roleTagDark {
+  margin-left: 0.7rem;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  padding: 0.13rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  box-shadow: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.dashboardNav {
+  display: flex;
+  gap: 1.2rem;
+  margin-right: 1rem;
+}
+
+.navLink {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: #e0e0e0;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.notificationContainer {
+  position: relative;
+}
+
+.notificationButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.notificationButton:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f44336;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificationDropdown {
+  position: absolute;
+  top: 50px;
+  right: -10px;
+  width: 320px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  z-index: 100;
+}
+
+.notificationTitle {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.notificationList {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notificationItem {
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.notificationItem:hover {
+  background-color: #f9f9f9;
+}
+
+.notificationNew {
+  background-color: #f0e6ff;
+}
+
+.notificationNew:hover {
+  background-color: #e6d9ff;
+}
+
+.notificationContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.notificationMessage {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.notificationTime {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.emptyNotifications {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}
+
+.viewAllButton {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #eee;
+  color: #6200ea;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  border-radius: 0 0 8px 8px;
+}
+
+.viewAllButton:hover {
+  background-color: #f9f9f9;
+}
+
+.accountDropdownWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.accountDropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  min-width: 170px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 0.5rem 0;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.accountDropdownItem {
+  background: none;
+  border: none;
+  color: #333;
+  padding: 0.8rem 1.3rem;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.accountDropdownItem:hover {
+  background: #f0e6ff;
+  color: #6200ea;
+}
+
+.accountButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.accountButton:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.accountAvatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.18);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    padding: 0 1rem;
+  }
+  
+  .dashboardNav {
+    display: none;
+  }
+  
+  .roleTagDark {
+    display: none;
+  }
+}
