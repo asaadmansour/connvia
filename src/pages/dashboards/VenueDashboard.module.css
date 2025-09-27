@@ -1,6 +1,6 @@
 /* Main container */
 .dashboardContainer {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   position: relative;
   min-height: 100vh;
   color: var(--text-primary);
@@ -17,11 +17,92 @@
   z-index: 1;
 }
 
+/* Dashboard header */
 .dashboardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 24px;
+}
+
+/* Venue action buttons container */
+.venueActionButtons {
+  display: flex;
+  gap: 12px;
+}
+
+/* New venue button */
+.newVenueButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: var(--purple-light, #a262a2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.newVenueButton:hover {
+  background-color: var(--purple-dark, #8a4f8a);
+}
+
+/* Delete venue button */
+.deleteVenueButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #f8f9fa;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteVenueButton:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.deleteVenueButton.deleteActive {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Delete selectable venues */
+.deleteSelectable {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deleteSelectable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.deleteSelectable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #dc3545;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.deleteSelectable:hover::before {
+  opacity: 1;
 }
 
 .dashboardTitle {
@@ -92,12 +173,9 @@
 }
 
 .cardValue {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #333;
-  margin-right: 5px;
-  display: flex;
-  align-items: center;
+  color: #1a202c;
 }
 
 .cardValueContainer {
@@ -124,6 +202,14 @@
 .percentNegative {
   color: #f44336;
   background-color: rgba(244, 67, 54, 0.1);
+}
+
+.currencyLabel {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #718096;
+  margin-left: 4px;
+  vertical-align: middle;
 }
 
 .cardIcon {
@@ -306,7 +392,7 @@
   display: inline-block;
 }
 
-.statusConfirmed {
+.statusPaid {
   background-color: rgba(76, 175, 80, 0.1);
   color: #2e7d32;
 }
@@ -314,6 +400,11 @@
 .statusPending {
   background-color: rgba(245, 158, 11, 0.1);
   color: #e65100;
+}
+
+.statusCancelled {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #d32f2f;
 }
 
 .newVenueButton {
@@ -362,7 +453,7 @@
   overflow-y: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: relative;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .modalHeader {
@@ -573,7 +664,7 @@
   border: 1px solid #ddd;
   border-radius: 6px;
   transition: all 0.2s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: #fff;
   color: #333;
   -webkit-appearance: none;
@@ -715,7 +806,8 @@ select.formInput {
   padding-top: 1.5rem;
 }
 
-.cancelButton, .submitButton {
+.cancelButton,
+.submitButton {
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: 500;
@@ -745,7 +837,8 @@ select.formInput {
   background-color: #8a4c8a;
 }
 
-.submitButton:disabled, .cancelButton:disabled {
+.submitButton:disabled,
+.cancelButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -868,32 +961,37 @@ select.formInput {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+  margin-top: 20px;
 }
 
 .venueCard {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .venueCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .venueImageContainer {
-  height: 180px;
+  height: 140px;
   overflow: hidden;
+  position: relative;
 }
 
 .venueImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.5s ease;
+  transition: transform 0.5s ease;
 }
 
 .venueCard:hover .venueImage {
@@ -901,84 +999,384 @@ select.formInput {
 }
 
 .venueInfo {
-  padding: 16px;
-  background-color: #fff;
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.venueNameRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
 }
 
 .venueName {
-  margin: 0 0 4px 0;
   font-size: 1.1rem;
   font-weight: 600;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
 }
 
 .venueCategory {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #666;
-  margin-bottom: 12px;
+  background-color: rgba(145, 88, 145, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ownerCapacityRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .venueOwner {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: #555;
-  margin-bottom: 12px;
+  max-width: 75%;
 }
 
 .venueOwner svg {
-  color: #555;
+  margin-right: 6px;
+  color: #888;
+  width: 12px;
+  height: 12px;
+}
+
+.ownerNameLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--purple-light);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.ownerNameLink:hover {
+  color: var(--purple-dark);
 }
 
 .venueDetailsRow {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  font-size: 0.9rem;
-  color: #555;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
-.venueCapacity, .venuePrice {
+/* Updated pricing styles */
+.venueCapacity {
   display: flex;
   align-items: center;
+  font-size: 0.75rem;
+  color: #555;
+  padding: 4px 8px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.venueCapacity svg {
+  margin-right: 4px;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+/* New styles for pricing display */
+.pricingContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 6px;
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+
+.pricingRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.pricingOption {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.pricingHourly {
+  background-color: rgba(162, 98, 162, 0.1);
+  color: var(--purple-mid);
+  border: 1px solid rgba(162, 98, 162, 0.3);
+}
+
+.pricingDaily {
+  background-color: rgba(69, 23, 84, 0.08);
+  color: var(--purple-dark);
+  border: 1px solid rgba(69, 23, 84, 0.2);
+}
+
+/* Simple Venue Cards Styling */
+.simpleVenueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.simpleVenueCard {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eaeaea;
+}
+
+.simpleVenueCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.simpleVenueImageContainer {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.simpleVenueImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.simpleVenueCard:hover .simpleVenueImage {
+  transform: scale(1.05);
+}
+
+.simpleVenueInfo {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.simpleVenueName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.simpleVenueCategory {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0 0 12px 0;
+  padding: 4px 10px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.simpleVenueDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.simpleVenueCapacity, .simpleVenuePrice {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #555;
+  padding: 4px 0;
+}
+
+.bothPricesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.secondaryPrice {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.capacityIcon, .priceIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: #666;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.simpleVenueActions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.simpleViewDetailsButton, .simpleEditButton {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  text-align: center;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 6px;
 }
 
-.venueActions {
-  display: flex;
-  gap: 10px;
+.simpleViewDetailsButton {
+  background-color: #f5f5f5;
+  color: #333;
 }
 
-.viewVenueButton, .editVenueButton {
-  padding: 8px 12px;
+.simpleViewDetailsButton:hover {
+  background-color: #e5e5e5;
+}
+
+.simpleEditButton {
+  background-color: var(--purple-light, #a262a2);
+  color: white;
+}
+
+.simpleEditButton:hover {
+  background-color: var(--purple-dark, #8a4f8a);
+}
+
+.pricingValue {
+  font-weight: 600;
+}
+
+.pricingLabel {
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: 2px;
+}
+
+/* Venue actions */
+.venueActions {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* Empty state styles */
+.emptyStateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.emptyStateIcon {
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.emptyStateTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.emptyStateDescription {
+  font-size: 0.95rem;
+  color: #666;
+  max-width: 400px;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.emptyStateButton {
+  padding: 10px 20px;
+  background-color: var(--purple-light, #a262a2);
+  color: white;
+  border: none;
   border-radius: 6px;
-  font-size: 0.85rem;
   font-weight: 500;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.viewVenueButton {
-  background-color: var(--purple-light, #a262a2);
-  color: white;
-  border: none;
+.emptyStateButton:hover {
+  background-color: var(--purple-dark, #8a4f8a);
+  transform: translateY(-2px);
+}
+
+.viewVenueButton,
+.reserveVenueButton {
   flex: 1;
+  padding: 7px 0;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viewVenueButton {
+  background-color: #f0f0f0;
+  color: #555;
 }
 
 .viewVenueButton:hover {
-  background-color: #8a4c8a;
+  background-color: #e0e0e0;
 }
 
-.editVenueButton {
-  background-color: transparent;
-  border: 1px solid #ddd;
-  color: #666;
+.reserveVenueButton {
+  background-color: var(--purple-light);
+  color: white;
 }
 
-.editVenueButton:hover {
-  background-color: #f5f5f5;
-  border-color: #ccc;
+.reserveVenueButton:hover {
+  background-color: var(--purple-mid);
 }
 
 .noVenuesMessage {
@@ -999,22 +1397,284 @@ select.formInput {
   .cardsGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .actionsList {
     grid-template-columns: 1fr;
   }
-  
+
   .mainContent {
     padding: 20px;
   }
-  
+
   .bookingsTable th:nth-child(3),
   .bookingsTable td:nth-child(3) {
     display: none;
   }
 }
 
-/* Reservation Modal Styles */
+/* Venue Details Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modalContainer {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.modalTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.closeModalButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.closeModalButton:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.modalContent {
+  padding: 24px;
+  overflow-y: auto;
+  max-height: calc(90vh - 70px);
+}
+
+.venueDetailsContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.venueDetailsImageGallery {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+.venueDetailsMainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.venueDetailsInfo {
+  padding: 24px;
+}
+
+.venueDetailsName {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.venueDetailsCategory {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 20px 0;
+  padding: 4px 12px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.venueDetailsSection {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 20px;
+}
+
+.venueDetailsSection:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.venueDetailsSectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 12px 0;
+}
+
+.venueDetailsDescription {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+}
+
+.venueDetailsCapacity {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.venueDetailsPricing {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.venueDetailsPricingItem {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.venueDetailsPricingLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  width: 120px;
+}
+
+.venueDetailsPricingValue {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.venueDetailsAmenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.venueDetailsAmenity {
+  font-size: 13px;
+  color: #555;
+  background-color: #f5f5f5;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.venueDetailsRules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.venueDetailsRule {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.venueDetailsRule svg {
+  color: var(--purple-light, #a262a2);
+  flex-shrink: 0;
+}
+
+.venueDetailsContact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.venueDetailsContactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+.venueDetailsContactIcon {
+  color: var(--purple-light, #a262a2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.venueDetailsActions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  border-top: 1px solid #eaeaea;
+  gap: 12px;
+}
+
+.editVenueButton {
+  background-color: var(--purple-light, #a262a2);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editVenueButton:hover {
+  background-color: var(--purple-dark, #8a4f8a);
+}
+
+/* Modal Styles */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -1028,7 +1688,7 @@ select.formInput {
   z-index: 1000;
 }
 
-.reserveVenueModal {
+.modalContainer {
   background-color: white;
   border-radius: 12px;
   width: 90%;
@@ -1112,20 +1772,24 @@ select.formInput {
   .reservationDetails {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .pricingOptions {
     grid-column: 1 / span 2;
   }
 }
 
-.venueDetails, .eventDetailsForm, .pricingOptions {
+.venueDetails,
+.eventDetailsForm,
+.pricingOptions {
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
   border: 1px solid #e9ecef;
 }
 
-.venueDetails h3, .eventDetailsForm h3, .pricingOptions h3 {
+.venueDetails h3,
+.eventDetailsForm h3,
+.pricingOptions h3 {
   margin-top: 0;
   margin-bottom: 16px;
   color: #333;
@@ -1138,12 +1802,14 @@ select.formInput {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-height: 250px;
 }
 
 .venueModalImage {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  max-height: 200px;
 }
 
 .venueInfo {
@@ -1183,7 +1849,8 @@ select.formInput {
   flex: 1;
 }
 
-.formGroup label, .formGroupHalf label {
+.formGroup label,
+.formGroupHalf label {
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
@@ -1279,4 +1946,447 @@ select.formInput {
 
 .proceedToPaymentButton:hover {
   background-color: #388e3c;
+}
+
+/* Payment Form Styles */
+.paymentFormContainer {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.paymentForm {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.paymentButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancelPaymentButton {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background: white;
+  color: #666;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.payButton {
+  padding: 10px 20px;
+  background: var(--purple-light);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 2;
+}
+
+.payButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Success Modal Styles */
+.successModal {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.successIcon {
+  width: 60px;
+  height: 60px;
+  background: #4caf50;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 20px;
+}
+
+/* Error Modal Styles */
+.errorModal {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.errorIcon {
+  width: 60px;
+  height: 60px;
+  background: #f44336;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 20px;
+}
+
+.retryButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--purple-light);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Payment Modal Styles */
+.paymentModal {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.closeModalButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.modalBody {
+  padding: 20px 0;
+}
+
+.reservationDetails {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.detailsGrid {
+  display: grid;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.detailItem:last-child {
+  border-bottom: none;
+}
+
+.detailItem span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.detailItem span:last-child {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Edit Venue Form Styles */
+.editVenueForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.editVenueForm .formSection {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 16px;
+}
+
+.editVenueForm .formSectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 8px;
+}
+
+.editVenueForm .formRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .editVenueForm .formRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.editVenueForm .formGroup {
+  margin-bottom: 16px;
+}
+
+.editVenueForm .formGroup:last-child {
+  margin-bottom: 0;
+}
+
+.editVenueForm label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.editVenueForm input[type="text"],
+.editVenueForm input[type="number"],
+.editVenueForm input[type="email"],
+.editVenueForm select,
+.editVenueForm textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #333;
+  background-color: #fff;
+  transition: border-color 0.2s;
+}
+
+.editVenueForm input:focus,
+.editVenueForm select:focus,
+.editVenueForm textarea:focus {
+  border-color: var(--purple-light, #a262a2);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(162, 98, 162, 0.1);
+}
+
+.editVenueForm .checkboxGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.editVenueForm .checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.editVenueForm .checkboxItem input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--purple-light, #a262a2);
+}
+
+.editVenueForm .formError {
+  color: #d32f2f;
+  background-color: rgba(244, 67, 54, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.editVenueForm .formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.editVenueForm .cancelButton {
+  padding: 10px 20px;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fa;
+  color: #495057;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editVenueForm .cancelButton:hover {
+  background-color: #e9ecef;
+}
+
+.editVenueForm .saveButton {
+  padding: 10px 20px;
+  background-color: var(--purple-light, #a262a2);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editVenueForm .saveButton:hover {
+  background-color: var(--purple-dark, #8a4f8a);
+}
+
+.editVenueForm .saveButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Fix for venue image display */
+.modalImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Custom file input styling */
+.formFileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.formFileInput + label {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: var(--purple-light, #a262a2);
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 10px;
+}
+
+.formFileInput + label:hover {
+  background-color: var(--purple-dark, #8a4f8a);
+}
+
+.formFileInput + label:focus {
+  outline: 1px dotted #000;
+}
+
+.formHelperText {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* Recent Bookings Table Styles */
+.bookingsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.bookingsTable thead {
+  background-color: #f8f9fa;
+}
+
+.bookingsTable th {
+  text-align: left;
+  padding: 16px;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.bookingsTable td {
+  padding: 16px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.bookingsTable tr:last-child td {
+  border-bottom: none;
+}
+
+.bookingsTable tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.bookingTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.bookingClient {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.bookingStatus {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.statusConfirmed, .statusPaid {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.statusPending {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+}
+
+.statusCancelled {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+.noBookingsMessage {
+  text-align: center;
+  padding: 24px;
+  color: #6c757d;
+  font-style: italic;
 }

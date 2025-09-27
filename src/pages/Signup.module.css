@@ -36,8 +36,10 @@
   padding: 2rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   position: relative;
-  overflow: hidden; /* Prevent outer scroll */
-  height: 100vh; /* Full height */
+  overflow: hidden;
+  /* Prevent outer scroll */
+  height: 100vh;
+  /* Full height */
 }
 
 .formContent {
@@ -46,17 +48,21 @@
   max-width: 550px;
   margin: 0 auto;
   width: 100%;
-  height: calc(100vh - 180px); /* Adjust height to leave room for header and footer */
-  position: relative; /* For positioning the navigation container */
+  height: calc(100vh - 180px);
+  /* Adjust height to leave room for header and footer */
+  position: relative;
+  /* For positioning the navigation container */
 }
 
 /* Form scrollable container */
 .formScrollContainer {
   flex: 1;
   overflow-y: auto;
-  max-height: calc(100% - 80px); /* Leave space for navigation buttons */
+  max-height: calc(100% - 80px);
+  /* Leave space for navigation buttons */
   padding-right: 0.5rem;
-  margin-bottom: 80px; /* Space for navigation buttons */
+  margin-bottom: 80px;
+  /* Space for navigation buttons */
 }
 
 .formScrollContainer::-webkit-scrollbar {
@@ -80,7 +86,7 @@
 .title {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   color: var(--text-primary);
   text-align: center;
 }
@@ -122,7 +128,8 @@
 
 .progressFill {
   height: 100%;
-  background-color: #7A288A; /* Brand color */
+  background-color: #7A288A;
+  /* Brand color */
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -154,7 +161,8 @@
   border-radius: 6px;
   overflow: hidden;
   width: 97%;
-  height: 4rem; /* Increased height */
+  height: 4rem;
+  /* Increased height */
   border: 1px solid transparent;
   border-bottom: 2px solid transparent;
   transition: border-color 0.3s ease;
@@ -170,21 +178,27 @@
   width: 100%;
   height: 100%;
   /* Important: Set explicit padding to control spacing */
-  padding: 0.75rem 1rem 0 3.5rem; /* Increased top padding for better label visibility */
+  padding: 0.75rem 1rem 0 3.5rem;
+  /* Increased top padding for better label visibility */
   border: none;
   background: transparent;
   font-size: 1rem;
   outline: none;
   /* Center input text vertically when typing */
-  line-height: 2.5rem; /* Adjust as needed for vertical centering */
+  line-height: 2.5rem;
+  /* Adjust as needed for vertical centering */
 }
+
 .floatingInput:focus {
   border: 1px solid var(--purple-mid);
 }
+
 .floatingLabel {
   position: absolute;
-  left: 3.5rem; /* Align with input text */
-  top: 1.3rem; /* Initial position, centered in the input */
+  left: 3.5rem;
+  /* Align with input text */
+  top: 1.3rem;
+  /* Initial position, centered in the input */
   font-size: 1rem;
   color: var(--text-secondary);
   transition: all 0.2s ease;
@@ -192,24 +206,29 @@
 }
 
 /* When input is focused or has content */
-.floatingInput:focus ~ .floatingLabel,
+.floatingInput:focus~.floatingLabel,
 .hasContent {
-  top: 0.6rem; /* Move up when focused or has content */
+  top: 0.6rem;
+  /* Move up when focused or has content */
   font-size: 0.75rem;
-  color: #7A288A; /* Purple mid */
+  color: #7A288A;
+  /* Purple mid */
 }
 
 /* Password strength styles */
 .passwordWeak {
-  border-bottom: 2px solid #ff4d4f; /* Red for weak */
+  border-bottom: 2px solid #ff4d4f;
+  /* Red for weak */
 }
 
 .passwordMedium {
-  border-bottom: 2px solid #faad14; /* Yellow/Orange for medium */
+  border-bottom: 2px solid #faad14;
+  /* Yellow/Orange for medium */
 }
 
 .passwordStrong {
-  border-bottom: 2px solid #52c41a; /* Green for strong */
+  border-bottom: 2px solid #52c41a;
+  /* Green for strong */
 }
 
 .strengthIndicator {
@@ -229,11 +248,13 @@
 
 /* Password confirmation styles */
 .passwordMatch {
-  border-bottom: 2px solid #52c41a; /* Green for matching */
+  border-bottom: 2px solid #52c41a;
+  /* Green for matching */
 }
 
 .passwordMismatch {
-  border-bottom: 2px solid #ff4d4f; /* Red for mismatching */
+  border-bottom: 2px solid #ff4d4f;
+  /* Red for mismatching */
 }
 
 .confirmationText {
@@ -243,11 +264,13 @@
 }
 
 .match {
-  color: #52c41a; /* Green for match */
+  color: #52c41a;
+  /* Green for match */
 }
 
 .mismatch {
-  color: #ff4d4f; /* Red for mismatch */
+  color: #ff4d4f;
+  /* Red for mismatch */
 }
 
 /* Reposition the icon */
@@ -271,21 +294,28 @@
   justify-content: flex-start;
   color: #666;
   font-size: 0.95rem;
-  pointer-events: none; /* Allow clicks to pass through to the input */
-  padding-left: 3.5rem; /* Match exactly with the left property of .floatingLabel */
+  pointer-events: none;
+  /* Allow clicks to pass through to the input */
+  padding-left: 3.5rem;
+  /* Match exactly with the left property of .floatingLabel */
 }
 
 /* Date input specific styles */
 .dateInput {
   color: var(--text-primary) !important;
-  opacity: 1; /* Make the input visible so calendar works */
+  opacity: 1;
+  /* Make the input visible so calendar works */
   letter-spacing: 0.05rem;
-  padding: 0rem 1rem 0 3.5rem !important; /* Match exactly with .floatingInput padding */
+  padding: 0rem 1rem 0 3.5rem !important;
+  /* Match exactly with .floatingInput padding */
 }
+
 .gender {
-  padding: 0rem 1rem 0 3.5rem !important; }
+  padding: 0rem 1rem 0 3.5rem !important;
+}
+
 /* Hide the date placeholder when date is selected */
-.dateInput:not([value=""]) + .datePlaceholder {
+.dateInput:not([value=""])+.datePlaceholder {
   display: none;
 }
 
@@ -295,18 +325,21 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  z-index: 1; /* Ensure it's clickable */
-  opacity: 1; /* Make sure it's visible */
+  z-index: 1;
+  /* Ensure it's clickable */
+  opacity: 1;
+  /* Make sure it's visible */
 }
 
 /* Select input styling */
 select.floatingInput {
-  padding: 0.75rem 1rem 0 3.5rem; /* Match exactly with .floatingInput padding */
+  padding: 0.75rem 1rem 0 3.5rem;
+  /* Match exactly with .floatingInput padding */
   color: var(--text-primary);
 }
 
 /* Hide the gender placeholder when option is selected */
-select.floatingInput:not([value=""]) + .datePlaceholder {
+select.floatingInput:not([value=""])+.datePlaceholder {
   display: none;
 }
 
@@ -334,18 +367,22 @@ select.floatingInput option {
 }
 
 .primaryButton {
-  background-color: #7A288A; /* Purple mid */
+  background-color: #7A288A;
+  /* Purple mid */
   color: white;
 }
 
 .primaryButton:hover {
-  background-color: #651d72; /* Darker purple */
+  background-color: #651d72;
+  /* Darker purple */
 }
 
 .secondaryButton {
   background-color: transparent;
-  color: #7A288A; /* Purple mid */
-  border: 1px solid #7A288A; /* Purple mid */
+  color: #7A288A;
+  /* Purple mid */
+  border: 1px solid #7A288A;
+  /* Purple mid */
 }
 
 .secondaryButton:hover {
@@ -397,7 +434,8 @@ select.floatingInput option {
 
 .nextButton {
   padding: 0.75rem 1.5rem;
-  background-color: #7A288A; /* Purple mid */
+  background-color: #7A288A;
+  /* Purple mid */
   color: white;
   border: none;
   border-radius: 6px;
@@ -408,7 +446,8 @@ select.floatingInput option {
 }
 
 .nextButton:hover {
-  background-color: #651d72; /* Darker purple */
+  background-color: #651d72;
+  /* Darker purple */
 }
 
 .nextButton:disabled {
@@ -513,18 +552,34 @@ select.floatingInput option {
   line-height: 1.4;
 }
 
+/* Step Title and Description Styles */
+.stepTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary, #333);
+  text-align: left;
+}
+
+.stepDescription {
+  font-size: 16px;
+  color: var(--text-secondary, #666);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
 /* Role Specific Step Styles */
 .roleSpecificTitle {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary, #333);
-  margin-bottom: 0.75rem;
+  margin-bottom: 3rem;
   margin-top: 0;
 }
 
 .roleSpecificDescription {
   color: var(--text-secondary, #666);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   line-height: 1.5;
 }
 
@@ -770,11 +825,11 @@ select.floatingInput option {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .termsAcceptanceText {
     margin-bottom: 15px;
   }
-  
+
   .recaptchaWrapper {
     align-self: center;
   }
@@ -785,9 +840,11 @@ select.floatingInput option {
   .userTypeContainer {
     grid-template-columns: 1fr;
   }
+
   .checkboxContainer {
     grid-template-columns: 1fr;
   }
+
   .termsBox {
     max-height: 200px;
   }

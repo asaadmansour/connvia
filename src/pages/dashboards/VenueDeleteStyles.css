@@ -1,0 +1,118 @@
+/* Section buttons container */
+.sectionButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Delete confirmation modal */
+.deleteConfirmModal {
+  max-width: 500px !important;
+}
+
+.deleteConfirmModal .modalBody {
+  text-align: center;
+  padding: 24px;
+}
+
+.warningText {
+  color: #dc3545;
+  font-weight: 500;
+  margin-top: 16px;
+}
+
+.noteText {
+  color: #dc3545;
+  font-style: italic;
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+/* Delete venue button - styled to match the section buttons */
+.deleteVenueButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: white;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 40px;
+  white-space: nowrap;
+}
+
+.deleteVenueButton:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.deleteVenueButton.deleteActive {
+  background-color: #dc3545;
+  color: white;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+/* Purple button for delete confirmation */
+.purpleButton {
+  background-color: var(--purple-light, #a262a2);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.purpleButton:hover {
+  background-color: var(--purple-dark, #8a4f8a);
+}
+
+/* Delete selectable venues in delete mode */
+.deleteSelectable {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deleteSelectable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.deleteSelectable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #dc3545;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.deleteSelectable:hover::before {
+  opacity: 1;
+}

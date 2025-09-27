@@ -1,4 +1,3 @@
-
 .stepForm {
   width: 100%;
   max-width: 600px;
@@ -89,7 +88,8 @@
   margin-top: 30px;
 }
 
-.backButton, .nextButton {
+.backButton,
+.nextButton {
   padding: 12px 24px;
   border-radius: 5px;
   font-size: 16px;

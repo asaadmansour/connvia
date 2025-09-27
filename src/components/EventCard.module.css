@@ -6,6 +6,7 @@
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
+  position: relative;
 }
 
 .eventCard:hover {
@@ -56,4 +57,17 @@
   width: 1rem;
   height: 1rem;
   margin-right: 0.25rem;
+}
+
+.priceTag {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: var(--purple-dark);
+  color: white;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

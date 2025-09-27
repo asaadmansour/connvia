@@ -3,22 +3,25 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background: linear-gradient(135deg, rgba(69, 23, 84, 0.05) 0%, rgba(145, 88, 145, 0.1) 100%);
 }
 
 .verifyEmailCard {
   max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(69, 23, 84, 0.15);
   text-align: center;
+  border-top: 4px solid var(--purple-mid);
 }
 
 .verifyEmailCard h2 {
   margin-bottom: 1.5rem;
-  color: #333;
+  color: var(--purple-dark);
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .verifyingStatus,
@@ -34,7 +37,7 @@
   width: 50px;
   height: 50px;
   border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
+  border-top: 5px solid var(--purple-mid);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
@@ -58,7 +61,7 @@
 }
 
 .successIcon {
-  background-color: #4CAF50;
+  background-color: var(--purple-mid);
   color: white;
 }
 
@@ -69,24 +72,27 @@
 
 .loginButton {
   display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #4CAF50;
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: var(--purple-mid);
   color: white;
   text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(145, 88, 145, 0.3);
 }
 
 .loginButton:hover {
-  background-color: #45a049;
+  background-color: var(--purple-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(69, 23, 84, 0.4);
 }
 
 .linkText {
-  color: #3498db;
+  color: var(--purple-light);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .linkText:hover {
@@ -109,12 +115,15 @@
 }
 
 .actionButton:first-child {
-  background-color: #4CAF50;
+  background-color: var(--purple-mid);
   color: white;
+  box-shadow: 0 2px 8px rgba(145, 88, 145, 0.3);
 }
 
 .actionButton:first-child:hover {
-  background-color: #45a049;
+  background-color: var(--purple-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(69, 23, 84, 0.4);
 }
 
 .actionButton:last-child {

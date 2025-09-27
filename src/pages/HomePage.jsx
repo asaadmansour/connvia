@@ -11,10 +11,12 @@ import PropTypes from "prop-types";
 import Partners from "../components/Partners";
 import Testimonials from "../components/testimonials";
 import Contact from "../components/ContactUs";
+import ScrollToTop from "../components/ScrollToTop";
 
 function Homepage({ defaultSection }) {
   return (
     <div className={styles.homeContainer}>
+      <ScrollToTop />
       <Section id="header-section" type="header">
         <div className={styles.videoContainer}>
           <Video />

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
 import { logoutUser, getUserRole } from '../utils/authService';
+import { getUserNotifications, markNotificationAsRead, markAllNotificationsAsRead } from '../utils/notificationService';
 import styles from './DashboardHeader.module.css';
 
 const headerVariants = {
@@ -27,15 +28,97 @@ function DashboardHeader() {
   const [scrolled, setScrolled] = useState(false);
   const accountDropdownRef = useRef(null);
   const userRole = getUserRole();
-
-  // Mock notifications data
-  const notifications = [
-    { id: 1, message: 'New booking request for Cairo Garden', time: '5m ago', isNew: true },
-    { id: 2, message: 'Booking for Tech Conference confirmed', time: '1h ago', isNew: true },
-    { id: 3, message: 'Message from Event Creator Alex', time: '2h ago', isNew: false },
-    { id: 4, message: 'Payment received for Wedding Booking', time: '3h ago', isNew: false }
-  ];
-  const newNotificationsCount = notifications.filter(n => n.isNew).length;
+  const [notifications, setNotifications] = useState([]);
+  const [isLoadingNotifications, setIsLoadingNotifications] = useState(false);
+  const [newNotificationsCount, setNewNotificationsCount] = useState(0);
+  
+  // Fetch notifications when component mounts
+  useEffect(() => {
+    fetchNotifications();
+    
+    // Set up polling for notifications every 30 seconds
+    const notificationInterval = setInterval(() => {
+      fetchNotifications();
+    }, 30000);
+    
+    return () => clearInterval(notificationInterval);
+  }, []);
+  
+  // Function to fetch notifications from the API
+  const fetchNotifications = async () => {
+    setIsLoadingNotifications(true);
+    try {
+      const response = await getUserNotifications();
+      if (response.success && response.data) {
+        // Format notifications data
+        const formattedNotifications = response.data.notifications.map(notification => ({
+          id: notification.notification_ID,
+          message: notification.message,
+          time: formatNotificationTime(notification.created_at),
+          isNew: !notification.is_read,
+          type: notification.notification_type,
+          relatedId: notification.related_ID
+        }));
+        
+        setNotifications(formattedNotifications);
+        setNewNotificationsCount(response.data.unreadCount);
+      }
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    } finally {
+      setIsLoadingNotifications(false);
+    }
+  };
+  
+  // Format notification time
+  const formatNotificationTime = (timestamp) => {
+    const now = new Date();
+    const notificationTime = new Date(timestamp);
+    const diffInMinutes = Math.floor((now - notificationTime) / (1000 * 60));
+    
+    if (diffInMinutes < 1) return 'Just now';
+    if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
+    
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return `${diffInHours}h ago`;
+    
+    const diffInDays = Math.floor(diffInHours / 24);
+    if (diffInDays < 7) return `${diffInDays}d ago`;
+    
+    return notificationTime.toLocaleDateString();
+  };
+  
+  // Handle notification click
+  const handleNotificationClick = async (notificationId) => {
+    try {
+      await markNotificationAsRead(notificationId);
+      // Update local state to reflect the change
+      setNotifications(prevNotifications => 
+        prevNotifications.map(notification => 
+          notification.id === notificationId 
+            ? { ...notification, isNew: false } 
+            : notification
+        )
+      );
+      setNewNotificationsCount(prev => Math.max(0, prev - 1));
+    } catch (error) {
+      console.error('Error marking notification as read:', error);
+    }
+  };
+  
+  // Handle mark all as read
+  const handleMarkAllAsRead = async () => {
+    try {
+      await markAllNotificationsAsRead();
+      // Update local state to reflect all notifications as read
+      setNotifications(prevNotifications => 
+        prevNotifications.map(notification => ({ ...notification, isNew: false }))
+      );
+      setNewNotificationsCount(0);
+    } catch (error) {
+      console.error('Error marking all notifications as read:', error);
+    }
+  };
 
   const handleLogout = () => {
     logoutUser();
@@ -44,6 +127,11 @@ function DashboardHeader() {
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
+    
+    // If opening notifications and there are unread ones, fetch latest
+    if (!showNotifications && newNotificationsCount > 0) {
+      fetchNotifications();
+    }
   };
 
   const toggleAccountDropdown = () => {
@@ -132,36 +220,50 @@ function DashboardHeader() {
             
             <AnimatePresence>
             {showNotifications && (
-              <motion.div 
-                className={styles.notificationDropdown}
-                variants={notificationVariants}
+              <motion.div
+                className={styles.notificationsDropdown}
+                variants={dropdownVariants}
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
               >
-                <h3 className={styles.notificationTitle}>Notifications</h3>
-                {notifications.length > 0 ? (
-                  <>
-                    <div className={styles.notificationList}>
-                      {notifications.map(notification => (
-                        <div 
-                          key={notification.id} 
-                          className={`${styles.notificationItem} ${notification.isNew ? styles.notificationNew : ''}`}
-                        >
-                          <div className={styles.notificationContent}>
-                            <span className={styles.notificationMessage}>{notification.message}</span>
-                            <span className={styles.notificationTime}>{notification.time}</span>
-                          </div>
+                <div className={styles.notificationsHeader}>
+                  <h3>Notifications</h3>
+                  <button 
+                    className={styles.markAllRead}
+                    onClick={handleMarkAllAsRead}
+                    disabled={newNotificationsCount === 0}
+                  >
+                    Mark all as read
+                  </button>
+                </div>
+                <div className={styles.notificationsList}>
+                  {isLoadingNotifications ? (
+                    <div className={styles.loadingNotifications}>Loading notifications...</div>
+                  ) : notifications.length > 0 ? (
+                    notifications.map((notification) => (
+                      <motion.div
+                        key={notification.id}
+                        className={`${styles.notificationItem} ${notification.isNew ? styles.unread : ''}`}
+                        variants={notificationVariants}
+                        initial="hidden"
+                        animate="visible"
+                        onClick={() => handleNotificationClick(notification.id)}
+                      >
+                        <div className={styles.notificationContent}>
+                          <p>{notification.message}</p>
+                          <span className={styles.notificationTime}>{notification.time}</span>
                         </div>
-                      ))}
-                    </div>
-                    <button className={styles.viewAllButton}>
-                      View All Notifications
-                    </button>
-                  </>
-                ) : (
-                  <p className={styles.emptyNotifications}>No notifications yet</p>
-                )}
+                        {notification.isNew && <div className={styles.unreadDot}></div>}
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className={styles.emptyNotifications}>No notifications</div>
+                  )}
+                </div>
+                <div className={styles.notificationsFooter}>
+                  <Link to="/notifications" className={styles.viewAllLink}>View all notifications</Link>
+                </div>
               </motion.div>
             )}
             </AnimatePresence>

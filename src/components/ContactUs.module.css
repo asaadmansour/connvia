@@ -168,7 +168,7 @@
 
 /* Submit button */
 .submitButton {
-  background-color: var(--purple-mid);
+  background-color: var(--purple-dark);
   color: var(--white);
   border: none;
   border-radius: 6px;

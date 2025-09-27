@@ -13,28 +13,28 @@ function WhoCanUse({ isStandalone = false }) {
     {
       id: "attendees",
       title: "Attendees",
-      icon: <Users size={32} style={{ color: "var(--purple-dark)" }} />, // 👥
+      icon: <Users size={32} style={{ color: "#ffffff" }} />, // 👥
       description:
         "Discover and attend exciting events tailored to your interests. Mark events as 'Interested,' buy tickets, and stay updated on the latest happenings!",
     },
     {
       id: "organizers",
       title: "Organizers",
-      icon: <ClipboardList size={32} style={{ color: "var(--purple-dark)" }} />, // 📋
+      icon: <ClipboardList size={32} style={{ color: "#ffffff" }} />, // 📋
       description:
         "Plan, promote, and manage your events seamlessly. Connect with vendors, book venues, and reach the right audience—all in one place!",
     },
     {
       id: "vendors",
       title: "Vendors",
-      icon: <Utensils size={32} style={{ color: "var(--purple-dark)" }} />, // 🍽️
+      icon: <Utensils size={32} style={{ color: "#ffffff" }} />, // 🍽️
       description:
         "Showcase your services to event organizers. Get discovered, receive bookings, and grow your business with our platform!",
     },
     {
       id: "venues",
       title: "Venues",
-      icon: <Building2 size={32} style={{ color: "var(--purple-dark)" }} />, // 🏢
+      icon: <Building2 size={32} style={{ color: "#ffffff" }} />, // 🏢
       description:
         "List your venue and connect with event organizers. Manage bookings, showcase your space, and maximize your venue's potential!",
     },

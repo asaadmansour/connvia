@@ -1,0 +1,132 @@
+/* Styles to fix the event details modal header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative; /* Changed from sticky to relative */
+  width: 100%;
+  margin: 0 !important;
+  z-index: 100;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+.modal-close-button {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.modal-close-button:hover {
+  color: #333;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: #a262a2; /* Changed from blue to purple */
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 6px 0;
+}
+
+.back-link:hover {
+  color: #8a4a8a; /* Changed from blue to dark purple */
+}
+
+.back-link svg {
+  margin-right: 5px;
+}
+
+/* Adjust the modal content to work well with the glassy header */
+.modal-content {
+  padding-top: 0;
+  overflow: hidden;
+}
+
+/* Ensure the modal body has proper padding */
+.modalBody {
+  padding: 20px;
+}
+
+/* Event Details title styling */
+.event-details-title {
+  font-size: 22px;
+  color: #333;
+  margin: 0 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* Event details section styling */
+.event-details-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.event-details-section h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.event-image-container {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid #eaeaea;
+}
+
+.event-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  font-weight: 600;
+  width: 100px;
+  color: #555;
+}
+
+.detail-value {
+  color: #333;
+  flex: 1;
+}

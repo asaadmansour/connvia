@@ -16,7 +16,7 @@
   margin-bottom: 1rem;
   font-weight: 700;
   text-align: center;
-  color: var(--purple-dark);
+  color: #ffffff;
 }
 
 .aboutSection {
@@ -33,13 +33,13 @@
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--primary-color, #333);
+  color: #ffffff;
 }
 
 .aboutSection p {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--text-color, #555);
+  color: var(--text-color, #e2e2e2);
 }
 
 /* Responsive styles */

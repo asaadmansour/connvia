@@ -74,7 +74,7 @@ function Login() {
 
     try {
       setIsLoggingIn(true);
-      
+
       // Show loading toast
       const loadingToastId = toast.loading("Logging in...", {
         position: "top-center",
@@ -88,50 +88,53 @@ function Login() {
 
       // Dismiss loading toast
       toast.dismiss(loadingToastId);
-      
+
       if (response.success && response.data.token) {
         // Debug logs
-        console.log('Login response:', response.data);
-        console.log('User data:', response.data.user);
-        console.log('User role from userType:', response.data.user?.userType);
-        
-        toast.success("Login successful, Redirecting", { 
+        console.log("Login response:", response.data);
+        console.log("User data:", response.data.user);
+        console.log("User role from userType:", response.data.user?.userType);
+
+        toast.success("Login successful, Redirecting", {
           position: "top-center",
-          autoClose: 2000
+          autoClose: 2000,
         });
-        
+
         // Set redirecting state to true
         setRedirecting(true);
-        
+
         // Store the user role directly here as a backup
         if (response.data.user && response.data.user.userType) {
-          localStorage.setItem('userRole', response.data.user.userType);
+          localStorage.setItem("userRole", response.data.user.userType);
         }
-        
+
         // Wait a bit to allow the authService to process and store the role
         setTimeout(() => {
           // Get user role from localStorage (set by authService)
-          const userRole = getUserRole() || 'regular';
-          console.log('Redirecting to dashboard for role from localStorage:', userRole);
-          
+          const userRole = getUserRole() || "regular";
+          console.log(
+            "Redirecting to dashboard for role from localStorage:",
+            userRole
+          );
+
           // Redirect based on user role
-          switch(userRole) {
-            case 'organizer':
+          switch (userRole) {
+            case "organizer":
               navigate("/dashboards/organizer");
               break;
-            case 'vendor':
+            case "vendor":
               navigate("/dashboards/vendor");
               break;
-            case 'venue':
+            case "venue":
               navigate("/dashboards/venue");
               break;
-            case 'regular':
+            case "regular":
             default:
               navigate("/dashboards/attendee");
               break;
           }
         }, 2000);
-        
+
         return;
       }
 
@@ -158,9 +161,12 @@ function Login() {
 
       if (response.error && response.error.includes("recaptcha")) {
         setRequireRecaptcha(true);
-        toast.error("Multiple failed attempts. Please complete the reCAPTCHA.", {
-          position: "top-center",
-        });
+        toast.error(
+          "Multiple failed attempts. Please complete the reCAPTCHA.",
+          {
+            position: "top-center",
+          }
+        );
         if (recaptchaRef.current) {
           recaptchaRef.current.reset();
           setRecaptchaToken(null);
@@ -176,12 +182,14 @@ function Login() {
         recaptchaRef.current.reset();
         setRecaptchaToken(null);
       }
-      
     } catch (error) {
       setIsLoggingIn(false);
-      toast.error(error.message || "Network error. Please check your connection.", {
-        position: "top-center",
-      });
+      toast.error(
+        error.message || "Network error. Please check your connection.",
+        {
+          position: "top-center",
+        }
+      );
       if (recaptchaRef.current) {
         recaptchaRef.current.reset();
         setRecaptchaToken(null);
@@ -297,7 +305,11 @@ function Login() {
               <button
                 type="submit"
                 className={styles.loginButton}
-                disabled={isLoggingIn || redirecting || (requireRecaptcha && !recaptchaToken)}
+                disabled={
+                  isLoggingIn ||
+                  redirecting ||
+                  (requireRecaptcha && !recaptchaToken)
+                }
               >
                 {isLoggingIn || redirecting ? <Spinner /> : t("logIn")}
               </button>
@@ -315,7 +327,10 @@ function Login() {
             </div>
           </div>
 
-          <AuthFooter />
+          <AuthFooter
+            linkColor="var(--purple-dark)"
+            linkHoverColor="var(--purple-mid)"
+          />
         </div>
 
         <InfoSection />

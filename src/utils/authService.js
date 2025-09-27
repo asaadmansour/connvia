@@ -1,5 +1,6 @@
 // Authentication service for handling user authentication
-const API_BASE_URL = 'http://localhost:3008/api/auth';
+const API_BASE_URL =
+  "https://connviabackend-production.up.railway.app/api/auth";
 
 /**
  * Register a new user
@@ -10,13 +11,13 @@ export const registerUser = async (userData) => {
   try {
     // The userData object is already properly formatted in the Signup component
     // We'll just send it directly to the API
-    
+
     const response = await fetch(`${API_BASE_URL}/register`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(userData),
     });
 
     const data = await response.json();
@@ -24,19 +25,20 @@ export const registerUser = async (userData) => {
     if (!response.ok) {
       return {
         success: false,
-        error: data.error || 'Registration failed'
+        error: data.error || "Registration failed",
       };
     }
 
     return {
       success: true,
-      data
+      data,
     };
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error("Registration error:", error);
     return {
       success: false,
-      error: error.message || 'An unexpected error occurred during registration'
+      error:
+        error.message || "An unexpected error occurred during registration",
     };
   }
 };
@@ -51,15 +53,15 @@ export const registerUser = async (userData) => {
 export const loginUser = async (email, password, recaptchaToken) => {
   try {
     const response = await fetch(`${API_BASE_URL}/login`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email,
         password,
-        recaptchaToken
-      })
+        recaptchaToken,
+      }),
     });
 
     const data = await response.json();
@@ -67,57 +69,57 @@ export const loginUser = async (email, password, recaptchaToken) => {
     if (!response.ok) {
       return {
         success: false,
-        error: data.message || 'Login failed'
+        error: data.message || "Login failed",
       };
     }
 
     // Store token in localStorage
     if (data.token) {
-      localStorage.setItem('authToken', data.token);
-      
+      localStorage.setItem("authToken", data.token);
+
       // Decode and log the JWT token to see what information it contains
       try {
-        const tokenParts = data.token.split('.');
+        const tokenParts = data.token.split(".");
         if (tokenParts.length === 3) {
           const payload = JSON.parse(atob(tokenParts[1]));
-          console.log('Decoded JWT payload:', payload);
-          
+          console.log("Decoded JWT payload:", payload);
+
           // If the token contains user type information, store it
           if (payload.userType) {
-            localStorage.setItem('userRole', payload.userType);
+            localStorage.setItem("userRole", payload.userType);
           } else if (payload.user_type) {
-            localStorage.setItem('userRole', payload.user_type);
+            localStorage.setItem("userRole", payload.user_type);
           } else if (payload.role) {
-            localStorage.setItem('userRole', payload.role);
+            localStorage.setItem("userRole", payload.role);
           }
         }
       } catch (error) {
-        console.error('Error decoding JWT token:', error);
+        console.error("Error decoding JWT token:", error);
       }
-      
+
       // Store user role if available in the response
       if (data.user && data.user.userType) {
-        localStorage.setItem('userRole', data.user.userType);
+        localStorage.setItem("userRole", data.user.userType);
       } else if (data.user && data.user.user_type) {
-        localStorage.setItem('userRole', data.user.user_type);
+        localStorage.setItem("userRole", data.user.user_type);
       }
-      
+
       // Calculate token expiry (if needed)
       if (data.expiresIn) {
         const expiresAt = new Date().getTime() + data.expiresIn * 1000;
-        localStorage.setItem('tokenExpiresAt', expiresAt.toString());
+        localStorage.setItem("tokenExpiresAt", expiresAt.toString());
       }
     }
 
     return {
       success: true,
-      data
+      data,
     };
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
     return {
       success: false,
-      error: error.message || 'An unexpected error occurred during login'
+      error: error.message || "An unexpected error occurred during login",
     };
   }
 };
@@ -128,7 +130,7 @@ export const loginUser = async (email, password, recaptchaToken) => {
  */
 export const logoutUser = () => {
   // Remove token from localStorage
-  localStorage.removeItem('authToken');
+  localStorage.removeItem("authToken");
 };
 
 /**
@@ -136,7 +138,7 @@ export const logoutUser = () => {
  * @returns {boolean} - True if user is authenticated
  */
 export const isAuthenticated = () => {
-  return !!localStorage.getItem('authToken');
+  return !!localStorage.getItem("authToken");
 };
 
 /**
@@ -144,7 +146,12 @@ export const isAuthenticated = () => {
  * @returns {string|null} - User's token or null if not authenticated
  */
 export const getToken = () => {
-  return localStorage.getItem('authToken');
+  const token = localStorage.getItem("authToken");
+  console.log(
+    "Retrieved token from storage:",
+    token ? `${token.substring(0, 10)}...` : "null"
+  );
+  return token;
 };
 
 /**
@@ -152,7 +159,7 @@ export const getToken = () => {
  * @returns {string|null} - User's role or null if not available
  */
 export const getUserRole = () => {
-  return localStorage.getItem('userRole');
+  return localStorage.getItem("userRole");
 };
 
 /**
@@ -163,10 +170,10 @@ export const getUserRole = () => {
 export const verifyEmail = async (token) => {
   try {
     const response = await fetch(`${API_BASE_URL}/verify-email/${token}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
     });
 
     const data = await response.json();
@@ -174,19 +181,21 @@ export const verifyEmail = async (token) => {
     if (!response.ok) {
       return {
         success: false,
-        error: data.error || data.message || 'Email verification failed'
+        error: data.error || data.message || "Email verification failed",
       };
     }
 
     return {
       success: true,
-      data
+      data,
     };
   } catch (error) {
-    console.error('Email verification error:', error);
+    console.error("Email verification error:", error);
     return {
       success: false,
-      error: error.message || 'An unexpected error occurred during email verification'
+      error:
+        error.message ||
+        "An unexpected error occurred during email verification",
     };
   }
 };
@@ -199,11 +208,11 @@ export const verifyEmail = async (token) => {
 export const requestPasswordReset = async (email) => {
   try {
     const response = await fetch(`${API_BASE_URL}/forgot-password`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email }),
     });
 
     const data = await response.json();
@@ -211,19 +220,21 @@ export const requestPasswordReset = async (email) => {
     if (!response.ok) {
       return {
         success: false,
-        error: data.message || 'Password reset request failed'
+        error: data.message || "Password reset request failed",
       };
     }
 
     return {
       success: true,
-      data
+      data,
     };
   } catch (error) {
-    console.error('Password reset request error:', error);
+    console.error("Password reset request error:", error);
     return {
       success: false,
-      error: error.message || 'An unexpected error occurred during password reset request'
+      error:
+        error.message ||
+        "An unexpected error occurred during password reset request",
     };
   }
 };
@@ -237,14 +248,14 @@ export const requestPasswordReset = async (email) => {
 export const resetPassword = async (token, newPassword) => {
   try {
     const response = await fetch(`${API_BASE_URL}/reset-password`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         token,
-        newPassword
-      })
+        newPassword,
+      }),
     });
 
     const data = await response.json();
@@ -252,19 +263,20 @@ export const resetPassword = async (token, newPassword) => {
     if (!response.ok) {
       return {
         success: false,
-        error: data.message || 'Password reset failed'
+        error: data.message || "Password reset failed",
       };
     }
 
     return {
       success: true,
-      data
+      data,
     };
   } catch (error) {
-    console.error('Password reset error:', error);
+    console.error("Password reset error:", error);
     return {
       success: false,
-      error: error.message || 'An unexpected error occurred during password reset'
+      error:
+        error.message || "An unexpected error occurred during password reset",
     };
   }
 };

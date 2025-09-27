@@ -267,6 +267,8 @@
   background: none;
   pointer-events: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .rangeSlider::-webkit-slider-thumb {
@@ -449,6 +451,56 @@
   padding: 3rem 0;
   color: #6b7280;
   background-color: #ffffff; /* Explicitly set background color */
+}
+
+/* Loading container styles */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: var(--purple-dark);
+}
+
+/* Error message styles */
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: #b91c1c;
+}
+
+.retryButton {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--purple-dark);
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.retryButton:hover {
+  background-color: var(--purple-light);
+  transform: translateY(-2px);
 }
 
 /* Responsive adjustments */

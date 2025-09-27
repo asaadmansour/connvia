@@ -172,8 +172,11 @@ function Signup() {
           if (!formState.roleData.tax_number) {
             errors["roleData.tax_number"] = "Tax number is required";
             isValid = false;
-          } else if (!/^[A-Za-z0-9]{5,15}$/.test(formState.roleData.tax_number)) {
-            errors["roleData.tax_number"] = "Tax number must be 5-15 alphanumeric characters";
+          } else if (
+            !/^[A-Za-z0-9]{5,15}$/.test(formState.roleData.tax_number)
+          ) {
+            errors["roleData.tax_number"] =
+              "Tax number must be 5-15 alphanumeric characters";
             isValid = false;
           }
           if (!formState.roleData.working_hours) {
@@ -181,8 +184,24 @@ function Signup() {
             isValid = false;
           }
           // Custom hours validation
-          if (formState.roleData.working_hours === 'custom' && !formState.roleData.custom_hours) {
-            errors["roleData.custom_hours"] = "Please specify your custom working hours";
+          if (
+            formState.roleData.working_hours === "custom" &&
+            !formState.roleData.custom_hours
+          ) {
+            errors["roleData.custom_hours"] =
+              "Please specify your custom working hours";
+            isValid = false;
+          }
+        } else if (formState.user_type === "attendee") {
+          // Interests is optional but should be validated if provided
+          if (formState.roleData.interests && formState.roleData.interests.length > 500) {
+            errors["roleData.interests"] = "Interests should be less than 500 characters";
+            isValid = false;
+          }
+          
+          // Location preferences is optional but should be validated if provided
+          if (formState.roleData.locationPreferences && formState.roleData.locationPreferences.length > 500) {
+            errors["roleData.locationPreferences"] = "Location preferences should be less than 500 characters";
             isValid = false;
           }
         }
@@ -285,6 +304,7 @@ function Signup() {
     setCurrentStep((prev) => prev - 1);
   };
 
+  // Inside the handleSubmit function
   const handleSubmit = async () => {
     // e.preventDefault();
 
@@ -325,6 +345,13 @@ function Signup() {
           workingHours: formState.roleData?.working_hours || "",
           customHours: formState.roleData?.custom_hours || "",
           logo: formState.roleData?.logo || "",
+        };
+      } else if (formState.user_type === "attendee") {
+        roleSpecificData = {
+          interests: formState.roleData?.interests || "",
+          locationPreferences: formState.roleData?.locationPreferences || "",
+          selectedInterests: formState.roleData?.selectedInterests || [],
+          selectedLocations: formState.roleData?.selectedLocations || [],
         };
       }
 
@@ -458,7 +485,10 @@ function Signup() {
               renderStep()
             )}
           </div>
-          <AuthFooter />
+          <AuthFooter
+            linkColor="var(--purple-dark)"
+            linkHoverColor="var(--purple-mid)"
+          />
         </div>
 
         <InfoSection />

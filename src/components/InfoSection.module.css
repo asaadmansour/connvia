@@ -23,12 +23,12 @@
 .infoDescription {
   font-size: 1.2rem;
   opacity: 0.9;
-  margin-bottom: 8rem;
+  margin-bottom: 2rem;
   color: var(--white);
 }
 
 .partnerSection {
-  margin-top: auto;
+  margin-top: 2rem;
   padding: 10px 15px;
   text-align: center;
   border-radius: 8px;
@@ -40,16 +40,10 @@
 
 .partners {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   justify-content: center;
   width: 100%;
-}
-
-@media (min-width: 768px) {
-  .partners {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 .partner {
@@ -66,7 +60,7 @@
   cursor: grab;
   user-select: none;
   transition: all 0.2s ease-in-out;
-  will-change: transform, box-shadow; /* Performance optimization */
+  will-change: transform, box-shadow;
 }
 
 @media (max-width: 1024px) {
