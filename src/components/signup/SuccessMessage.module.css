@@ -1,4 +1,3 @@
-
 .successContainer {
   width: 100%;
   max-width: 600px;
@@ -48,7 +47,7 @@
 .emailHighlight {
   display: block;
   font-weight: 600;
-  color: #4CAF50;
+  color: #4caf50;
   margin-top: 5px;
 }
 
@@ -68,7 +67,7 @@
 }
 
 .verificationNote p {
-  color: #FFD54F;
+  color: #ffd54f;
   font-size: 14px;
   margin: 0;
 }
@@ -81,7 +80,8 @@
   flex-wrap: wrap;
 }
 
-.loginButton, .resendButton {
+.loginButton,
+.resendButton {
   padding: 12px 24px;
   border-radius: 5px;
   font-size: 16px;
@@ -101,6 +101,14 @@
   background-color: #1565c0;
 }
 
+.loginButtonDisabled {
+  background-color: #666;
+  border: none;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .resendButton {
   background-color: transparent;
   border: 1px solid #e0e0e0;
@@ -118,13 +126,13 @@
 }
 
 .supportLink {
-  color: #64B5F6;
+  color: #64b5f6;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .supportLink:hover {
-  color: #2196F3;
+  color: #2196f3;
   text-decoration: underline;
 }
 
@@ -132,12 +140,12 @@
   .successContainer {
     padding: 20px;
   }
-  
+
   .actionButtons {
     flex-direction: column;
     gap: 10px;
   }
-  
+
   .successTitle {
     font-size: 24px;
   }

@@ -194,14 +194,22 @@ function Signup() {
           }
         } else if (formState.user_type === "attendee") {
           // Interests is optional but should be validated if provided
-          if (formState.roleData.interests && formState.roleData.interests.length > 500) {
-            errors["roleData.interests"] = "Interests should be less than 500 characters";
+          if (
+            formState.roleData.interests &&
+            formState.roleData.interests.length > 500
+          ) {
+            errors["roleData.interests"] =
+              "Interests should be less than 500 characters";
             isValid = false;
           }
-          
+
           // Location preferences is optional but should be validated if provided
-          if (formState.roleData.locationPreferences && formState.roleData.locationPreferences.length > 500) {
-            errors["roleData.locationPreferences"] = "Location preferences should be less than 500 characters";
+          if (
+            formState.roleData.locationPreferences &&
+            formState.roleData.locationPreferences.length > 500
+          ) {
+            errors["roleData.locationPreferences"] =
+              "Location preferences should be less than 500 characters";
             isValid = false;
           }
         }
@@ -372,8 +380,19 @@ function Signup() {
       const response = await registerUser(userData);
 
       if (response.success) {
-        setIsSuccess(true);
-        dispatch({ type: "RESET_FORM" });
+        if (response.emailSent) {
+          // Email sent successfully - show verification page
+          setIsSuccess(true);
+          dispatch({ type: "RESET_FORM" });
+          toast.success(
+            "Registration successful! Please check your email to verify your account."
+          );
+        } else {
+          // Email failed to send
+          toast.error(
+            "Registration successful but email verification failed. Please contact support."
+          );
+        }
       } else {
         toast.error(response.error || "Registration failed. Please try again.");
       }

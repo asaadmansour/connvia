@@ -26,12 +26,15 @@ export const registerUser = async (userData) => {
       return {
         success: false,
         error: data.error || "Registration failed",
+        emailSent: data.emailSent || false,
       };
     }
 
     return {
       success: true,
       data,
+      emailSent: data.emailSent || false,
+      verificationToken: data.verificationToken,
     };
   } catch (error) {
     console.error("Registration error:", error);
