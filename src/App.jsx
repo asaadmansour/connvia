@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+//pages
 // Pages
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
@@ -40,9 +46,14 @@ const AuthWrapper = ({ children }) => {
     // Check auth status on every location change
     const token = localStorage.getItem("authToken");
     const role = localStorage.getItem("userRole") || "regular";
-    
-    console.log("Auth check - Token:", token ? "exists" : "none", "Role:", role);
-    
+
+    console.log(
+      "Auth check - Token:",
+      token ? "exists" : "none",
+      "Role:",
+      role
+    );
+
     setIsAuth(!!token);
     setUserRole(role);
     setIsLoading(false);
@@ -57,145 +68,144 @@ const AuthWrapper = ({ children }) => {
 
 function App() {
   return (
+    <Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <AuthWrapper>
+        {({ isAuthenticated, userRole }) => (
+          <Routes>
+            {/* Public routes */}
+            <Route
+              path="/"
+              element={
+                isAuthenticated ? (
+                  userRole === "organizer" ? (
+                    <Navigate to="/dashboards/organizer" replace />
+                  ) : userRole === "vendor" ? (
+                    <Navigate to="/dashboards/vendor" replace />
+                  ) : userRole === "venue" ? (
+                    <Navigate to="/dashboards/venue" replace />
+                  ) : (
+                    <Navigate to="/dashboards/attendee" replace />
+                  )
+                ) : (
+                  <HomePage />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                isAuthenticated ? (
+                  userRole === "organizer" ? (
+                    <Navigate to="/dashboards/organizer" replace />
+                  ) : userRole === "vendor" ? (
+                    <Navigate to="/dashboards/vendor" replace />
+                  ) : userRole === "venue" ? (
+                    <Navigate to="/dashboards/venue" replace />
+                  ) : (
+                    <Navigate to="/dashboards/attendee" replace />
+                  )
+                ) : (
+                  <Login />
+                )
+              }
+            />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/verify-email/:token" element={<VerifyEmail />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/company" element={<Company />} />
 
-  <Router>
-    <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
-    />
-    <AuthWrapper>
-      {({ isAuthenticated, userRole }) => (
-        <Routes>
-        {/* Public routes */}
-        <Route
-          path="/"
-          element={
-            isAuthenticated ? (
-              userRole === "organizer" ? (
-                <Navigate to="/dashboards/organizer" replace />
-              ) : userRole === "vendor" ? (
-                <Navigate to="/dashboards/vendor" replace />
-              ) : userRole === "venue" ? (
-                <Navigate to="/dashboards/venue" replace />
-              ) : (
-                <Navigate to="/dashboards/attendee" replace />
-              )
-            ) : (
-              <HomePage />
-            )
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            isAuthenticated ? (
-              userRole === "organizer" ? (
-                <Navigate to="/dashboards/organizer" replace />
-              ) : userRole === "vendor" ? (
-                <Navigate to="/dashboards/vendor" replace />
-              ) : userRole === "venue" ? (
-                <Navigate to="/dashboards/venue" replace />
-              ) : (
-                <Navigate to="/dashboards/attendee" replace />
-              )
-            ) : (
-              <Login />
-            )
-          }
-        />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/verify-email/:token" element={<VerifyEmail />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/company" element={<Company />} />
-        
-        {/* Payment routes */}
-        <Route path="/payment-success" element={<PaymentSuccess />} />
-        <Route path="/payment-cancel" element={<PaymentCancel />} />
+            {/* Payment routes */}
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/payment-cancel" element={<PaymentCancel />} />
 
-        {/* Protected routes */}
-        <Route
-          path="/dashboard"
-          element={
-            isAuthenticated ? (
-              <Dashboard />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            isAuthenticated ? (
-              <AccountDetails />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        <Route
-          path="/notifications"
-          element={
-            isAuthenticated ? (
-              <Notifications />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        <Route
-          path="/dashboards/attendee"
-          element={
-            isAuthenticated ? (
-              <AttendeeDashboard />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        <Route
-          path="/dashboards/organizer"
-          element={
-            isAuthenticated ? (
-              <OrganizerDashboard />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        <Route
-          path="/dashboards/vendor"
-          element={
-            isAuthenticated ? (
-              <VendorDashboard />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        <Route
-          path="/dashboards/venue"
-          element={
-            isAuthenticated ? (
-              <VenueDashboard />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-        </Routes>
-      )}
-    </AuthWrapper>
-  </Router>
+            {/* Protected routes */}
+            <Route
+              path="/dashboard"
+              element={
+                isAuthenticated ? (
+                  <Dashboard />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                isAuthenticated ? (
+                  <AccountDetails />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
+              path="/notifications"
+              element={
+                isAuthenticated ? (
+                  <Notifications />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
+              path="/dashboards/attendee"
+              element={
+                isAuthenticated ? (
+                  <AttendeeDashboard />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
+              path="/dashboards/organizer"
+              element={
+                isAuthenticated ? (
+                  <OrganizerDashboard />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
+              path="/dashboards/vendor"
+              element={
+                isAuthenticated ? (
+                  <VendorDashboard />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
+              path="/dashboards/venue"
+              element={
+                isAuthenticated ? (
+                  <VenueDashboard />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+          </Routes>
+        )}
+      </AuthWrapper>
+    </Router>
   );
 }
 
