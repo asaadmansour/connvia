@@ -11,7 +11,7 @@ This frontend was built as part of a graduation project with a strong focus on:
 ---
 
 ## 🌐 Live Demo  
-🔗 **Visit Connvia**: https://connvia-production.up.railway.app/
+🔗 🔗 [Visit Connvia](https://connvia-production.up.railway.app/)
 
 ---
 
