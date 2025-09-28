@@ -1,44 +1,52 @@
-🎉 Connvia – Event Management Platform 
+# 🎉 Connvia – Event Management Platform
 
-A modern, full-featured event management web application built using the MERN stack. Connvia connects Event Creators, Vendors, Venue Owners, and Attendees in a unified digital ecosystem designed to elevate the event experience in Egypt.
+Connvia is a modern, full-featured event management web application built with the **MERN stack**. It connects **Event Creators, Vendors, Venue Owners, and Attendees** in a unified ecosystem designed to elevate the event experience in Egypt.
 
-This frontend was developed with a focus on user experience, responsiveness, and scalability, built as part of a graduation project that covered everything from conceptual models to full implementation.
+This frontend was built as part of a graduation project with a strong focus on:
+- User experience  
+- Responsive design  
+- Scalability  
+- Real-world implementation from conceptualization to deployment  
 
-🌐 Live Demo
+---
 
-🔗 Visit Connvia: https://connvia-production.up.railway.app/
+## 🌐 Live Demo  
+🔗 **Visit Connvia**: https://connvia-production.up.railway.app/
 
-🚀 Technologies
+---
 
-React + Vite – Fast and modular frontend development
+## 🚀 Technologies
 
-React Router – Client-side navigation
+- **React + Vite** – Fast and modular frontend development  
+- **React Router** – Client-side navigation  
+- **Context API** – State management  
+- **Axios** – API communication  
+- **CSS** – Responsive styling  
+- **Stripe Integration** (via backend)
 
-Context API / State Management
+---
 
-Axios / API Integration
+## ✨ Key Features
 
-CSS / Responsive Styling
+- ✅ Authentication & Onboarding  
+- ✅ Personalized Event Feed  
+- ✅ Location-Based Event Search  
+- ✅ Secure Payments (Stripe)  
+- ✅ QR Code Ticket Generation  
+- ✅ Vendor Requests & Bidding System  
+- ✅ Venue Owner Dashboards  
+- ✅ Admin Insights & Analytics  
+- ✅ Fully Responsive Web Design
 
-Stripe Integration (via backend)
+---
 
-✨ Key Features
+## 🔗 Backend Repository
 
- Authentication & Onboarding
- Personalized Event Feed
- Location-Based Event Search
- Secure Payments (Stripe)
- QR Code Ticket Generation
- Vendor Requests & Bidding System
- Venue Owner Dashboards
- Admin Insights & Analytics
- Responsive Web Design
- 
- 🔗 Backend Repository
+The backend for this project (Node.js + Express + MongoDB) is available here:  
+👉 **https://github.com/asaadmansour/connvia_backend**
 
- The backend for this project (Node.js + Express + MongoDB) can be found here:
- 👉 https://github.com/asaadmansour/connvia_backend
- 📂 Project Structure
+---
+## 📂 Project Structure 
  ```
 connvia-frontend/
 ├── public/              # Static assets (icons, images, etc.)
