@@ -39,7 +39,7 @@ Stripe Integration (via backend)
  The backend for this project (Node.js + Express + MongoDB) can be found here:
  👉 https://github.com/asaadmansour/connvia_backend
  📂 Project Structure
- ``
+ ```
 connvia-frontend/
 ├── public/              # Static assets (icons, images, etc.)
 ├── src/
@@ -56,7 +56,7 @@ connvia-frontend/
 ├── vite.config.js       # Vite configuration
 ├── package.json
 └── package-lock.json
-``
+```
 🛠️ Setup & Installation
 ```
 # 1. Clone the repository
