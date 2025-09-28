@@ -1,0 +1,30 @@
+.verifyEmailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 0 2rem;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.logoContainer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--purple-mid);
+}
+
+.languageContainer {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .verifyEmailHeader {
+    padding: 1rem 1rem 0 1rem;
+  }
+
+  .logoContainer {
+    font-size: 1.3rem;
+  }
+}

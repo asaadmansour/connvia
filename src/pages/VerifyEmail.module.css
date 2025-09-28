@@ -3,18 +3,22 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(69, 23, 84, 0.05) 0%, rgba(145, 88, 145, 0.1) 100%);
+  background-color: var(--white);
+  width: 100%;
+  position: relative;
 }
+
+/* VerifyEmail specific styles */
 
 .verifyEmailCard {
   max-width: 500px;
-  margin: 4rem auto;
+  margin: 2rem auto;
   padding: 2.5rem;
   background-color: var(--white);
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(69, 23, 84, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  border-top: 4px solid var(--purple-mid);
+  border: 1px solid #e0e0e0;
 }
 
 .verifyEmailCard h2 {
@@ -33,19 +37,45 @@
   padding: 1.5rem 0;
 }
 
+.successStatus h3,
+.errorStatus h3 {
+  color: var(--purple-dark);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.successStatus p,
+.errorStatus p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
 .spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid var(--purple-mid);
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--purple-mid);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
 }
 
+.verifyingStatus p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .successIcon,
@@ -57,36 +87,43 @@
   height: 60px;
   border-radius: 50%;
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .successIcon {
   background-color: var(--purple-mid);
-  color: white;
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(145, 88, 145, 0.2);
 }
 
 .errorIcon {
   background-color: #f44336;
-  color: white;
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
 }
 
 .loginButton {
   display: inline-block;
   margin-top: 1.5rem;
-  padding: 0.75rem 2rem;
+  padding: 1rem 2rem;
   background-color: var(--purple-mid);
-  color: white;
+  color: var(--white);
   text-decoration: none;
   border-radius: 6px;
   font-weight: 600;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(145, 88, 145, 0.3);
+  box-shadow: 0 2px 8px rgba(145, 88, 145, 0.2);
+  border: none;
+  cursor: pointer;
 }
 
 .loginButton:hover {
   background-color: var(--purple-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(69, 23, 84, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(69, 23, 84, 0.3);
+  opacity: 0.9;
 }
 
 .linkText {
@@ -109,29 +146,57 @@
 .actionButton {
   padding: 0.75rem 1.5rem;
   text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
+  display: inline-block;
 }
 
 .actionButton:first-child {
   background-color: var(--purple-mid);
-  color: white;
-  box-shadow: 0 2px 8px rgba(145, 88, 145, 0.3);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(145, 88, 145, 0.2);
+  border: none;
 }
 
 .actionButton:first-child:hover {
   background-color: var(--purple-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(69, 23, 84, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(69, 23, 84, 0.3);
+  opacity: 0.9;
 }
 
 .actionButton:last-child {
   background-color: #f8f9fa;
-  color: #333;
+  color: var(--text-primary);
   border: 1px solid #ddd;
 }
 
 .actionButton:last-child:hover {
   background-color: #e9ecef;
+  transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .verifyEmailCard {
+    margin: 1rem;
+    padding: 2rem;
+    max-width: none;
+  }
+
+  .verifyEmailCard h2 {
+    font-size: 1.5rem;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .actionButton {
+    width: 100%;
+    text-align: center;
+  }
 }
