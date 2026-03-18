@@ -212,11 +212,6 @@ const Events = () => {
         )}
 
         {/* Events grid */}
-        <EventsGrid 
-          state={state}
-          showFilters={showFilters}
-          onEventClick={(eventId) => /* log removed */}
-        />
       </div>
     </div>
   );
