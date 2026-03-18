@@ -376,29 +376,18 @@ function Signup() {
         ...roleSpecificData,
       };
 
-      /* log removed */
       const response = await registerUser(userData);
 
       if (response.success) {
-        if (response.emailSent) {
-          // Email sent successfully - show verification page
-          setIsSuccess(true);
-          dispatch({ type: "RESET_FORM" });
-          toast.success(
-            "Registration successful! Please check your email to verify your account."
-          );
-        } else {
-          // Email failed to send
-          toast.error(
-            "Registration successful but email verification failed. Please contact support."
-          );
-        }
+        // Registration successful — navigate directly to login
+        dispatch({ type: "RESET_FORM" });
+        toast.success("Registration successful! You can now log in.");
+        setTimeout(() => navigate("/login"), 1500);
       } else {
         toast.error(response.error || "Registration failed. Please try again.");
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
-      /* log removed */
     } finally {
       setIsSubmitting(false);
     }
