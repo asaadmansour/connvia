@@ -22,7 +22,7 @@ export const getGovernorates = async () => {
       };
     }
   } catch (error) {
-    console.error("Error fetching governorates:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -52,7 +52,7 @@ export const getDistrictsByGovernorate = async (governorateId) => {
       };
     }
   } catch (error) {
-    console.error("Error fetching districts:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -82,7 +82,7 @@ export const getAllLocations = async () => {
       };
     }
   } catch (error) {
-    console.error("Error fetching locations:", error);
+    /* log removed */
     return {
       success: false,
       error:

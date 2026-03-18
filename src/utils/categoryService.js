@@ -21,7 +21,7 @@ export const getCategories = async () => {
       };
     }
   } catch (error) {
-    console.error("Error fetching categories:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -51,7 +51,7 @@ export const getSubcategoriesByCategoryId = async (categoryId) => {
       };
     }
   } catch (error) {
-    console.error("Error fetching subcategories:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -81,7 +81,7 @@ export const getAllSubcategories = async () => {
       };
     }
   } catch (error) {
-    console.error("Error fetching all subcategories:", error);
+    /* log removed */
     return {
       success: false,
       error:

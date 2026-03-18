@@ -57,7 +57,7 @@ const VenueOwnerModal = ({ ownerId, onClose }) => {
         }
       } catch (err) {
         setError("An unexpected error occurred");
-        console.error("Venue owner fetch error:", err);
+        /* log removed */
       } finally {
         setLoading(false);
       }
@@ -135,7 +135,7 @@ const VenueOwnerModal = ({ ownerId, onClose }) => {
                     }
                   })
                   .catch((err) => {
-                    console.error("Venue owner fetch error:", err);
+                    /* log removed */
                     setError(err.message || "An unexpected error occurred");
                   })
                   .finally(() => setLoading(false));

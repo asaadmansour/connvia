@@ -34,7 +34,7 @@ export const getVenueOwnerStats = async () => {
       };
     }
   } catch (error) {
-    console.error("Error fetching venue owner stats:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -72,7 +72,7 @@ export const getOrganizerStats = async () => {
       };
     }
   } catch (error) {
-    console.error("Error fetching organizer stats:", error);
+    /* log removed */
     return {
       success: false,
       error:

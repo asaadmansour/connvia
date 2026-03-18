@@ -77,10 +77,10 @@ const RoleSpecificStep = ({
             );
             setCategories(formattedCategories);
           } else {
-            console.error("Failed to fetch categories data");
+            /* log removed */
           }
         } catch (error) {
-          console.error("Error fetching categories:", error);
+          /* log removed */
         } finally {
           setLoadingCategories(false);
         }
@@ -104,10 +104,10 @@ const RoleSpecificStep = ({
             );
             setLocations(formattedLocations);
           } else {
-            console.error("Failed to fetch locations data");
+            /* log removed */
           }
         } catch (error) {
-          console.error("Error fetching locations:", error);
+          /* log removed */
         } finally {
           setLoadingLocations(false);
         }
@@ -694,7 +694,7 @@ const RoleSpecificStep = ({
                           });
                         }
                       } catch (error) {
-                        console.error("Error uploading logo:", error);
+                        /* log removed */
 
                         // Handle upload error
                         handleRoleDataChange({

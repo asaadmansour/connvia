@@ -53,7 +53,7 @@ const ReserveVenueModal = ({
             fetchLocationName(coordinates.lat, coordinates.lng);
           }
         } catch (error) {
-          console.error("Error parsing venue location:", error);
+          /* log removed */
           setFormattedLocation("Location information unavailable");
         }
       }
@@ -85,7 +85,7 @@ const ReserveVenueModal = ({
         setFormattedLocation(placeName || response.data.display_name);
       }
     } catch (error) {
-      console.error("Error fetching location name:", error);
+      /* log removed */
       setFormattedLocation("Location information unavailable");
     } finally {
       setIsLoadingLocation(false);
@@ -190,7 +190,7 @@ const ReserveVenueModal = ({
 
       return `https://connviabackend-production.up.railway.app/uploads/venues/${filename}`;
     } catch (error) {
-      console.error("Error parsing image URL:", error);
+      /* log removed */
       return "https://via.placeholder.com/300x200?text=Error";
     }
   };
@@ -236,7 +236,7 @@ const ReserveVenueModal = ({
                 alt={venue?.name || "Venue"}
                 className="venue-image"
                 onError={(e) => {
-                  console.log("Image load error for venue:", venue?.name);
+                  /* log removed */
                   e.target.src =
                     "https://via.placeholder.com/300x200?text=No+Image";
                 }}

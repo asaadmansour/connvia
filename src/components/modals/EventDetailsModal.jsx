@@ -41,7 +41,7 @@ const EventDetailsModal = ({ event, isOpen, onClose }) => {
         setCoordinates(coords);
       }
     } catch (error) {
-      console.error("Error parsing coordinates:", error);
+      /* log removed */
     }
 
     // Fetch location name from coordinates
@@ -54,7 +54,7 @@ const EventDetailsModal = ({ event, isOpen, onClose }) => {
         const data = await response.json();
         setLocationName(data.display_name || "Unknown location");
       } catch (error) {
-        console.error("Error fetching location name:", error);
+        /* log removed */
         setLocationName("Unknown location");
       } finally {
         setIsLoadingLocation(false);
@@ -99,7 +99,7 @@ const EventDetailsModal = ({ event, isOpen, onClose }) => {
         setLocationName(placeName || response.data.display_name);
       }
     } catch (error) {
-      console.error("Error fetching location name:", error);
+      /* log removed */
     } finally {
       setIsLoadingLocation(false);
     }
@@ -135,17 +135,10 @@ const EventDetailsModal = ({ event, isOpen, onClose }) => {
         return;
       }
 
-      console.log(
-        "Using authentication token for reservation:",
-        token ? `${token.substring(0, 10)}...` : "null"
-      );
+      /* log removed */
 
       // First create an attendee reservation
-      console.log("Creating reservation for event:", {
-        eventId: event.id,
-        quantity: ticketQuantity,
-        totalPrice: totalAmount,
-      });
+      /* log removed */
 
       const reservationResponse = await fetch(
         "https://connviabackend-production.up.railway.app/api/attendee/reservations",
@@ -180,10 +173,7 @@ const EventDetailsModal = ({ event, isOpen, onClose }) => {
       }
 
       // Get the checkout URL from your backend
-      console.log(
-        "Creating Stripe checkout session with reservation ID:",
-        reservationId
-      );
+      /* log removed */
 
       // Get a fresh token to ensure it's valid
       const freshToken = getToken();
@@ -191,10 +181,7 @@ const EventDetailsModal = ({ event, isOpen, onClose }) => {
         throw new Error("Authentication token not found");
       }
 
-      console.log(
-        "Using authentication token for checkout:",
-        freshToken ? `${freshToken.substring(0, 10)}...` : "null"
-      );
+      /* log removed */
 
       const checkoutResponse = await fetch(
         "https://connviabackend-production.up.railway.app/api/stripe/create-checkout-session",
@@ -229,13 +216,8 @@ const EventDetailsModal = ({ event, isOpen, onClose }) => {
       window.location.href = checkoutData.url;
     } catch (error) {
       // Enhanced error logging
-      console.error("Error in checkout session creation:", error);
-      console.error("Error details:", {
-        message: error.message,
-        stack: error.stack,
-        name: error.name,
-        code: error.code,
-      });
+      /* log removed */
+      /* log removed */
 
       toast.error(error.message || "An error occurred. Please try again.");
       setIsProcessingPayment(false);

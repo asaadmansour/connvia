@@ -31,8 +31,8 @@ const EventsGrid = ({ state, showFilters, onEventClick }) => {
                 {sortedEvents.map((event, index) => {
                   // Create a truly unique key using index as fallback
                   const uniqueKey = event.id || event.event_ID || `event-index-${index}`;
-                  console.log('Event data:', event);
-                  console.log('Using key:', uniqueKey);
+                  /* log removed */
+                  /* log removed */
                   
                   return (
                     <EventCard

@@ -30,9 +30,9 @@ const EventModal = ({ onClose, onCreateEvent }) => {
     setError(null);
 
     try {
-      console.log("Fetching organizer reservations...");
+      /* log removed */
       const response = await getOrganizerReservations();
-      console.log("Reservation response:", response);
+      /* log removed */
 
       if (response.success && response.data) {
         // Get all reservations
@@ -41,22 +41,22 @@ const EventModal = ({ onClose, onCreateEvent }) => {
           const paid = response.data.reservations.filter(
             (res) => res.payment_status === "paid"
           );
-          console.log("Paid reservations found:", paid.length);
+          /* log removed */
           setPaidReservations(paid);
 
           if (paid.length === 0 && response.data.message) {
             setError(response.data.message);
           }
         } else {
-          console.error("No reservations array in response data");
+          /* log removed */
           setPaidReservations([]);
         }
       } else {
-        console.error("Failed to fetch reservations:", response.error);
+        /* log removed */
         setError(response.error || "Failed to fetch your reservations");
       }
     } catch (err) {
-      console.error("Error fetching reservations:", err);
+      /* log removed */
       setError("An unexpected error occurred while fetching reservations");
     } finally {
       setLoading(false);
@@ -169,10 +169,7 @@ const EventModal = ({ onClose, onCreateEvent }) => {
     }
 
     // Log the form data for debugging
-    console.log(
-      "Form data created with image:",
-      eventDetails.imageFile ? "Yes" : "No"
-    );
+    /* log removed */
 
     // Pass the FormData to the parent component
     onCreateEvent(formData);

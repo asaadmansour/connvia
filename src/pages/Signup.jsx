@@ -376,7 +376,7 @@ function Signup() {
         ...roleSpecificData,
       };
 
-      console.log("Sending registration data:", userData);
+      /* log removed */
       const response = await registerUser(userData);
 
       if (response.success) {
@@ -398,7 +398,7 @@ function Signup() {
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
-      console.error("Registration error:", error);
+      /* log removed */
     } finally {
       setIsSubmitting(false);
     }

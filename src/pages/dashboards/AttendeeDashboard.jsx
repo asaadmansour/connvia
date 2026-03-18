@@ -114,15 +114,8 @@ function AttendeeDashboard() {
       }
     } catch (error) {
       // Enhanced error logging
-      console.error("Error updating reservation status:", error);
-      console.error("Update reservation error details:", {
-        message: error.message,
-        stack: error.stack,
-        name: error.name,
-        code: error.code,
-        reservationId,
-        status,
-      });
+      /* log removed */
+      /* log removed */
 
       toast.error("Failed to update reservation status");
     }
@@ -155,13 +148,8 @@ function AttendeeDashboard() {
       }
     } catch (error) {
       // Enhanced error logging
-      console.error("Error fetching reservations:", error);
-      console.error("Fetch reservations error details:", {
-        message: error.message,
-        stack: error.stack,
-        name: error.name,
-        code: error.code,
-      });
+      /* log removed */
+      /* log removed */
 
       toast.error("Failed to fetch reservations");
     }
@@ -202,13 +190,8 @@ function AttendeeDashboard() {
       }
     } catch (error) {
       // Enhanced error logging
-      console.error("Error fetching tickets:", error);
-      console.error("Fetch tickets error details:", {
-        message: error.message,
-        stack: error.stack,
-        name: error.name,
-        code: error.code,
-      });
+      /* log removed */
+      /* log removed */
 
       toast.error("Failed to fetch tickets");
     }
@@ -257,13 +240,8 @@ function AttendeeDashboard() {
         await fetchUserTickets();
       } catch (error) {
         // Enhanced error logging
-        console.error("Error fetching data:", error);
-        console.error("Fetch data error details:", {
-          message: error.message,
-          stack: error.stack,
-          name: error.name,
-          code: error.code,
-        });
+        /* log removed */
+        /* log removed */
 
         toast.error("Error loading data. Please try again.");
       } finally {

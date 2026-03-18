@@ -60,7 +60,7 @@ export const createEvent = async (eventData) => {
       message: data.message,
     };
   } catch (error) {
-    console.error("Error creating event:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -106,7 +106,7 @@ export const getCategories = async () => {
       data: data.data,
     };
   } catch (error) {
-    console.error("Error fetching categories:", error);
+    /* log removed */
     return {
       success: false,
       error: "Network error. Please try again.",
@@ -146,7 +146,7 @@ export const getAllEvents = async (filters = {}) => {
       data: data.data,
     };
   } catch (error) {
-    console.error("Error fetching events:", error);
+    /* log removed */
     return {
       success: false,
       error: "Network error. Please try again.",
@@ -186,7 +186,7 @@ export const getOrganizerEvents = async () => {
       data: data.data,
     };
   } catch (error) {
-    console.error("Error fetching organizer events:", error);
+    /* log removed */
     return {
       success: false,
       error:

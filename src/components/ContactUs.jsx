@@ -46,7 +46,7 @@ function Contact() {
         setFormData({ name: "", email: "", inquiry: "", message: "" });
       })
       .catch((error) => {
-        console.error("EmailJS Error:", error);
+        /* log removed */
         toast.error("❌ Failed to send message. Please try again.");
       })
       .finally(() => {

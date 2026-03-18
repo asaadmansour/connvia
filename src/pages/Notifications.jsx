@@ -33,7 +33,7 @@ const Notifications = () => {
         setError('Failed to fetch notifications');
       }
     } catch (error) {
-      console.error('Error fetching notifications:', error);
+      /* log removed */
       setError('An error occurred while fetching notifications');
     } finally {
       setIsLoading(false);
@@ -52,7 +52,7 @@ const Notifications = () => {
       );
       setUnreadCount(prev => Math.max(0, prev - 1));
     } catch (error) {
-      console.error('Error marking notification as read:', error);
+      /* log removed */
     }
   };
 
@@ -64,7 +64,7 @@ const Notifications = () => {
       );
       setUnreadCount(0);
     } catch (error) {
-      console.error('Error marking all notifications as read:', error);
+      /* log removed */
     }
   };
 

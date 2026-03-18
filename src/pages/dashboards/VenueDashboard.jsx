@@ -191,7 +191,7 @@ function VenueDashboard() {
                 Object.assign(venueAmenities, parsedFacilities);
               }
             } catch (e) {
-              console.error("Error parsing facilities:", e);
+              /* log removed */
             }
           }
         }
@@ -213,7 +213,7 @@ function VenueDashboard() {
               venueRules = parsedRules;
             }
           } catch (e) {
-            console.error("Error parsing rules:", e);
+            /* log removed */
           }
         }
 
@@ -223,7 +223,7 @@ function VenueDashboard() {
           try {
             locationData = JSON.parse(locationData);
           } catch (e) {
-            console.error("Error parsing location data:", e);
+            /* log removed */
             // If parsing fails, create a default location object
             locationData = { lat: 30.0444, lng: 31.2357 }; // Default to Cairo
           }
@@ -238,11 +238,7 @@ function VenueDashboard() {
         });
 
         // For debugging
-        console.log("Venue data for modal:", {
-          ...venue,
-          amenities: venueAmenities,
-          rules: venueRules,
-        });
+        /* log removed */
 
         // Open the modal in view mode
         setShowVenueDetailsModal(true);
@@ -251,7 +247,7 @@ function VenueDashboard() {
         toast.error(response.error || "Failed to fetch venue details");
       }
     } catch (error) {
-      console.error("Error viewing venue details:", error);
+      /* log removed */
       toast.error("An unexpected error occurred");
     } finally {
       setIsLoading(false);
@@ -278,7 +274,7 @@ function VenueDashboard() {
           Object.assign(amenities, parsedFacilities);
         }
       } catch (e) {
-        console.error("Error parsing facilities:", e);
+        /* log removed */
       }
     }
 
@@ -296,7 +292,7 @@ function VenueDashboard() {
           Object.assign(rules, parsedRules);
         }
       } catch (e) {
-        console.error("Error parsing rules:", e);
+        /* log removed */
       }
     }
 
@@ -306,7 +302,7 @@ function VenueDashboard() {
       try {
         locationData = JSON.parse(locationData);
       } catch (e) {
-        console.error("Error parsing location data:", e);
+        /* log removed */
         // If parsing fails, create a default location object
         locationData = { lat: 30.0444, lng: 31.2357 }; // Default to Cairo
       }
@@ -478,20 +474,14 @@ function VenueDashboard() {
         const errorCode = response.code ? ` (Code: ${response.code})` : "";
 
         // Log detailed error information
-        console.error("Venue update failed:", {
-          error: errorMessage,
-          details: response.details,
-          code: response.code,
-          sqlState: response.sqlState,
-          status: response.status,
-        });
+        /* log removed */
 
         // Display error to user
         toast.error(`${errorMessage}${detailsMessage}${errorCode}`);
         setFormError(`${errorMessage}${detailsMessage}`);
       }
     } catch (error) {
-      console.error("Error updating venue:", error);
+      /* log removed */
       setFormError("An unexpected error occurred. Please try again.");
       toast.error("An unexpected error occurred. Please try again.");
     } finally {
@@ -540,7 +530,7 @@ function VenueDashboard() {
         // Show success message
         toast.success("Venue deleted successfully!");
       } else {
-        console.log("Delete venue error response:", response);
+        /* log removed */
 
         // Check for foreign key constraint error
         if (
@@ -555,7 +545,7 @@ function VenueDashboard() {
         }
       }
     } catch (error) {
-      console.error("Error deleting venue:", error);
+      /* log removed */
       setShowDeleteConfirmModal(false);
 
       // Show toast notification for unexpected errors
@@ -580,11 +570,11 @@ function VenueDashboard() {
     try {
       // Fetch venue owner stats
       const statsResponse = await getVenueOwnerStats();
-      console.log("Dashboard stats response:", statsResponse);
+      /* log removed */
 
       // Fetch venue owner reservations (bookings)
       const reservationsResponse = await getVenueOwnerReservations();
-      console.log("Reservations response:", reservationsResponse);
+      /* log removed */
 
       // Process recent bookings data
       let recentBookings = [];
@@ -636,7 +626,7 @@ function VenueDashboard() {
         setError(statsResponse.error || "Failed to load dashboard data");
       }
     } catch (error) {
-      console.error("Error fetching venue owner dashboard data:", error);
+      /* log removed */
       setError("Failed to load dashboard data. Please try again later.");
     } finally {
       setIsLoading(false);
@@ -658,7 +648,7 @@ function VenueDashboard() {
         }));
       }
     } catch (error) {
-      console.error("Error fetching venues:", error);
+      /* log removed */
       toast.error("Failed to load your venues");
     }
   };
@@ -931,7 +921,7 @@ function VenueDashboard() {
           // Also update the dashboard statistics to reflect the new venue
           fetchDashboardData();
         } catch (error) {
-          console.error("Error fetching updated venues:", error);
+          /* log removed */
           toast.error(
             "Venue added but failed to refresh the list. Please refresh the page."
           );
@@ -943,20 +933,14 @@ function VenueDashboard() {
         const errorCode = response.code ? ` (Code: ${response.code})` : "";
 
         // Log detailed error information
-        console.error("Venue creation failed:", {
-          error: errorMessage,
-          details: response.details,
-          code: response.code,
-          sqlState: response.sqlState,
-          status: response.status,
-        });
+        /* log removed */
 
         // Display error to user
         toast.error(`${errorMessage}${detailsMessage}${errorCode}`);
         setSubmitError(`${errorMessage}${detailsMessage}`);
       }
     } catch (error) {
-      console.error("Error adding venue:", error);
+      /* log removed */
       setSubmitError("An unexpected error occurred. Please try again.");
     } finally {
       // Reset submitting state

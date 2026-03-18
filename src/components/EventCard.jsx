@@ -3,18 +3,11 @@ import styles from "./EventCard.module.css";
 
 function EventCard({ event, onClick }) {
   // Log the event data for debugging
-  console.log('EventCard received event:', {
-    id: event.id,
-    title: event.title,
-    location: event.location,
-    venue: event.venue,
-    formattedDate: event.formattedDate,
-    date: event.date
-  });
+  /* log removed */
   
   // Determine the location to display
   const displayLocation = event.location || event.venue || "TBA";
-  console.log(`EventCard displaying location: ${displayLocation}`);
+  /* log removed */
   
   return (
     <div

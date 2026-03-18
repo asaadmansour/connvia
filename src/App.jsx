@@ -47,12 +47,7 @@ const AuthWrapper = ({ children }) => {
     const token = localStorage.getItem("authToken");
     const role = localStorage.getItem("userRole") || "regular";
 
-    console.log(
-      "Auth check - Token:",
-      token ? "exists" : "none",
-      "Role:",
-      role
-    );
+    /* log removed */
 
     setIsAuth(!!token);
     setUserRole(role);

@@ -55,7 +55,7 @@ const Events = () => {
                   }
                 }
               } catch (error) {
-                console.error("Error formatting date:", error, event.start_date);
+                /* log removed */
               }
             }
             
@@ -64,21 +64,14 @@ const Events = () => {
             let coordinates = null;
             
             // Log raw event data for debugging
-            console.log('Raw event data:', {
-              event_ID: event.event_ID,
-              name: event.name,
-              venue_name: event.venue_name,
-              venue: event.venue,
-              location: event.location,
-              coordinates: event.coordinates
-            });
+            /* log removed */
             
             // First try to use the venue_name if available
             if (event.venue_name) {
-              console.log(`Using venue_name: ${event.venue_name}`);
+              /* log removed */
               locationName = event.venue_name;
             } else if (event.venue) {
-              console.log(`Using venue field: ${event.venue}`);
+              /* log removed */
               locationName = event.venue;
             }
             
@@ -86,28 +79,28 @@ const Events = () => {
             const locationField = event.location || event.venue_location;
             
             if (locationField) {
-              console.log(`Found location data: ${locationField}`);
+              /* log removed */
               try {
                 // Parse the JSON location string
                 let locationData;
                 
                 // Handle different formats of location data
                 if (typeof locationField === 'string') {
-                  console.log('Location is a string, parsing as JSON');
+                  /* log removed */
                   // If it's a string, try to parse it as JSON
                   locationData = JSON.parse(locationField);
                 } else if (typeof locationField === 'object') {
-                  console.log('Location is already an object');
+                  /* log removed */
                   // If it's already an object, use it directly
                   locationData = locationField;
                 }
                 
                 // Log the location data for debugging
-                console.log('Parsed location data:', locationData);
+                /* log removed */
                 
                 // Check if we have valid coordinates
                 if (locationData && locationData.lat && locationData.lng) {
-                  console.log(`Valid coordinates found: lat=${locationData.lat}, lng=${locationData.lng}`);
+                  /* log removed */
                   
                   // Store the coordinates for potential use in a map view
                   coordinates = {
@@ -118,20 +111,20 @@ const Events = () => {
                   // If we don't already have a venue name, use the coordinates
                   if (locationName === "TBA") {
                     locationName = `${parseFloat(locationData.lat).toFixed(2)}, ${parseFloat(locationData.lng).toFixed(2)}`;
-                    console.log(`Using coordinates as location: ${locationName}`);
+                    /* log removed */
                   }
                 } else {
-                  console.log('Invalid or missing coordinates in locationData');
+                  /* log removed */
                 }
               } catch (error) {
-                console.error("Error parsing location data:", error);
-                console.log('Raw location data:', locationField);
+                /* log removed */
+                /* log removed */
               }
             } else {
-              console.log('No location data available');
+              /* log removed */
             }
             
-            console.log(`Final location name: ${locationName}`);
+            /* log removed */
 
             
             return {
@@ -154,12 +147,12 @@ const Events = () => {
           
           dispatch({ type: 'SET_EVENTS', payload: formattedEvents });
         } else {
-          console.error("Failed to fetch events:", response.error);
+          /* log removed */
           dispatch({ type: 'SET_ERROR', payload: response.error || "Failed to load events" });
           toast.error("Failed to load events. Please try again later.");
         }
       } catch (error) {
-        console.error("Error fetching events:", error);
+        /* log removed */
         dispatch({ type: 'SET_ERROR', payload: error.message || "Error loading events" });
         toast.error("Error loading events. Please try again later.");
       }
@@ -222,7 +215,7 @@ const Events = () => {
         <EventsGrid 
           state={state}
           showFilters={showFilters}
-          onEventClick={(eventId) => console.log(`Navigating to details for event ${eventId}`)}
+          onEventClick={(eventId) => /* log removed */}
         />
       </div>
     </div>

@@ -47,7 +47,7 @@ export const createReservation = async (reservationData) => {
       message: data.message,
     };
   } catch (error) {
-    console.error("Error creating reservation:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -66,14 +66,14 @@ export const getOrganizerReservations = async () => {
     const token = getToken();
 
     if (!token) {
-      console.error("No authentication token found when fetching reservations");
+      /* log removed */
       return {
         success: false,
         error: "Authentication required. Please log in again.",
       };
     }
 
-    console.log("Fetching organizer reservations from API");
+    /* log removed */
 
     const response = await fetch(`${API_URL}/organizer`, {
       method: "GET",
@@ -85,26 +85,21 @@ export const getOrganizerReservations = async () => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("API returned error:", response.status, data.error);
+      /* log removed */
       return {
         success: false,
         error: data.error || "Failed to fetch reservations",
       };
     }
 
-    console.log(
-      "Successfully fetched organizer reservations:",
-      data.data?.reservations
-        ? `Found ${data.data.reservations.length} reservations`
-        : "No reservations field in response"
-    );
+    /* log removed */
 
     return {
       success: true,
       data: data.data,
     };
   } catch (error) {
-    console.error("Error fetching organizer reservations:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -123,16 +118,14 @@ export const getVenueOwnerReservations = async () => {
     const token = getToken();
 
     if (!token) {
-      console.error(
-        "No authentication token found when fetching venue owner reservations"
-      );
+      /* log removed */
       return {
         success: false,
         error: "Authentication required. Please log in again.",
       };
     }
 
-    console.log("Fetching venue owner reservations from API");
+    /* log removed */
 
     const response = await fetch(`${API_URL}/venue-owner`, {
       method: "GET",
@@ -144,26 +137,21 @@ export const getVenueOwnerReservations = async () => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("API returned error:", response.status, data.error);
+      /* log removed */
       return {
         success: false,
         error: data.error || "Failed to fetch reservations",
       };
     }
 
-    console.log(
-      "Successfully fetched venue owner reservations:",
-      data.data?.reservations
-        ? `Found ${data.data.reservations.length} reservations`
-        : "No reservations field in response"
-    );
+    /* log removed */
 
     return {
       success: true,
       data: data.data,
     };
   } catch (error) {
-    console.error("Error fetching venue owner reservations:", error);
+    /* log removed */
     return {
       success: false,
       error:

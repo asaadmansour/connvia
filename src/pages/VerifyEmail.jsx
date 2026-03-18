@@ -58,7 +58,7 @@ const VerifyEmail = () => {
           }
         }
       } catch (error) {
-        console.error("Verification error:", error);
+        /* log removed */
         setVerificationStatus("error");
         setErrorMessage(
           "An unexpected error occurred. Please try again later."

@@ -24,21 +24,14 @@ function TrendingEvents() {
             let locationName = "TBA";
             let coordinates = null;
             
-            console.log('TrendingEvents - Raw event data:', {
-              event_ID: event.event_ID,
-              name: event.name,
-              venue_name: event.venue_name,
-              venue: event.venue,
-              location: event.location,
-              venue_location: event.venue_location
-            });
+            /* log removed */
             
             // First try to use the venue_name if available
             if (event.venue_name) {
-              console.log(`TrendingEvents - Using venue_name: ${event.venue_name}`);
+              /* log removed */
               locationName = event.venue_name;
             } else if (event.venue) {
-              console.log(`TrendingEvents - Using venue field: ${event.venue}`);
+              /* log removed */
               locationName = event.venue;
             }
             
@@ -46,27 +39,27 @@ function TrendingEvents() {
             const locationField = event.location || event.venue_location;
             
             if (locationField) {
-              console.log(`TrendingEvents - Found location data: ${locationField}`);
+              /* log removed */
               try {
                 // Parse the JSON location string
                 let locationData;
                 
                 // Handle different formats of location data
                 if (typeof locationField === 'string') {
-                  console.log('TrendingEvents - Location is a string, parsing as JSON');
+                  /* log removed */
                   // If it's a string, try to parse it as JSON
                   locationData = JSON.parse(locationField);
                 } else if (typeof locationField === 'object') {
-                  console.log('TrendingEvents - Location is already an object');
+                  /* log removed */
                   // If it's already an object, use it directly
                   locationData = locationField;
                 }
                 
-                console.log('TrendingEvents - Parsed location data:', locationData);
+                /* log removed */
                 
                 // Check if we have valid coordinates
                 if (locationData && locationData.lat && locationData.lng) {
-                  console.log(`TrendingEvents - Valid coordinates found: lat=${locationData.lat}, lng=${locationData.lng}`);
+                  /* log removed */
                   
                   coordinates = {
                     lat: parseFloat(locationData.lat),
@@ -76,20 +69,20 @@ function TrendingEvents() {
                   // If we don't already have a venue name, use the coordinates
                   if (locationName === "TBA") {
                     locationName = `${parseFloat(locationData.lat).toFixed(2)}, ${parseFloat(locationData.lng).toFixed(2)}`;
-                    console.log(`TrendingEvents - Using coordinates as location: ${locationName}`);
+                    /* log removed */
                   }
                 } else {
-                  console.log('TrendingEvents - Invalid or missing coordinates in locationData');
+                  /* log removed */
                 }
               } catch (error) {
-                console.error("TrendingEvents - Error parsing location data:", error);
-                console.log('TrendingEvents - Raw location data:', locationField);
+                /* log removed */
+                /* log removed */
               }
             } else {
-              console.log('TrendingEvents - No location data available');
+              /* log removed */
             }
             
-            console.log(`TrendingEvents - Final location name: ${locationName}`);
+            /* log removed */
             
             // Format date
             const eventDate = new Date(event.start_date || event.date);
@@ -114,11 +107,11 @@ function TrendingEvents() {
           
           setTrendingEvents(events);
         } else {
-          console.error("Failed to fetch events:", response.error);
+          /* log removed */
           toast.error("Failed to load events. Please try again later.");
         }
       } catch (error) {
-        console.error("Error fetching events:", error);
+        /* log removed */
         toast.error("Error loading events. Please try again later.");
       } finally {
         setIsLoading(false);
@@ -129,7 +122,7 @@ function TrendingEvents() {
   }, []);
 
   const handleEventClick = (eventId) => {
-    console.log(`Navigating to trending event ${eventId}`);
+    /* log removed */
     // In a real app, use React Router to navigate
   };
 
@@ -157,7 +150,7 @@ function TrendingEvents() {
           {trendingEvents.map((event, index) => {
             // Log the event key for debugging
             const eventKey = event.id || event.event_ID || `trending-event-${index}`;
-            console.log(`Rendering trending event with key: ${eventKey}`, event);
+            /* log removed */
             
             return (
               <motion.div 

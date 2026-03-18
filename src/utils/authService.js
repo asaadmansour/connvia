@@ -37,7 +37,7 @@ export const registerUser = async (userData) => {
       verificationToken: data.verificationToken,
     };
   } catch (error) {
-    console.error("Registration error:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -85,7 +85,7 @@ export const loginUser = async (email, password, recaptchaToken) => {
         const tokenParts = data.token.split(".");
         if (tokenParts.length === 3) {
           const payload = JSON.parse(atob(tokenParts[1]));
-          console.log("Decoded JWT payload:", payload);
+          /* log removed */
 
           // If the token contains user type information, store it
           if (payload.userType) {
@@ -97,7 +97,7 @@ export const loginUser = async (email, password, recaptchaToken) => {
           }
         }
       } catch (error) {
-        console.error("Error decoding JWT token:", error);
+        /* log removed */
       }
 
       // Store user role if available in the response
@@ -119,7 +119,7 @@ export const loginUser = async (email, password, recaptchaToken) => {
       data,
     };
   } catch (error) {
-    console.error("Login error:", error);
+    /* log removed */
     return {
       success: false,
       error: error.message || "An unexpected error occurred during login",
@@ -150,10 +150,7 @@ export const isAuthenticated = () => {
  */
 export const getToken = () => {
   const token = localStorage.getItem("authToken");
-  console.log(
-    "Retrieved token from storage:",
-    token ? `${token.substring(0, 10)}...` : "null"
-  );
+  /* log removed */
   return token;
 };
 
@@ -193,7 +190,7 @@ export const verifyEmail = async (token) => {
       data,
     };
   } catch (error) {
-    console.error("Email verification error:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -232,7 +229,7 @@ export const requestPasswordReset = async (email) => {
       data,
     };
   } catch (error) {
-    console.error("Password reset request error:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -275,7 +272,7 @@ export const resetPassword = async (token, newPassword) => {
       data,
     };
   } catch (error) {
-    console.error("Password reset error:", error);
+    /* log removed */
     return {
       success: false,
       error:

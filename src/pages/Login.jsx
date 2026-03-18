@@ -91,9 +91,9 @@ function Login() {
 
       if (response.success && response.data.token) {
         // Debug logs
-        console.log("Login response:", response.data);
-        console.log("User data:", response.data.user);
-        console.log("User role from userType:", response.data.user?.userType);
+        /* log removed */
+        /* log removed */
+        /* log removed */
 
         toast.success("Login successful, Redirecting", {
           position: "top-center",
@@ -112,10 +112,7 @@ function Login() {
         setTimeout(() => {
           // Get user role from localStorage (set by authService)
           const userRole = getUserRole() || "regular";
-          console.log(
-            "Redirecting to dashboard for role from localStorage:",
-            userRole
-          );
+          /* log removed */
 
           // Redirect based on user role
           switch (userRole) {
@@ -293,11 +290,11 @@ function Login() {
                   sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                   onChange={(token) => {
                     setRecaptchaToken(token);
-                    console.log("reCAPTCHA Token:", token);
+                    /* log removed */
                   }}
                   onExpired={() => {
                     setRecaptchaToken(null);
-                    console.log("reCAPTCHA expired.");
+                    /* log removed */
                   }}
                 />
               </div>

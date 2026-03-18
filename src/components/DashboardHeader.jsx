@@ -64,7 +64,7 @@ function DashboardHeader() {
         setNewNotificationsCount(response.data.unreadCount);
       }
     } catch (error) {
-      console.error('Error fetching notifications:', error);
+      /* log removed */
     } finally {
       setIsLoadingNotifications(false);
     }
@@ -102,7 +102,7 @@ function DashboardHeader() {
       );
       setNewNotificationsCount(prev => Math.max(0, prev - 1));
     } catch (error) {
-      console.error('Error marking notification as read:', error);
+      /* log removed */
     }
   };
   
@@ -116,7 +116,7 @@ function DashboardHeader() {
       );
       setNewNotificationsCount(0);
     } catch (error) {
-      console.error('Error marking all notifications as read:', error);
+      /* log removed */
     }
   };
 

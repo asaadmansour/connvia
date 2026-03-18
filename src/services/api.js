@@ -45,7 +45,7 @@ export const createCheckoutSession = async (venueData) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Checkout session error:", error);
+    /* log removed */
     return { success: false, error: error.message };
   }
 };

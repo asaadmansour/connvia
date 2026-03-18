@@ -40,7 +40,7 @@ const PaymentSuccess = () => {
           navigate("/reservations");
         }, 3000);
       } catch (err) {
-        console.error("Error updating payment status:", err);
+        /* log removed */
         setError("Failed to update payment status. Please contact support.");
         setIsUpdating(false);
       }

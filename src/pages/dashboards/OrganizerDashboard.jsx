@@ -147,16 +147,16 @@ function OrganizerDashboard() {
     setIsLoadingStats(true);
     try {
       const response = await getOrganizerStats();
-      console.log("Dashboard stats response:", response);
+      /* log removed */
 
       if (response.success && response.data) {
         setDashboardStats(response.data);
       } else {
-        console.error("Failed to fetch dashboard stats:", response.error);
+        /* log removed */
         toast.error("Failed to load dashboard statistics");
       }
     } catch (error) {
-      console.error("Error fetching dashboard stats:", error);
+      /* log removed */
       toast.error("Error loading dashboard statistics");
     } finally {
       setIsLoadingStats(false);
@@ -168,22 +168,22 @@ function OrganizerDashboard() {
     const fetchEvents = async () => {
       try {
         const response = await getOrganizerEvents();
-        console.log("Events fetch response:", response);
+        /* log removed */
 
         if (response.success) {
           if (response.data && response.data.length > 0) {
             setUserEvents(response.data);
-            console.log("Events set successfully:", response.data);
+            /* log removed */
           } else {
-            console.warn("No events found for this organizer");
+            /* log removed */
             setUserEvents([]);
           }
         } else {
-          console.error("Failed to fetch events:", response.error);
+          /* log removed */
           setUserEvents([]);
         }
       } catch (error) {
-        console.error("Error in fetchEvents:", error);
+        /* log removed */
         setUserEvents([]);
       }
     };
@@ -203,10 +203,10 @@ function OrganizerDashboard() {
         if (response.success && response.data && response.data.categories) {
           setCategories(response.data.categories);
         } else {
-          console.error("Failed to fetch categories:", response.error);
+          /* log removed */
         }
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        /* log removed */
       } finally {
         setIsLoadingCategories(false);
       }
@@ -239,10 +239,10 @@ function OrganizerDashboard() {
             subcategoryId: "",
           }));
         } else {
-          console.error("Failed to fetch subcategories:", response.error);
+          /* log removed */
         }
       } catch (error) {
-        console.error("Error fetching subcategories:", error);
+        /* log removed */
       } finally {
         setIsLoadingSubcategories(false);
       }
@@ -259,16 +259,13 @@ function OrganizerDashboard() {
 
       try {
         const response = await getAvailableVenues();
-        console.log("Raw API response:", response);
-        console.log("Venues data:", response.data?.venues);
+        /* log removed */
+        /* log removed */
 
         if (response.success && response.data && response.data.venues) {
           // Log each venue's image URL
           response.data.venues.forEach((venue) => {
-            console.log(
-              `Venue ${venue.venue_ID || venue.id} image:`,
-              venue.images
-            );
+            /* log removed */
           });
 
           setAvailableVenues(response.data.venues);
@@ -276,7 +273,7 @@ function OrganizerDashboard() {
           setVenueError(response.error || "Failed to fetch available venues");
         }
       } catch (error) {
-        console.error("Error fetching available venues:", error);
+        /* log removed */
         setVenueError("An unexpected error occurred while fetching venues");
       } finally {
         setIsLoadingVenues(false);
@@ -289,7 +286,7 @@ function OrganizerDashboard() {
   // Add debug effect
   useEffect(() => {
     if (selectedOwner) {
-      console.log("Modal should open for owner ID:", selectedOwner);
+      /* log removed */
     }
   }, [selectedOwner]);
 
@@ -305,19 +302,13 @@ function OrganizerDashboard() {
         const token = localStorage.getItem("authToken");
 
         if (!token) {
-          console.error("No authentication token found");
+          /* log removed */
           return;
         }
 
-        console.log("Token found:", token.substring(0, 10) + "...");
-        console.log(
-          "Payment status update attempt for reservation:",
-          reservationId
-        );
-        console.log(
-          "New status:",
-          paymentStatus === "success" ? "paid" : "cancelled"
-        );
+        /* log removed */
+        /* log removed */
+        /* log removed */
 
         const newStatus = paymentStatus === "success" ? "paid" : "cancelled";
 
@@ -334,30 +325,28 @@ function OrganizerDashboard() {
           }
         );
 
-        console.log("Payment status update successful:", response.data);
+        /* log removed */
       } catch (error) {
-        console.error("Error updating payment status:", error);
+        /* log removed */
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
-          console.error("Response data:", error.response.data);
-          console.error("Response status:", error.response.status);
-          console.error("Response headers:", error.response.headers);
+          /* log removed */
+          /* log removed */
+          /* log removed */
 
           if (error.response.status === 403) {
-            console.error(
-              "Authentication error - token may be invalid or expired"
-            );
+            /* log removed */
             // Optionally alert the user
             // alert("Your session has expired. Please log in again.");
             // navigate("/login");
           }
         } else if (error.request) {
           // The request was made but no response was received
-          console.error("No response received:", error.request);
+          /* log removed */
         } else {
           // Something happened in setting up the request that triggered an Error
-          console.error("Error setting up request:", error.message);
+          /* log removed */
         }
       }
     };
@@ -400,23 +389,23 @@ function OrganizerDashboard() {
   const fetchEvents = async () => {
     try {
       const response = await getOrganizerEvents();
-      console.log("Events fetch response:", response);
+      /* log removed */
 
       if (response.success) {
         if (response.data && response.data.length > 0) {
           setUserEvents(response.data);
-          console.log("Events set successfully:", response.data);
+          /* log removed */
         } else {
-          console.warn("No events found for this organizer");
+          /* log removed */
           setUserEvents([]);
         }
       } else {
-        console.error("Failed to fetch events:", response.error);
+        /* log removed */
         toast.error(`Failed to fetch events: ${response.error}`);
         setUserEvents([]);
       }
     } catch (error) {
-      console.error("Error fetching events:", error);
+      /* log removed */
       toast.error(`Error fetching events: ${error.message}`);
       setUserEvents([]);
     }
@@ -425,7 +414,7 @@ function OrganizerDashboard() {
   const handleCreateEvent = async (formData) => {
     try {
       // Log that we're creating an event with FormData
-      console.log("Creating event with FormData");
+      /* log removed */
 
       // Get the token using the proper method from authService
       const token = getToken();
@@ -455,7 +444,7 @@ function OrganizerDashboard() {
         // Refresh events list
         fetchEvents();
       } else {
-        console.error("Failed to create event:", data.error || data.message);
+        /* log removed */
         toast.error(
           `Failed to create event: ${
             data.error || data.message || "Unknown error"
@@ -463,7 +452,7 @@ function OrganizerDashboard() {
         );
       }
     } catch (error) {
-      console.error("Error creating event:", error);
+      /* log removed */
       toast.error(`Error creating event: ${error.message}`);
     }
   };
@@ -477,28 +466,20 @@ function OrganizerDashboard() {
 
   const handleApproveVendor = (vendorId) => {
     // Mock function to approve vendor - would be replaced with actual API call
-    console.log(`Approving vendor with ID: ${vendorId}`);
+    /* log removed */
     // Update UI after approval
   };
 
   const handleDeclineVendor = (vendorId) => {
     // Mock function to decline vendor - would be replaced with actual API call
-    console.log(`Declining vendor with ID: ${vendorId}`);
+    /* log removed */
     // Update UI after declining
   };
 
   // Find a venue by ID, trying different possible ID field names
   const findVenueById = (venueId) => {
-    console.log("Finding venue with ID:", venueId);
-    console.log(
-      "Venue types in availableVenues:",
-      availableVenues.map((v) => ({
-        id: v.id,
-        venue_ID: v.venue_ID,
-        idType: typeof v.id,
-        venue_IDType: typeof v.venue_ID,
-      }))
-    );
+    /* log removed */
+    /* log removed */
 
     // Try multiple ID fields and handle both string and number comparisons
     return availableVenues.find((v) => {
@@ -542,7 +523,7 @@ function OrganizerDashboard() {
         setFormattedLocation("No address details available");
       }
     } catch (error) {
-      console.error("Error fetching location name:", error);
+      /* log removed */
       setFormattedLocation("Location information unavailable");
     } finally {
       setIsLoadingLocation(false);
@@ -570,7 +551,7 @@ function OrganizerDashboard() {
         setFormattedLocation("No location coordinates available");
       }
     } catch (error) {
-      console.error("Error parsing venue location:", error);
+      /* log removed */
       setFormattedLocation("Location information unavailable");
     }
 
@@ -679,7 +660,7 @@ function OrganizerDashboard() {
     try {
       // Get the current pricing option from the passed details
       const pricingOption = details.selectedPricingOption;
-      console.log("Calculating price with option:", pricingOption);
+      /* log removed */
 
       if (pricingOption === "daily") {
         // Daily pricing - calculate based on date range
@@ -694,9 +675,7 @@ function OrganizerDashboard() {
               Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
             const dailyRate = parseFloat(selectedVenue.cost_daily) || 0;
             const totalCost = dailyRate * daysDiff;
-            console.log(
-              `Daily calculation: ${dailyRate} × ${daysDiff} days = ${totalCost}`
-            );
+            /* log removed */
             setCalculatedPrice(totalCost);
           } else {
             // End date is before start date
@@ -729,9 +708,7 @@ function OrganizerDashboard() {
             const hoursDiff = (endDateTime - startDateTime) / (1000 * 60 * 60);
             const hourlyRate = parseFloat(selectedVenue.cost_hourly) || 0;
             const totalCost = hourlyRate * hoursDiff;
-            console.log(
-              `Hourly calculation: ${hourlyRate} × ${hoursDiff} hours = ${totalCost}`
-            );
+            /* log removed */
             setCalculatedPrice(totalCost);
           } else {
             // End time is before start time
@@ -743,7 +720,7 @@ function OrganizerDashboard() {
         }
       }
     } catch (error) {
-      console.error("Error calculating price:", error);
+      /* log removed */
       setCalculatedPrice(parseFloat(selectedVenue.cost_hourly) || 0);
     }
   };
@@ -789,7 +766,7 @@ function OrganizerDashboard() {
       setShowConfirmationModal(true);
       return;
     } catch (error) {
-      console.error("Error showing confirmation:", error);
+      /* log removed */
       toast.error("An error occurred. Please try again.");
     }
   };
@@ -812,23 +789,17 @@ function OrganizerDashboard() {
         totalCost: calculatedPrice,
       };
 
-      console.log(
-        "Creating reservation with data:",
-        JSON.stringify(reservationData, null, 2)
-      );
+      /* log removed */
 
       const response = await createReservation(reservationData);
 
-      console.log(
-        "Create reservation response:",
-        JSON.stringify(response, null, 2)
-      );
+      /* log removed */
 
       if (!response.success) {
-        console.error("Reservation creation failed:", response.error);
+        /* log removed */
 
         // Try a direct fetch as a fallback/debug
-        console.log("Attempting direct API call as fallback...");
+        /* log removed */
         const token = localStorage.getItem("authToken");
 
         if (token) {
@@ -846,13 +817,10 @@ function OrganizerDashboard() {
             );
 
             const directData = await directResponse.json();
-            console.log(
-              "Direct API call response:",
-              JSON.stringify(directData, null, 2)
-            );
+            /* log removed */
 
             if (directResponse.ok && directData.success) {
-              console.log("Direct API call successful!");
+              /* log removed */
               // Use this response instead
               response.success = true;
               response.data = directData.data;
@@ -863,7 +831,7 @@ function OrganizerDashboard() {
               );
             }
           } catch (directError) {
-            console.error("Direct API call also failed:", directError);
+            /* log removed */
             throw new Error(response.error || "Failed to create reservation");
           }
         } else {
@@ -871,10 +839,7 @@ function OrganizerDashboard() {
         }
       }
 
-      console.log(
-        "Reservation created successfully with ID:",
-        response.data.reservationId
-      );
+      /* log removed */
 
       // Initialize Stripe
       const stripe = await stripePromise;
@@ -889,10 +854,7 @@ function OrganizerDashboard() {
         throw new Error("Authentication token not found");
       }
 
-      console.log(
-        "Using authentication token for checkout:",
-        token ? `${token.substring(0, 10)}...` : "null"
-      );
+      /* log removed */
 
       const checkoutResponse = await fetch(
         "https://connviabackend-production.up.railway.app/api/stripe/create-checkout-session",
@@ -933,7 +895,7 @@ function OrganizerDashboard() {
       // Redirect to Stripe Checkout
       window.location.href = checkoutData.url;
     } catch (error) {
-      console.error("Error in checkout session creation:", error);
+      /* log removed */
       toast.error(error.message || "An error occurred. Please try again.");
     }
   };
@@ -956,7 +918,7 @@ function OrganizerDashboard() {
       {/* Use the DashboardHeader component with notifications */}
       <DashboardHeader
         handleLogout={handleLogout}
-        toggleNotifications={() => console.log("Toggle notifications")}
+        toggleNotifications={() => /* log removed */}
         showNotifications={false}
         newNotificationsCount={newNotificationsCount}
         notifications={mockData.notifications}
@@ -1356,11 +1318,8 @@ function OrganizerDashboard() {
                         alt={venue.name}
                         className={styles.venueImage}
                         onError={(e) => {
-                          console.log(
-                            "Image load error for venue:",
-                            venue.name
-                          );
-                          console.log("Failed URL:", e.target.src);
+                          /* log removed */
+                          /* log removed */
                           e.target.src = "https://via.placeholder.com/300x200";
                         }}
                       />
@@ -1396,19 +1355,13 @@ function OrganizerDashboard() {
                           <button
                             className={styles.ownerNameLink}
                             onClick={() => {
-                              console.log("Full venue object:", venue);
+                              /* log removed */
 
                               if (venue.venue_owner_ID) {
-                                console.log(
-                                  "Using venue_owner_ID directly:",
-                                  venue.venue_owner_ID
-                                );
+                                /* log removed */
                                 setSelectedOwner(venue.venue_owner_ID);
                               } else {
-                                console.error(
-                                  "No venue_owner_ID available for this venue:",
-                                  venue
-                                );
+                                /* log removed */
                                 toast.error(
                                   "Could not find venue owner information"
                                 );
@@ -1491,7 +1444,7 @@ function OrganizerDashboard() {
                         <button
                           className={styles.reserveVenueButton}
                           onClick={() => {
-                            console.log("Full venue object:", venue);
+                            /* log removed */
 
                             // Pass the entire venue object to handleVenueSelect
                             // This will handle location parsing and display
@@ -1733,7 +1686,7 @@ function OrganizerDashboard() {
                         borderRadius: "8px",
                       }}
                       onError={(e) => {
-                        console.log("Modal image load error:", e.target.src);
+                        /* log removed */
                         e.target.src = "https://via.placeholder.com/300x200";
                       }}
                     />

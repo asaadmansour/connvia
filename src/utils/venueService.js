@@ -84,7 +84,7 @@ export const addVenue = async (venueData) => {
     };
     formData.append("working_hours", JSON.stringify(workingHoursData));
 
-    console.log("Submitting venue to endpoint:", API_URL);
+    /* log removed */
 
     const response = await fetch(API_URL, {
       method: "POST",
@@ -98,13 +98,10 @@ export const addVenue = async (venueData) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Venue API error:", data);
+      /* log removed */
       // Log the full response for debugging
-      console.log("Full response status:", response.status);
-      console.log(
-        "Full response headers:",
-        Object.fromEntries([...response.headers.entries()])
-      );
+      /* log removed */
+      /* log removed */
 
       // Return detailed error information
       return {
@@ -122,7 +119,7 @@ export const addVenue = async (venueData) => {
       data,
     };
   } catch (error) {
-    console.error("Add venue error:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -157,7 +154,7 @@ export const getMyVenues = async () => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Venue API error:", data);
+      /* log removed */
       return {
         success: false,
         error: data.error || data.message || "Failed to fetch venues",
@@ -169,7 +166,7 @@ export const getMyVenues = async () => {
       data,
     };
   } catch (error) {
-    console.error("Error fetching venues:", error);
+    /* log removed */
     return {
       success: false,
       error: error.message || "An unexpected error occurred",
@@ -195,7 +192,7 @@ export const getVenueDetails = async (venueId) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Venue details API error:", data);
+      /* log removed */
       return {
         success: false,
         error: data.error || data.message || "Failed to get venue details",
@@ -207,7 +204,7 @@ export const getVenueDetails = async (venueId) => {
       data: data.venue || data,
     };
   } catch (error) {
-    console.error("Error fetching venue details:", error);
+    /* log removed */
     return {
       success: false,
       error: "Failed to fetch venue details. Please try again later.",
@@ -246,7 +243,7 @@ export const updateVenue = async (venueId, venueData) => {
       try {
         locationData = JSON.parse(locationData);
       } catch (e) {
-        console.error("Error parsing location string:", e);
+        /* log removed */
       }
     }
 
@@ -334,7 +331,7 @@ export const updateVenue = async (venueId, venueData) => {
       );
     }
 
-    console.log("Updating venue at endpoint:", `${API_URL}/${venueId}`);
+    /* log removed */
 
     const response = await fetch(`${API_URL}/${venueId}`, {
       method: "PUT",
@@ -348,7 +345,7 @@ export const updateVenue = async (venueId, venueData) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Venue update API error:", data);
+      /* log removed */
       return {
         success: false,
         error: data.error || data.message || "Failed to update venue",
@@ -361,7 +358,7 @@ export const updateVenue = async (venueId, venueData) => {
       venueId: data.venueId,
     };
   } catch (error) {
-    console.error("Error updating venue:", error);
+    /* log removed */
     return {
       success: false,
       error: "Failed to update venue. Please try again later.",
@@ -395,7 +392,7 @@ export const getAvailableVenues = async () => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Get available venues API error:", data);
+      /* log removed */
       return {
         success: false,
         error: data.error || "Failed to get available venues",
@@ -404,23 +401,15 @@ export const getAvailableVenues = async () => {
 
     // Direct inspection and processing of the venue data
     if (data && data.venues && Array.isArray(data.venues)) {
-      console.log(
-        "VENUESERVICE - Raw API venues data:",
-        JSON.stringify(data.venues, null, 2)
-      );
+      /* log removed */
 
       // Make sure ownerName is preserved
       data.venues = data.venues.map((venue) => {
-        console.log(
-          `VENUESERVICE - Processing venue ${venue.id}, owner name:`,
-          venue.ownerName
-        );
+        /* log removed */
 
         // Enforce owner name if it exists in the data
         if (venue.ownerName) {
-          console.log(
-            `VENUESERVICE - Preserving owner name: ${venue.ownerName}`
-          );
+          /* log removed */
           return {
             ...venue,
             ownerName: venue.ownerName, // Explicitly preserve this
@@ -429,10 +418,7 @@ export const getAvailableVenues = async () => {
         return venue;
       });
 
-      console.log(
-        "VENUESERVICE - Processed venues data:",
-        JSON.stringify(data.venues, null, 2)
-      );
+      /* log removed */
     }
 
     return {
@@ -440,7 +426,7 @@ export const getAvailableVenues = async () => {
       data,
     };
   } catch (error) {
-    console.error("Get available venues error:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -457,11 +443,11 @@ export const getAvailableVenues = async () => {
  */
 export const getVenueOwnerById = async (ownerId) => {
   try {
-    console.log("Fetching venue owner details for ID:", ownerId);
+    /* log removed */
     const token = getToken();
 
     if (!token) {
-      console.error("No token available for getVenueOwnerById");
+      /* log removed */
       return {
         success: false,
         error: "Authentication required",
@@ -470,7 +456,7 @@ export const getVenueOwnerById = async (ownerId) => {
 
     // Log the API URL being called
     const apiUrl = `${API_URL}/api/venues/owner/${ownerId}`;
-    console.log("Calling API endpoint:", apiUrl);
+    /* log removed */
 
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -480,25 +466,25 @@ export const getVenueOwnerById = async (ownerId) => {
       },
     });
 
-    console.log("API response status:", response.status);
+    /* log removed */
     const data = await response.json();
-    console.log("API response data:", data);
+    /* log removed */
 
     if (!response.ok) {
-      console.error("Get venue owner API error:", data);
+      /* log removed */
       return {
         success: false,
         error: data.error || "Failed to get venue owner details",
       };
     }
 
-    console.log("Successfully fetched venue owner data:", data);
+    /* log removed */
     return {
       success: true,
       data,
     };
   } catch (error) {
-    console.error("Get venue owner error:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -524,7 +510,7 @@ export const reserveVenue = async (venueId) => {
       };
     }
 
-    console.log(`Reserving venue with ID: ${venueId}`);
+    /* log removed */
 
     const response = await fetch(`${API_URL}/${venueId}/reserve`, {
       method: "POST",
@@ -537,7 +523,7 @@ export const reserveVenue = async (venueId) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Reserve venue API error:", data);
+      /* log removed */
       return {
         success: false,
         error: data.error || "Failed to reserve venue",
@@ -549,7 +535,7 @@ export const reserveVenue = async (venueId) => {
       data,
     };
   } catch (error) {
-    console.error("Reserve venue error:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -575,7 +561,7 @@ export const deleteVenue = async (venueId) => {
       };
     }
 
-    console.log(`Deleting venue with ID: ${venueId}`);
+    /* log removed */
 
     const response = await fetch(`${API_URL}/${venueId}`, {
       method: "DELETE",
@@ -585,10 +571,10 @@ export const deleteVenue = async (venueId) => {
     });
 
     const data = await response.json();
-    console.log("Delete venue response data:", data);
+    /* log removed */
 
     if (!response.ok) {
-      console.error("Delete venue API error:", data);
+      /* log removed */
 
       // Check if the error is related to foreign key constraint
       if (data.details && data.details.includes("foreign key constraint")) {
@@ -611,7 +597,7 @@ export const deleteVenue = async (venueId) => {
       message: data.message || "Venue deleted successfully",
     };
   } catch (error) {
-    console.error("Delete venue error:", error);
+    /* log removed */
     return {
       success: false,
       error:

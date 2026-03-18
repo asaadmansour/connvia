@@ -36,7 +36,7 @@ export const getUserNotifications = async () => {
       };
     }
   } catch (error) {
-    console.error("Error fetching notifications:", error);
+    /* log removed */
     return {
       success: false,
       error: error.response?.data?.error || "Failed to fetch notifications",
@@ -81,7 +81,7 @@ export const markNotificationAsRead = async (notificationId) => {
       };
     }
   } catch (error) {
-    console.error("Error marking notification as read:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -128,7 +128,7 @@ export const markAllNotificationsAsRead = async () => {
       };
     }
   } catch (error) {
-    console.error("Error marking all notifications as read:", error);
+    /* log removed */
     return {
       success: false,
       error:
@@ -177,7 +177,7 @@ export const createNotification = async (notificationData) => {
       };
     }
   } catch (error) {
-    console.error("Error creating notification:", error);
+    /* log removed */
     return {
       success: false,
       error: error.response?.data?.error || "Failed to create notification",
