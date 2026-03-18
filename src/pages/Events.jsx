@@ -212,6 +212,11 @@ const Events = () => {
         )}
 
         {/* Events grid */}
+        <EventsGrid 
+          state={state}
+          showFilters={showFilters}
+          onEventClick={(eventId) => {}}
+        />
       </div>
     </div>
   );
