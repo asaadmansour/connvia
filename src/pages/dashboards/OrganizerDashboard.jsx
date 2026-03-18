@@ -918,7 +918,7 @@ function OrganizerDashboard() {
       {/* Use the DashboardHeader component with notifications */}
       <DashboardHeader
         handleLogout={handleLogout}
-        toggleNotifications={() => /* log removed */}
+        toggleNotifications={() => {}}
         showNotifications={false}
         newNotificationsCount={newNotificationsCount}
         notifications={mockData.notifications}
